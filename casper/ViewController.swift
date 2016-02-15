@@ -9,7 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var usernameField: UITextField!
+    
+    @IBOutlet weak var passwdField: UITextField!
+    
+    @IBAction func loginBtn(sender: AnyObject) {
+        
+        print(usernameField.text! + "is logging in")
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
