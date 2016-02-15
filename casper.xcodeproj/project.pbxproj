@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		16E784C91C721D79006BF669 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E784C81C721D79006BF669 /* AppDelegate.swift */; };
+		16E784CB1C721D79006BF669 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E784CA1C721D79006BF669 /* ViewController.swift */; };
+		16E784CE1C721D79006BF669 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16E784CC1C721D79006BF669 /* Main.storyboard */; };
+		16E784D01C721D79006BF669 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16E784CF1C721D79006BF669 /* Assets.xcassets */; };
+		16E784D31C721D79006BF669 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16E784D11C721D79006BF669 /* LaunchScreen.storyboard */; };
+		16E784DE1C721D79006BF669 /* casperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E784DD1C721D79006BF669 /* casperTests.swift */; };
+		16E784E91C721D79006BF669 /* casperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E784E81C721D79006BF669 /* casperUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		16E784DA1C721D79006BF669 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 16E784BD1C721D79006BF669 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16E784C41C721D79006BF669;
+			remoteInfo = casper;
+		};
+		16E784E51C721D79006BF669 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 16E784BD1C721D79006BF669 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16E784C41C721D79006BF669;
+			remoteInfo = casper;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		16E784C51C721D79006BF669 /* casper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = casper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		16E784C81C721D79006BF669 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		16E784CA1C721D79006BF669 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		16E784CD1C721D79006BF669 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		16E784CF1C721D79006BF669 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		16E784D21C721D79006BF669 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		16E784D41C721D79006BF669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16E784D91C721D79006BF669 /* casperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = casperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		16E784DD1C721D79006BF669 /* casperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = casperTests.swift; sourceTree = "<group>"; };
+		16E784DF1C721D79006BF669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16E784E41C721D79006BF669 /* casperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = casperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		16E784E81C721D79006BF669 /* casperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = casperUITests.swift; sourceTree = "<group>"; };
+		16E784EA1C721D79006BF669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		16E784C21C721D79006BF669 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		16E784D61C721D79006BF669 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		16E784E11C721D79006BF669 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		16E784BC1C721D79006BF669 = {
+			isa = PBXGroup;
+			children = (
+				16E784C71C721D79006BF669 /* casper */,
+				16E784DC1C721D79006BF669 /* casperTests */,
+				16E784E71C721D79006BF669 /* casperUITests */,
+				16E784C61C721D79006BF669 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		16E784C61C721D79006BF669 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				16E784C51C721D79006BF669 /* casper.app */,
+				16E784D91C721D79006BF669 /* casperTests.xctest */,
+				16E784E41C721D79006BF669 /* casperUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		16E784C71C721D79006BF669 /* casper */ = {
+			isa = PBXGroup;
+			children = (
+				16E784C81C721D79006BF669 /* AppDelegate.swift */,
+				16E784CA1C721D79006BF669 /* ViewController.swift */,
+				16E784CC1C721D79006BF669 /* Main.storyboard */,
+				16E784CF1C721D79006BF669 /* Assets.xcassets */,
+				16E784D11C721D79006BF669 /* LaunchScreen.storyboard */,
+				16E784D41C721D79006BF669 /* Info.plist */,
+			);
+			path = casper;
+			sourceTree = "<group>";
+		};
+		16E784DC1C721D79006BF669 /* casperTests */ = {
+			isa = PBXGroup;
+			children = (
+				16E784DD1C721D79006BF669 /* casperTests.swift */,
+				16E784DF1C721D79006BF669 /* Info.plist */,
+			);
+			path = casperTests;
+			sourceTree = "<group>";
+		};
+		16E784E71C721D79006BF669 /* casperUITests */ = {
+			isa = PBXGroup;
+			children = (
+				16E784E81C721D79006BF669 /* casperUITests.swift */,
+				16E784EA1C721D79006BF669 /* Info.plist */,
+			);
+			path = casperUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		16E784C41C721D79006BF669 /* casper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16E784ED1C721D79006BF669 /* Build configuration list for PBXNativeTarget "casper" */;
+			buildPhases = (
+				16E784C11C721D79006BF669 /* Sources */,
+				16E784C21C721D79006BF669 /* Frameworks */,
+				16E784C31C721D79006BF669 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = casper;
+			productName = casper;
+			productReference = 16E784C51C721D79006BF669 /* casper.app */;
+			productType = "com.apple.product-type.application";
+		};
+		16E784D81C721D79006BF669 /* casperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16E784F01C721D79006BF669 /* Build configuration list for PBXNativeTarget "casperTests" */;
+			buildPhases = (
+				16E784D51C721D79006BF669 /* Sources */,
+				16E784D61C721D79006BF669 /* Frameworks */,
+				16E784D71C721D79006BF669 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				16E784DB1C721D79006BF669 /* PBXTargetDependency */,
+			);
+			name = casperTests;
+			productName = casperTests;
+			productReference = 16E784D91C721D79006BF669 /* casperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		16E784E31C721D79006BF669 /* casperUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16E784F31C721D79006BF669 /* Build configuration list for PBXNativeTarget "casperUITests" */;
+			buildPhases = (
+				16E784E01C721D79006BF669 /* Sources */,
+				16E784E11C721D79006BF669 /* Frameworks */,
+				16E784E21C721D79006BF669 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				16E784E61C721D79006BF669 /* PBXTargetDependency */,
+			);
+			name = casperUITests;
+			productName = casperUITests;
+			productReference = 16E784E41C721D79006BF669 /* casperUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		16E784BD1C721D79006BF669 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Pontus Pohl";
+				TargetAttributes = {
+					16E784C41C721D79006BF669 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					16E784D81C721D79006BF669 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 16E784C41C721D79006BF669;
+					};
+					16E784E31C721D79006BF669 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 16E784C41C721D79006BF669;
+					};
+				};
+			};
+			buildConfigurationList = 16E784C01C721D79006BF669 /* Build configuration list for PBXProject "casper" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 16E784BC1C721D79006BF669;
+			productRefGroup = 16E784C61C721D79006BF669 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				16E784C41C721D79006BF669 /* casper */,
+				16E784D81C721D79006BF669 /* casperTests */,
+				16E784E31C721D79006BF669 /* casperUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		16E784C31C721D79006BF669 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16E784D31C721D79006BF669 /* LaunchScreen.storyboard in Resources */,
+				16E784D01C721D79006BF669 /* Assets.xcassets in Resources */,
+				16E784CE1C721D79006BF669 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		16E784D71C721D79006BF669 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		16E784E21C721D79006BF669 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		16E784C11C721D79006BF669 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16E784CB1C721D79006BF669 /* ViewController.swift in Sources */,
+				16E784C91C721D79006BF669 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		16E784D51C721D79006BF669 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16E784DE1C721D79006BF669 /* casperTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		16E784E01C721D79006BF669 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16E784E91C721D79006BF669 /* casperUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		16E784DB1C721D79006BF669 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 16E784C41C721D79006BF669 /* casper */;
+			targetProxy = 16E784DA1C721D79006BF669 /* PBXContainerItemProxy */;
+		};
+		16E784E61C721D79006BF669 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 16E784C41C721D79006BF669 /* casper */;
+			targetProxy = 16E784E51C721D79006BF669 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		16E784CC1C721D79006BF669 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				16E784CD1C721D79006BF669 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		16E784D11C721D79006BF669 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				16E784D21C721D79006BF669 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		16E784EB1C721D79006BF669 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		16E784EC1C721D79006BF669 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		16E784EE1C721D79006BF669 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = casper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		16E784EF1C721D79006BF669 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = casper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		16E784F11C721D79006BF669 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = casperTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/casper.app/casper";
+			};
+			name = Debug;
+		};
+		16E784F21C721D79006BF669 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = casperTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/casper.app/casper";
+			};
+			name = Release;
+		};
+		16E784F41C721D79006BF669 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = casperUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casperUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = casper;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		16E784F51C721D79006BF669 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = casperUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casperUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = casper;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		16E784C01C721D79006BF669 /* Build configuration list for PBXProject "casper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16E784EB1C721D79006BF669 /* Debug */,
+				16E784EC1C721D79006BF669 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		16E784ED1C721D79006BF669 /* Build configuration list for PBXNativeTarget "casper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16E784EE1C721D79006BF669 /* Debug */,
+				16E784EF1C721D79006BF669 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		16E784F01C721D79006BF669 /* Build configuration list for PBXNativeTarget "casperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16E784F11C721D79006BF669 /* Debug */,
+				16E784F21C721D79006BF669 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		16E784F31C721D79006BF669 /* Build configuration list for PBXNativeTarget "casperUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				16E784F41C721D79006BF669 /* Debug */,
+				16E784F51C721D79006BF669 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 16E784BD1C721D79006BF669 /* Project object */;
+}
