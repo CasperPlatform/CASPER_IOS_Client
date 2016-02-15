@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     @IBAction func loginBtn(sender: AnyObject) {
         
-        print(usernameField.text! + "is logging in")
+        print(usernameField.text! + " is logging in")
         
     }
     override func viewDidLoad() {
