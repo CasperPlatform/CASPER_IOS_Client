@@ -16,7 +16,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var passwdField: UITextField!
     
     @IBAction func loginBtn(sender: AnyObject) {
-        
+        if(usernameField.text == "admin" && passwdField.text == "Password"){
+            performSegueWithIdentifier("login", sender: self)
+        }
         print(usernameField.text! + " is logging in")
         
     }
