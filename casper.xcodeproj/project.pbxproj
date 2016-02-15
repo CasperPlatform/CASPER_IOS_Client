@@ -14,6 +14,9 @@
 		16E784D31C721D79006BF669 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16E784D11C721D79006BF669 /* LaunchScreen.storyboard */; };
 		16E784DE1C721D79006BF669 /* casperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E784DD1C721D79006BF669 /* casperTests.swift */; };
 		16E784E91C721D79006BF669 /* casperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E784E81C721D79006BF669 /* casperUITests.swift */; };
+		AAC12754E053F487351D9B02 /* Pods_casperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF5916968D76A46AC243B8F9 /* Pods_casperTests.framework */; };
+		C2E0A2903E409D3D04218C80 /* Pods_casper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B62BC7CF64379F1AA08CE6 /* Pods_casper.framework */; };
+		F3F531B55A95F648BC84874E /* Pods_casperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA90C2B1EFB4320903934C3F /* Pods_casperUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,16 @@
 		16E784E41C721D79006BF669 /* casperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = casperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16E784E81C721D79006BF669 /* casperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = casperUITests.swift; sourceTree = "<group>"; };
 		16E784EA1C721D79006BF669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		16E784F81C72527C006BF669 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
+		35B62BC7CF64379F1AA08CE6 /* Pods_casper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_casper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ED1A743AD288CC3BD1677AC /* Pods-casper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-casper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-casper/Pods-casper.debug.xcconfig"; sourceTree = "<group>"; };
+		7C251EA1DA1BD9C5C841F8B9 /* Pods-casperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-casperTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-casperTests/Pods-casperTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A4666E63D631920CBA0CB45C /* Pods-casperTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-casperTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-casperTests/Pods-casperTests.release.xcconfig"; sourceTree = "<group>"; };
+		AA90C2B1EFB4320903934C3F /* Pods_casperUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_casperUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AECA061777D2EB2041304CCA /* Pods-casperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-casperUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-casperUITests/Pods-casperUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C0DBD11ACB923D408FD81946 /* Pods-casper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-casper.release.xcconfig"; path = "Pods/Target Support Files/Pods-casper/Pods-casper.release.xcconfig"; sourceTree = "<group>"; };
+		CF5916968D76A46AC243B8F9 /* Pods_casperTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_casperTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0CC651624D08F95AE8A70CE /* Pods-casperUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-casperUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-casperUITests/Pods-casperUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2E0A2903E409D3D04218C80 /* Pods_casper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC12754E053F487351D9B02 /* Pods_casperTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3F531B55A95F648BC84874E /* Pods_casperUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +97,8 @@
 				16E784DC1C721D79006BF669 /* casperTests */,
 				16E784E71C721D79006BF669 /* casperUITests */,
 				16E784C61C721D79006BF669 /* Products */,
+				B4EEEFF4B9F9A52C3E904340 /* Pods */,
+				645BAB7B87F6C2586F8AD17A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +143,30 @@
 			path = casperUITests;
 			sourceTree = "<group>";
 		};
+		645BAB7B87F6C2586F8AD17A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				16E784F81C72527C006BF669 /* Alamofire.framework */,
+				35B62BC7CF64379F1AA08CE6 /* Pods_casper.framework */,
+				CF5916968D76A46AC243B8F9 /* Pods_casperTests.framework */,
+				AA90C2B1EFB4320903934C3F /* Pods_casperUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B4EEEFF4B9F9A52C3E904340 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4ED1A743AD288CC3BD1677AC /* Pods-casper.debug.xcconfig */,
+				C0DBD11ACB923D408FD81946 /* Pods-casper.release.xcconfig */,
+				7C251EA1DA1BD9C5C841F8B9 /* Pods-casperTests.debug.xcconfig */,
+				A4666E63D631920CBA0CB45C /* Pods-casperTests.release.xcconfig */,
+				AECA061777D2EB2041304CCA /* Pods-casperUITests.debug.xcconfig */,
+				D0CC651624D08F95AE8A70CE /* Pods-casperUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +174,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 16E784ED1C721D79006BF669 /* Build configuration list for PBXNativeTarget "casper" */;
 			buildPhases = (
+				B53901AB3A32A464A400CF6F /* Check Pods Manifest.lock */,
 				16E784C11C721D79006BF669 /* Sources */,
 				16E784C21C721D79006BF669 /* Frameworks */,
 				16E784C31C721D79006BF669 /* Resources */,
+				46ED5A3068B72301C254A12B /* Embed Pods Frameworks */,
+				A99DAE5574F2561FD4E28AB6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +194,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 16E784F01C721D79006BF669 /* Build configuration list for PBXNativeTarget "casperTests" */;
 			buildPhases = (
+				56FBFB82B1B878AFF81D6292 /* Check Pods Manifest.lock */,
 				16E784D51C721D79006BF669 /* Sources */,
 				16E784D61C721D79006BF669 /* Frameworks */,
 				16E784D71C721D79006BF669 /* Resources */,
+				F8764AB2611E5515C621E044 /* Embed Pods Frameworks */,
+				2395794D563CBA44E7DB3B15 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +215,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 16E784F31C721D79006BF669 /* Build configuration list for PBXNativeTarget "casperUITests" */;
 			buildPhases = (
+				B1A11A7A4334B3ADFEB9E1E7 /* Check Pods Manifest.lock */,
 				16E784E01C721D79006BF669 /* Sources */,
 				16E784E11C721D79006BF669 /* Frameworks */,
 				16E784E21C721D79006BF669 /* Resources */,
+				4CF88A7F2044BE4B25F0F351 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,6 +243,7 @@
 				TargetAttributes = {
 					16E784C41C721D79006BF669 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = CRGTXVJUGE;
 					};
 					16E784D81C721D79006BF669 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -250,6 +301,129 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2395794D563CBA44E7DB3B15 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-casperTests/Pods-casperTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		46ED5A3068B72301C254A12B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-casper/Pods-casper-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4CF88A7F2044BE4B25F0F351 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-casperUITests/Pods-casperUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56FBFB82B1B878AFF81D6292 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A99DAE5574F2561FD4E28AB6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-casper/Pods-casper-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B1A11A7A4334B3ADFEB9E1E7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B53901AB3A32A464A400CF6F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F8764AB2611E5515C621E044 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-casperTests/Pods-casperTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		16E784C11C721D79006BF669 /* Sources */ = {
@@ -395,28 +569,45 @@
 		};
 		16E784EE1C721D79006BF669 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4ED1A743AD288CC3BD1677AC /* Pods-casper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = casper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		16E784EF1C721D79006BF669 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0DBD11ACB923D408FD81946 /* Pods-casper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = casper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
 		16E784F11C721D79006BF669 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C251EA1DA1BD9C5C841F8B9 /* Pods-casperTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = casperTests/Info.plist;
@@ -429,6 +620,7 @@
 		};
 		16E784F21C721D79006BF669 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4666E63D631920CBA0CB45C /* Pods-casperTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = casperTests/Info.plist;
@@ -441,6 +633,7 @@
 		};
 		16E784F41C721D79006BF669 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AECA061777D2EB2041304CCA /* Pods-casperUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = casperUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -453,6 +646,7 @@
 		};
 		16E784F51C721D79006BF669 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0CC651624D08F95AE8A70CE /* Pods-casperUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = casperUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -482,6 +676,7 @@
 				16E784EF1C721D79006BF669 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		16E784F01C721D79006BF669 /* Build configuration list for PBXNativeTarget "casperTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +685,7 @@
 				16E784F21C721D79006BF669 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		16E784F31C721D79006BF669 /* Build configuration list for PBXNativeTarget "casperUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +694,7 @@
 				16E784F51C721D79006BF669 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

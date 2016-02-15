@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Alamofire
 class ViewController: UIViewController {
     
     
@@ -20,6 +20,9 @@ class ViewController: UIViewController {
             performSegueWithIdentifier("login", sender: self)
         }
         print(usernameField.text! + " is logging in")
+        
+        
+        
         
     }
     override func viewDidLoad() {

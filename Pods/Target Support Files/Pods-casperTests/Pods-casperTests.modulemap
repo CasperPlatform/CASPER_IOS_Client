@@ -1,0 +1,6 @@
+framework module Pods_casperTests {
+  umbrella header "Pods-casperTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
