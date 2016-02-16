@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var usernameField: UITextField!
@@ -22,11 +22,11 @@ class ViewController: UIViewController {
         print(usernameField.text! + " is logging in")
         
         
-        
-        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.passwdField.delegate = self
+        self.usernameField.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -43,7 +43,10 @@ class ViewController: UIViewController {
         //return UIStatusBarStyle.Default
         
     }
-
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 
 }
 
