@@ -14,7 +14,7 @@ class DriveViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var size = CGSizeMake(self.view.bounds.height, self.view.bounds.width)
+        let size = CGSizeMake(self.view.bounds.height, self.view.bounds.width)
         let scene = DriveScene(size: size)
         scene.backgroundColor = .whiteColor()
         if let skView = self.view as? SKView {
