@@ -45,17 +45,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		16E784C51C721D79006BF669 /* casper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = casper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		16E784C51C721D79006BF669 /* Casper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Casper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16E784C81C721D79006BF669 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16E784CA1C721D79006BF669 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		16E784CD1C721D79006BF669 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		16E784CF1C721D79006BF669 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16E784D21C721D79006BF669 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		16E784D41C721D79006BF669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		16E784D91C721D79006BF669 /* casperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = casperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		16E784D91C721D79006BF669 /* Casper.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Casper.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16E784DD1C721D79006BF669 /* casperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = casperTests.swift; sourceTree = "<group>"; };
 		16E784DF1C721D79006BF669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		16E784E41C721D79006BF669 /* casperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = casperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		16E784E41C721D79006BF669 /* Casper.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Casper.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		16E784E81C721D79006BF669 /* casperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = casperUITests.swift; sourceTree = "<group>"; };
 		16E784EA1C721D79006BF669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16E784F81C72527C006BF669 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 		16E784BC1C721D79006BF669 = {
 			isa = PBXGroup;
 			children = (
-				16E784C71C721D79006BF669 /* casper */,
+				16E784C71C721D79006BF669 /* Casper */,
 				16E784DC1C721D79006BF669 /* casperTests */,
 				16E784E71C721D79006BF669 /* casperUITests */,
 				16E784C61C721D79006BF669 /* Products */,
@@ -121,14 +121,14 @@
 		16E784C61C721D79006BF669 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				16E784C51C721D79006BF669 /* casper.app */,
-				16E784D91C721D79006BF669 /* casperTests.xctest */,
-				16E784E41C721D79006BF669 /* casperUITests.xctest */,
+				16E784C51C721D79006BF669 /* Casper.app */,
+				16E784D91C721D79006BF669 /* Casper.xctest */,
+				16E784E41C721D79006BF669 /* Casper.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		16E784C71C721D79006BF669 /* casper */ = {
+		16E784C71C721D79006BF669 /* Casper */ = {
 			isa = PBXGroup;
 			children = (
 				A9077ECF1C728904008B7AFB /* apple.png */,
@@ -146,6 +146,7 @@
 				16E784D11C721D79006BF669 /* LaunchScreen.storyboard */,
 				16E784D41C721D79006BF669 /* Info.plist */,
 			);
+			name = Casper;
 			path = casper;
 			sourceTree = "<group>";
 		};
@@ -211,7 +212,7 @@
 			);
 			name = casper;
 			productName = casper;
-			productReference = 16E784C51C721D79006BF669 /* casper.app */;
+			productReference = 16E784C51C721D79006BF669 /* Casper.app */;
 			productType = "com.apple.product-type.application";
 		};
 		16E784D81C721D79006BF669 /* casperTests */ = {
@@ -232,7 +233,7 @@
 			);
 			name = casperTests;
 			productName = casperTests;
-			productReference = 16E784D91C721D79006BF669 /* casperTests.xctest */;
+			productReference = 16E784D91C721D79006BF669 /* Casper.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		16E784E31C721D79006BF669 /* casperUITests */ = {
@@ -252,7 +253,7 @@
 			);
 			name = casperUITests;
 			productName = casperUITests;
-			productReference = 16E784E41C721D79006BF669 /* casperUITests.xctest */;
+			productReference = 16E784E41C721D79006BF669 /* Casper.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -279,7 +280,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 16E784C01C721D79006BF669 /* Build configuration list for PBXProject "casper" */;
+			buildConfigurationList = 16E784C01C721D79006BF669 /* Build configuration list for PBXProject "Casper" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -613,7 +614,7 @@
 				INFOPLIST_FILE = casper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Casper;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -632,7 +633,7 @@
 				INFOPLIST_FILE = casper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casper;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Casper;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -645,8 +646,8 @@
 				INFOPLIST_FILE = casperTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casperTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/casper.app/casper";
+				PRODUCT_NAME = Casper;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Casper.app/Casper";
 			};
 			name = Debug;
 		};
@@ -658,8 +659,8 @@
 				INFOPLIST_FILE = casperTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casperTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/casper.app/casper";
+				PRODUCT_NAME = Casper;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Casper.app/Casper";
 			};
 			name = Release;
 		};
@@ -670,7 +671,7 @@
 				INFOPLIST_FILE = casperUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casperUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Casper;
 				TEST_TARGET_NAME = casper;
 				USES_XCTRUNNER = YES;
 			};
@@ -683,7 +684,7 @@
 				INFOPLIST_FILE = casperUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.group1.casperUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Casper;
 				TEST_TARGET_NAME = casper;
 				USES_XCTRUNNER = YES;
 			};
@@ -692,7 +693,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		16E784C01C721D79006BF669 /* Build configuration list for PBXProject "casper" */ = {
+		16E784C01C721D79006BF669 /* Build configuration list for PBXProject "Casper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				16E784EB1C721D79006BF669 /* Debug */,
