@@ -9,6 +9,7 @@ end
 
 target 'casperTests' do
 pod 'Alamofire', '~> 3.0'
+pod 'SwiftyJSON'
 end
 
 target 'casperUITests' do
