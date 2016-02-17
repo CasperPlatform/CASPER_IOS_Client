@@ -14,6 +14,8 @@ import Alamofire
 class ViewController: UIViewController, UITextFieldDelegate {
     
     
+    
+    
     @IBOutlet weak var usernameField: UITextField!
     
     @IBOutlet weak var passwdField: UITextField!
@@ -22,7 +24,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if(usernameField.text == "admin" && passwdField.text == "Password"){
             performSegueWithIdentifier("login", sender: self)
         }
+        
         print(usernameField.text! + " is logging in")
+        let util : RestUtil = RestUtil(username: usernameField.text!, password: passwdField.text!)
+        if util.token != "" {
+            print("authenticated")
+            print(util.token)
+        }
+        else{
+            print("failed to authenticate")
+        }
         
         
     }
