@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     
+    @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var usernameField: UITextField!
     
@@ -26,6 +27,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func loginBtn(sender: AnyObject)
     {
+        progressIndicator.startAnimating()
+        
         if(usernameField.text == "admin" && passwdField.text == "Password"){
             performSegueWithIdentifier("login", sender: self)
         }
@@ -80,7 +83,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
    
     
     func workDone(){
-        
+        progressIndicator.stopAnimating()
         if(self.token != ""){
             
             performSegueWithIdentifier("login", sender: self)

@@ -43,7 +43,7 @@
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJV-5W-72h">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJV-5W-72h">
                                 <rect key="frame" x="183" y="461" width="234" height="30"/>
                                 <color key="backgroundColor" red="0.18823529411764706" green="0.94117647058823528" blue="0.51764705882352946" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
@@ -54,6 +54,9 @@
                                     <action selector="loginBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qp3-Zu-aMX"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Tc5-BZ-Hii">
+                                <rect key="frame" x="282" y="368" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.098039215690000001" green="0.14901960780000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -73,6 +76,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="passwdField" destination="JL0-j8-Gee" id="FWX-Ex-nJq"/>
+                        <outlet property="progressIndicator" destination="Tc5-BZ-Hii" id="1oE-7Z-Obr"/>
                         <outlet property="usernameField" destination="RGz-QV-KGJ" id="fif-iy-XZ3"/>
                         <segue destination="jx8-Jy-ePI" kind="show" identifier="login" id="rlG-96-Y48"/>
                     </connections>
@@ -247,6 +251,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="BN3-5G-yAe"/>
+        <segue reference="rlG-96-Y48"/>
     </inferredMetricsTieBreakers>
 </document>
