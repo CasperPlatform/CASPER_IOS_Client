@@ -70,7 +70,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
         auth.completionBlock =
             {
-                
+                print("done")
       
             }
         auth.queuePriority = .High
@@ -121,6 +121,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //return UIStatusBarStyle.Default
         
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "login"){
+            let menuViewController = (segue.destinationViewController as! MenuViewController)
+            menuViewController.token = token
+        }
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
