@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-
+import SwiftyJSON
 
 
 class ViewController: UIViewController, UITextFieldDelegate {
@@ -20,23 +20,84 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var passwdField: UITextField!
     
-    @IBAction func loginBtn(sender: AnyObject) {
+    var backgroundQueue : NSOperationQueue = NSOperationQueue()
+    
+    var token:String = ""
+    
+    @IBAction func loginBtn(sender: AnyObject)
+    {
         if(usernameField.text == "admin" && passwdField.text == "Password"){
             performSegueWithIdentifier("login", sender: self)
         }
-        
+        else
+        {
+            
+    
         print(usernameField.text! + " is logging in")
-        let util : RestUtil = RestUtil(username: usernameField.text!, password: passwdField.text!)
-        if util.token != "" {
-            print("authenticated")
-            print(util.token)
-        }
-        else{
-            print("failed to authenticate")
-        }
+        
+        let auth = RestUtil(username: usernameField.text!,
+            password: passwdField.text!)
+            { (responseObject, error) in
+                if(error == nil && responseObject == nil)
+                {
+                    print("Connection failed, probably...")
+                    
+                }
+                else if(error != nil && responseObject == nil)
+                {
+                    print(error)
+                    
+                    
+                }
+                else
+                {
+                    print(responseObject)
+                    if(responseObject!["Token"] != "")
+                    {
+                            print("got token")
+                            self.token = responseObject!["token"].string!
+                        
+                            
+                    }
+                }
+                
+             self.workDone()
+            }
+    
+    
+        auth.completionBlock =
+            {
+                
+      
+            }
+        auth.queuePriority = .High
+        auth.qualityOfService = .UserInteractive
+        backgroundQueue.addOperation(auth)
         
         
+        }
     }
+   
+    
+    func workDone(){
+        
+        if(self.token != ""){
+            
+            performSegueWithIdentifier("login", sender: self)
+        }
+    }
+    
+        //let util : RestUtil = RestUtil(username: usernameField.text!, password: passwdField.text!)
+        //if util.token != "" {
+          //  print("authenticated")
+            //print(util.token)
+        //}
+        //else{
+          //  print("failed to authenticate")
+        //}
+        
+        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.passwdField.delegate = self
