@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SocketIOClientSwift
 
 
 class ViewController: UIViewController, UITextFieldDelegate {

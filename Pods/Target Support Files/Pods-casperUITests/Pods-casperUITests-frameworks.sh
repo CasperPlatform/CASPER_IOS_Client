@@ -85,9 +85,11 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-casperUITests/Alamofire.framework"
+  install_framework "Pods-casperUITests/SocketIOClientSwift.framework"
   install_framework "Pods-casperUITests/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-casperUITests/Alamofire.framework"
+  install_framework "Pods-casperUITests/SocketIOClientSwift.framework"
   install_framework "Pods-casperUITests/SwiftyJSON.framework"
 fi
