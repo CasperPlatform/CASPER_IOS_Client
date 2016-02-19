@@ -43,7 +43,7 @@
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJV-5W-72h">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJV-5W-72h">
                                 <rect key="frame" x="183" y="461" width="234" height="30"/>
                                 <color key="backgroundColor" red="0.18823529411764706" green="0.94117647058823528" blue="0.51764705882352946" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
@@ -54,21 +54,23 @@
                                     <action selector="loginBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qp3-Zu-aMX"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Tc5-BZ-Hii">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Tc5-BZ-Hii">
                                 <rect key="frame" x="282" y="368" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.098039215690000001" green="0.14901960780000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="JL0-j8-Gee" firstAttribute="leading" secondItem="RGz-QV-KGJ" secondAttribute="leading" id="0ir-Tl-Rd9"/>
+                            <constraint firstItem="Tc5-BZ-Hii" firstAttribute="centerX" secondItem="JL0-j8-Gee" secondAttribute="centerX" id="49c-Q8-Zhk"/>
                             <constraint firstItem="JL0-j8-Gee" firstAttribute="top" secondItem="RGz-QV-KGJ" secondAttribute="bottom" constant="18" id="53p-We-4As"/>
-                            <constraint firstItem="jJV-5W-72h" firstAttribute="trailing" secondItem="JL0-j8-Gee" secondAttribute="trailing" id="Hwp-zG-lY4"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="jJV-5W-72h" secondAttribute="bottom" constant="109" id="KSO-cs-slY"/>
-                            <constraint firstItem="jJV-5W-72h" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WG4-Tz-iC2"/>
+                            <constraint firstItem="Tc5-BZ-Hii" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6bQ-iJ-1Yv"/>
+                            <constraint firstItem="jJV-5W-72h" firstAttribute="top" secondItem="Tc5-BZ-Hii" secondAttribute="bottom" constant="56" id="Er9-Ef-PsZ"/>
+                            <constraint firstItem="jJV-5W-72h" firstAttribute="leading" secondItem="JL0-j8-Gee" secondAttribute="leading" id="Xxb-uD-EPm"/>
+                            <constraint firstItem="Tc5-BZ-Hii" firstAttribute="top" secondItem="JL0-j8-Gee" secondAttribute="bottom" constant="53" id="Y5H-Bf-iXW"/>
                             <constraint firstItem="JL0-j8-Gee" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="bu4-kJ-Fkr"/>
+                            <constraint firstItem="jJV-5W-72h" firstAttribute="trailing" secondItem="JL0-j8-Gee" secondAttribute="trailing" id="cJ0-j2-ydZ"/>
                             <constraint firstItem="RGz-QV-KGJ" firstAttribute="top" secondItem="oiN-Sd-ZLi" secondAttribute="bottom" constant="41" id="cdB-SQ-W0V"/>
                             <constraint firstItem="oiN-Sd-ZLi" firstAttribute="centerX" secondItem="RGz-QV-KGJ" secondAttribute="centerX" id="co2-QF-jIQ"/>
-                            <constraint firstItem="jJV-5W-72h" firstAttribute="leading" secondItem="JL0-j8-Gee" secondAttribute="leading" id="dQz-Zu-V0k"/>
                             <constraint firstItem="RGz-QV-KGJ" firstAttribute="trailing" secondItem="JL0-j8-Gee" secondAttribute="trailing" id="ftL-xP-0Zg"/>
                             <constraint firstItem="oiN-Sd-ZLi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="giT-MJ-QD8"/>
                         </constraints>
