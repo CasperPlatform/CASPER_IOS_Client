@@ -15,6 +15,7 @@ import SocketIOClientSwift
 class ViewController: UIViewController, UITextFieldDelegate {
     
     
+    @IBOutlet weak var credentialError: UILabel!
     
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
@@ -35,8 +36,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         else
         {
-            
-    
+        credentialError.text = "Wrong credentials"
         print(usernameField.text! + " is logging in")
         
         let auth = RestUtil(username: usernameField.text!,

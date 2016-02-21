@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -57,14 +58,23 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Tc5-BZ-Hii">
                                 <rect key="frame" x="282" y="368" width="37" height="37"/>
                             </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZF-45-8oQ">
+                                <rect key="frame" x="25" y="165" width="555" height="37"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.098039215690000001" green="0.14901960780000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="JL0-j8-Gee" firstAttribute="leading" secondItem="RGz-QV-KGJ" secondAttribute="leading" id="0ir-Tl-Rd9"/>
+                            <constraint firstItem="xZF-45-8oQ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="2Ah-i5-O4J"/>
+                            <constraint firstItem="RGz-QV-KGJ" firstAttribute="top" secondItem="xZF-45-8oQ" secondAttribute="bottom" constant="35" id="2Dp-Zo-3Cs"/>
                             <constraint firstItem="Tc5-BZ-Hii" firstAttribute="centerX" secondItem="JL0-j8-Gee" secondAttribute="centerX" id="49c-Q8-Zhk"/>
                             <constraint firstItem="JL0-j8-Gee" firstAttribute="top" secondItem="RGz-QV-KGJ" secondAttribute="bottom" constant="18" id="53p-We-4As"/>
                             <constraint firstItem="Tc5-BZ-Hii" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6bQ-iJ-1Yv"/>
                             <constraint firstItem="jJV-5W-72h" firstAttribute="top" secondItem="Tc5-BZ-Hii" secondAttribute="bottom" constant="56" id="Er9-Ef-PsZ"/>
+                            <constraint firstItem="xZF-45-8oQ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="145" id="UUk-n8-G8M"/>
                             <constraint firstItem="jJV-5W-72h" firstAttribute="leading" secondItem="JL0-j8-Gee" secondAttribute="leading" id="Xxb-uD-EPm"/>
                             <constraint firstItem="Tc5-BZ-Hii" firstAttribute="top" secondItem="JL0-j8-Gee" secondAttribute="bottom" constant="53" id="Y5H-Bf-iXW"/>
                             <constraint firstItem="JL0-j8-Gee" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="bu4-kJ-Fkr"/>
@@ -73,10 +83,12 @@
                             <constraint firstItem="oiN-Sd-ZLi" firstAttribute="centerX" secondItem="RGz-QV-KGJ" secondAttribute="centerX" id="co2-QF-jIQ"/>
                             <constraint firstItem="RGz-QV-KGJ" firstAttribute="trailing" secondItem="JL0-j8-Gee" secondAttribute="trailing" id="ftL-xP-0Zg"/>
                             <constraint firstItem="oiN-Sd-ZLi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="giT-MJ-QD8"/>
+                            <constraint firstItem="xZF-45-8oQ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="l8w-Qe-uh4"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="credentialError" destination="xZF-45-8oQ" id="6li-tv-plZ"/>
                         <outlet property="passwdField" destination="JL0-j8-Gee" id="FWX-Ex-nJq"/>
                         <outlet property="progressIndicator" destination="Tc5-BZ-Hii" id="1oE-7Z-Obr"/>
                         <outlet property="usernameField" destination="RGz-QV-KGJ" id="fif-iy-XZ3"/>
@@ -85,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="354" y="362"/>
+            <point key="canvasLocation" x="355" y="362"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="dgX-em-oXS">
