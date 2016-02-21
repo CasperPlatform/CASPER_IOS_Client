@@ -107,6 +107,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.passwdField.delegate = self
         self.usernameField.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
+        
+       
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

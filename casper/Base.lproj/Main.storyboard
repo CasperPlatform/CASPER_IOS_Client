@@ -127,6 +127,13 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZhG-uz-mjY">
+                                <rect key="frame" x="276" y="221" width="48" height="30"/>
+                                <state key="normal" title="Socket"/>
+                                <connections>
+                                    <action selector="socketAction:" destination="jx8-Jy-ePI" eventType="touchUpInside" id="Pyh-Ir-7Fu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -134,8 +141,10 @@
                             <constraint firstItem="B0t-UT-KS1" firstAttribute="leading" secondItem="blg-J7-mVd" secondAttribute="leading" id="20f-nF-NJv"/>
                             <constraint firstItem="B0t-UT-KS1" firstAttribute="top" secondItem="8mn-nj-QM2" secondAttribute="bottom" id="AOw-qQ-klo"/>
                             <constraint firstItem="Q0p-Bc-wvd" firstAttribute="top" secondItem="blg-J7-mVd" secondAttribute="top" id="JvG-Ip-Rat"/>
+                            <constraint firstItem="ZhG-uz-mjY" firstAttribute="centerX" secondItem="rwm-Y7-yAx" secondAttribute="centerX" id="OKa-XA-eKa"/>
                             <constraint firstItem="B0t-UT-KS1" firstAttribute="bottom" secondItem="Q0p-Bc-wvd" secondAttribute="bottom" id="VtX-Db-NcV"/>
                             <constraint firstItem="rwm-Y7-yAx" firstAttribute="top" secondItem="B0t-UT-KS1" secondAttribute="bottom" constant="82" id="W4A-6d-mza"/>
+                            <constraint firstItem="ZhG-uz-mjY" firstAttribute="top" secondItem="rwm-Y7-yAx" secondAttribute="bottom" constant="45" id="hSf-DO-i8y"/>
                             <constraint firstAttribute="trailing" secondItem="B0t-UT-KS1" secondAttribute="trailing" id="sq4-bF-kJ8"/>
                             <constraint firstItem="B0t-UT-KS1" firstAttribute="leading" secondItem="Q0p-Bc-wvd" secondAttribute="leading" id="tLw-gZ-4Xe"/>
                             <constraint firstItem="B0t-UT-KS1" firstAttribute="trailing" secondItem="Q0p-Bc-wvd" secondAttribute="trailing" id="wEk-hp-3yY"/>

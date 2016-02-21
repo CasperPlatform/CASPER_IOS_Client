@@ -15,6 +15,7 @@
 		16E784DE1C721D79006BF669 /* casperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E784DD1C721D79006BF669 /* casperTests.swift */; };
 		16E784E91C721D79006BF669 /* casperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E784E81C721D79006BF669 /* casperUITests.swift */; };
 		16E8E45B1C73934600F44B05 /* RestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E8E45A1C73934600F44B05 /* RestUtil.swift */; };
+		16F53EC31C78C4B200D5727B /* SocketConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F53EC21C78C4B200D5727B /* SocketConnection.swift */; };
 		A9077EC41C7266C6008B7AFB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9077EC31C7266C6008B7AFB /* SettingsViewController.swift */; };
 		A9077EC61C7266DF008B7AFB /* DriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9077EC51C7266DF008B7AFB /* DriveViewController.swift */; };
 		A9077EC81C72670E008B7AFB /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9077EC71C72670E008B7AFB /* MenuViewController.swift */; };
@@ -61,6 +62,7 @@
 		16E784EA1C721D79006BF669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		16E784F81C72527C006BF669 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
 		16E8E45A1C73934600F44B05 /* RestUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestUtil.swift; sourceTree = "<group>"; };
+		16F53EC21C78C4B200D5727B /* SocketConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketConnection.swift; sourceTree = "<group>"; };
 		35B62BC7CF64379F1AA08CE6 /* Pods_casper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_casper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ED1A743AD288CC3BD1677AC /* Pods-casper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-casper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-casper/Pods-casper.debug.xcconfig"; sourceTree = "<group>"; };
 		7C251EA1DA1BD9C5C841F8B9 /* Pods-casperTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-casperTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-casperTests/Pods-casperTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				16E784CA1C721D79006BF669 /* ViewController.swift */,
 				A9077EC51C7266DF008B7AFB /* DriveViewController.swift */,
 				A9077EC31C7266C6008B7AFB /* SettingsViewController.swift */,
+				16F53EC21C78C4B200D5727B /* SocketConnection.swift */,
 				A9077EC71C72670E008B7AFB /* MenuViewController.swift */,
 				16E784CC1C721D79006BF669 /* Main.storyboard */,
 				16E784CF1C721D79006BF669 /* Assets.xcassets */,
@@ -461,6 +464,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9077EC41C7266C6008B7AFB /* SettingsViewController.swift in Sources */,
+				16F53EC31C78C4B200D5727B /* SocketConnection.swift in Sources */,
 				A9077ECA1C7273B6008B7AFB /* AnalogJoystick.swift in Sources */,
 				A9077EC81C72670E008B7AFB /* MenuViewController.swift in Sources */,
 				A9077EC61C7266DF008B7AFB /* DriveViewController.swift in Sources */,
