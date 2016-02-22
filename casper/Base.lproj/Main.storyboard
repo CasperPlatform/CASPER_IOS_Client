@@ -130,7 +130,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Menu" id="MhA-6H-9Yg">
-                                        <barButtonItem key="rightBarButtonItem" title="Settings" id="3MH-bk-uLt">
+                                        <barButtonItem key="rightBarButtonItem" image="settings.png" id="3MH-bk-uLt">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <segue destination="Gui-gW-x3s" kind="show" id="stf-K4-PVb"/>
@@ -164,6 +164,9 @@
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="settings" destination="3MH-bk-uLt" id="ysT-Ns-cZC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IrQ-Ma-yvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -273,7 +276,10 @@
             <point key="canvasLocation" x="1684" y="362"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="settings.png" width="45" height="45"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rlG-96-Y48"/>
+        <segue reference="4T3-8q-yoh"/>
     </inferredMetricsTieBreakers>
 </document>

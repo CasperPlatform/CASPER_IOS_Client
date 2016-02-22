@@ -24,6 +24,7 @@
 		A9077ECE1C7288BF008B7AFB /* Images in Resources */ = {isa = PBXBuildFile; fileRef = A9077ECD1C7288BF008B7AFB /* Images */; };
 		A9077ED11C728904008B7AFB /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = A9077ECF1C728904008B7AFB /* apple.png */; };
 		A9077ED21C728904008B7AFB /* apple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9077ED01C728904008B7AFB /* apple@2x.png */; };
+		A9CB12411C7AFDF20028CBF7 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A9CB12401C7AFDF20028CBF7 /* settings.png */; };
 		AAC12754E053F487351D9B02 /* Pods_casperTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF5916968D76A46AC243B8F9 /* Pods_casperTests.framework */; };
 		C2E0A2903E409D3D04218C80 /* Pods_casper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B62BC7CF64379F1AA08CE6 /* Pods_casper.framework */; };
 		F3F531B55A95F648BC84874E /* Pods_casperUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA90C2B1EFB4320903934C3F /* Pods_casperUITests.framework */; };
@@ -75,6 +76,7 @@
 		A9077ECD1C7288BF008B7AFB /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		A9077ECF1C728904008B7AFB /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = apple.png; path = Images/apple.png; sourceTree = "<group>"; };
 		A9077ED01C728904008B7AFB /* apple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "apple@2x.png"; path = "Images/apple@2x.png"; sourceTree = "<group>"; };
+		A9CB12401C7AFDF20028CBF7 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		AA90C2B1EFB4320903934C3F /* Pods_casperUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_casperUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AECA061777D2EB2041304CCA /* Pods-casperUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-casperUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-casperUITests/Pods-casperUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C0DBD11ACB923D408FD81946 /* Pods-casper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-casper.release.xcconfig"; path = "Pods/Target Support Files/Pods-casper/Pods-casper.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		16E784C71C721D79006BF669 /* casper */ = {
 			isa = PBXGroup;
 			children = (
+				A9CB12401C7AFDF20028CBF7 /* settings.png */,
 				A9077ECF1C728904008B7AFB /* apple.png */,
 				A9077ED01C728904008B7AFB /* apple@2x.png */,
 				A9077ECD1C7288BF008B7AFB /* Images */,
@@ -273,7 +276,7 @@
 				TargetAttributes = {
 					16E784C41C721D79006BF669 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = CRGTXVJUGE;
+						DevelopmentTeam = TC3JJMVCQE;
 					};
 					16E784D81C721D79006BF669 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -311,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9077ECE1C7288BF008B7AFB /* Images in Resources */,
+				A9CB12411C7AFDF20028CBF7 /* settings.png in Resources */,
 				16E784D31C721D79006BF669 /* LaunchScreen.storyboard in Resources */,
 				16E784D01C721D79006BF669 /* Assets.xcassets in Resources */,
 				A9077ED21C728904008B7AFB /* apple@2x.png in Resources */,

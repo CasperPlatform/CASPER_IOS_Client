@@ -7,12 +7,13 @@
 //
 
 import UIKit
-import SocketIOClientSwift
+
 class MenuViewController: UIViewController {
     
     var token:String = ""
     let connection:SocketConnection = SocketConnection()
    
+    @IBOutlet weak var settings: UIBarButtonItem!
     
     
     @IBAction func socketAction(sender: AnyObject) {
@@ -35,6 +36,7 @@ class MenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        settings.imageInsets = UIEdgeInsetsMake(10, 10, 10, 10)
         
         // Do any additional setup after loading the view, typically from a nib.
     }
