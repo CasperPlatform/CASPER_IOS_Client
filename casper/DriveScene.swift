@@ -36,7 +36,7 @@ class DriveScene: SKScene {
     override func didMoveToView(view: SKView) {
 
         /* Setup your scene here */
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor(white: 1, alpha: 0.0)
         physicsBody = SKPhysicsBody(edgeLoopFromRect: frame)
         
         moveAnalogStick.position = CGPointMake(moveAnalogStick.radius + 15, moveAnalogStick.radius + 15)

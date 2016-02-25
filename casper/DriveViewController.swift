@@ -17,10 +17,10 @@ class DriveViewController: UIViewController {
         let size = CGSizeMake(self.view.bounds.height, self.view.bounds.width)
         let scene = DriveScene(size: size)
         scene.backgroundColor = .whiteColor()
-        if let skView = self.view as? SKView {
+        if let skView = view as? SKView {
             
-            skView.showsFPS = true
-            skView.showsNodeCount = true
+            skView.showsFPS = false
+            skView.showsNodeCount = false
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
             /* Set the scale mode to scale to fit the window */

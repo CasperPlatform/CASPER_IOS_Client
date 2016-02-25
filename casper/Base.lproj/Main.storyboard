@@ -112,8 +112,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rwm-Y7-yAx">
-                                <rect key="frame" x="282" y="146" width="36" height="30"/>
-                                <state key="normal" title="Drive"/>
+                                <rect key="frame" x="159" y="145" width="282" height="46"/>
+                                <color key="backgroundColor" red="0.18823529410000001" green="0.94117647059999998" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="282" id="XKx-Nv-Q2q"/>
+                                    <constraint firstAttribute="height" constant="46" id="scJ-2S-DFk"/>
+                                </constraints>
+                                <state key="normal" title="Drive">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <segue destination="oDG-C3-lVT" kind="show" id="IUO-lQ-m4w"/>
                                 </connections>
@@ -124,6 +131,9 @@
                             </view>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0t-UT-KS1">
                                 <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="hZo-aO-p8O"/>
+                                </constraints>
                                 <color key="barTintColor" red="0.078431372549019607" green="0.10980392156862745" blue="0.16078431372549021" alpha="1" colorSpace="calibratedRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -140,26 +150,31 @@
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZhG-uz-mjY">
-                                <rect key="frame" x="276" y="221" width="48" height="30"/>
-                                <state key="normal" title="Socket"/>
+                                <rect key="frame" x="159" y="213" width="282" height="46"/>
+                                <color key="backgroundColor" red="0.18823529410000001" green="0.94117647059999998" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Socket">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="socketAction:" destination="jx8-Jy-ePI" eventType="touchUpInside" id="Pyh-Ir-7Fu"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.098039215690000001" green="0.14901960780000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="B0t-UT-KS1" firstAttribute="centerX" secondItem="rwm-Y7-yAx" secondAttribute="centerX" id="1jn-3N-tah"/>
-                            <constraint firstItem="B0t-UT-KS1" firstAttribute="leading" secondItem="blg-J7-mVd" secondAttribute="leading" id="20f-nF-NJv"/>
-                            <constraint firstItem="B0t-UT-KS1" firstAttribute="top" secondItem="8mn-nj-QM2" secondAttribute="bottom" id="AOw-qQ-klo"/>
-                            <constraint firstItem="Q0p-Bc-wvd" firstAttribute="top" secondItem="blg-J7-mVd" secondAttribute="top" id="JvG-Ip-Rat"/>
-                            <constraint firstItem="ZhG-uz-mjY" firstAttribute="centerX" secondItem="rwm-Y7-yAx" secondAttribute="centerX" id="OKa-XA-eKa"/>
-                            <constraint firstItem="B0t-UT-KS1" firstAttribute="bottom" secondItem="Q0p-Bc-wvd" secondAttribute="bottom" id="VtX-Db-NcV"/>
-                            <constraint firstItem="rwm-Y7-yAx" firstAttribute="top" secondItem="B0t-UT-KS1" secondAttribute="bottom" constant="82" id="W4A-6d-mza"/>
-                            <constraint firstItem="ZhG-uz-mjY" firstAttribute="top" secondItem="rwm-Y7-yAx" secondAttribute="bottom" constant="45" id="hSf-DO-i8y"/>
-                            <constraint firstAttribute="trailing" secondItem="B0t-UT-KS1" secondAttribute="trailing" id="sq4-bF-kJ8"/>
-                            <constraint firstItem="B0t-UT-KS1" firstAttribute="leading" secondItem="Q0p-Bc-wvd" secondAttribute="leading" id="tLw-gZ-4Xe"/>
-                            <constraint firstItem="B0t-UT-KS1" firstAttribute="trailing" secondItem="Q0p-Bc-wvd" secondAttribute="trailing" id="wEk-hp-3yY"/>
+                            <constraint firstItem="Q0p-Bc-wvd" firstAttribute="bottom" secondItem="B0t-UT-KS1" secondAttribute="bottom" id="5SZ-OD-8tQ"/>
+                            <constraint firstAttribute="trailing" secondItem="B0t-UT-KS1" secondAttribute="trailing" id="5bg-UJ-234"/>
+                            <constraint firstItem="Q0p-Bc-wvd" firstAttribute="leading" secondItem="blg-J7-mVd" secondAttribute="leading" id="5w4-Zs-RV5"/>
+                            <constraint firstItem="ZhG-uz-mjY" firstAttribute="leading" secondItem="rwm-Y7-yAx" secondAttribute="leading" id="73z-ER-1HB"/>
+                            <constraint firstItem="B0t-UT-KS1" firstAttribute="leading" secondItem="Q0p-Bc-wvd" secondAttribute="leading" id="AYi-GW-dKp"/>
+                            <constraint firstItem="ZhG-uz-mjY" firstAttribute="top" secondItem="rwm-Y7-yAx" secondAttribute="bottom" constant="22" id="EhB-Gg-TXg"/>
+                            <constraint firstItem="v8K-LB-UbX" firstAttribute="top" secondItem="ZhG-uz-mjY" secondAttribute="bottom" constant="297" id="OLG-Mu-FxV"/>
+                            <constraint firstItem="B0t-UT-KS1" firstAttribute="trailing" secondItem="Q0p-Bc-wvd" secondAttribute="trailing" id="Tlg-pR-Gaz"/>
+                            <constraint firstItem="Q0p-Bc-wvd" firstAttribute="top" secondItem="blg-J7-mVd" secondAttribute="top" id="WVU-23-vN8"/>
+                            <constraint firstItem="B0t-UT-KS1" firstAttribute="top" secondItem="8mn-nj-QM2" secondAttribute="bottom" id="gNH-kh-3lo"/>
+                            <constraint firstItem="ZhG-uz-mjY" firstAttribute="trailing" secondItem="rwm-Y7-yAx" secondAttribute="trailing" id="k3B-3x-XDF"/>
+                            <constraint firstItem="rwm-Y7-yAx" firstAttribute="centerX" secondItem="B0t-UT-KS1" secondAttribute="centerX" id="tmO-SH-FOB"/>
+                            <constraint firstItem="rwm-Y7-yAx" firstAttribute="top" secondItem="B0t-UT-KS1" secondAttribute="bottom" constant="81" id="toz-cH-rDH"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -203,11 +218,11 @@
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xda-Ec-l9y" firstAttribute="top" secondItem="6nK-hR-Pd8" secondAttribute="bottom" id="LTa-MT-mGq"/>
-                            <constraint firstAttribute="trailing" secondItem="xda-Ec-l9y" secondAttribute="trailing" id="TW4-uY-i2Q"/>
-                            <constraint firstItem="xda-Ec-l9y" firstAttribute="leading" secondItem="ddi-2x-tw8" secondAttribute="leading" id="ich-kh-nwf"/>
+                            <constraint firstAttribute="trailing" secondItem="xda-Ec-l9y" secondAttribute="trailing" id="AUF-Yv-wd6"/>
+                            <constraint firstItem="xda-Ec-l9y" firstAttribute="leading" secondItem="ddi-2x-tw8" secondAttribute="leading" id="MhA-oV-5O3"/>
+                            <constraint firstItem="xda-Ec-l9y" firstAttribute="top" secondItem="6nK-hR-Pd8" secondAttribute="bottom" id="xE8-zL-vtL"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -280,6 +295,6 @@
         <image name="settings.png" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4T3-8q-yoh"/>
+        <segue reference="BN3-5G-yAe"/>
     </inferredMetricsTieBreakers>
 </document>
