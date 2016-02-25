@@ -77,7 +77,7 @@ class SocketConnection:NSObject, NSStreamDelegate{
     
     func sendValue()->NSData{
         
-        var arr : [UInt8] = [0x4f,0x6f,0xcf,0x04];
+        var arr : [UInt8] = [0x54,0x64,0x04];
         
         let data = NSData(bytes: arr, length: arr.count * sizeof(UInt8))
         
