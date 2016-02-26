@@ -36,7 +36,7 @@ class DriveScene: SKScene {
     override func didMoveToView(view: SKView) {
 
         /* Setup your scene here */
-        backgroundColor = UIColor(white: 1, alpha: 0.0)
+        backgroundColor = UIColor(white: 1.0, alpha: 0.0)
         physicsBody = SKPhysicsBody(edgeLoopFromRect: frame)
         
         moveAnalogStick.position = CGPointMake(moveAnalogStick.radius + 15, moveAnalogStick.radius + 15)
@@ -81,7 +81,8 @@ class DriveScene: SKScene {
         joystickStickImageEnabled = true
         joystickSubstrateImageEnabled = true
         
-        setRandomStickColor()
+        setStickColor()
+        setSubstrateColor()
         addApple(CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame)))
     }
     
@@ -129,16 +130,16 @@ class DriveScene: SKScene {
         }
     }
     
-    func setRandomStickColor() {
+    func setStickColor() {
         
-        let randomColor = UIColor.random()
-        moveAnalogStick.stick.color = randomColor
+        let Color = UIColorFromRGB(3010454)
+        moveAnalogStick.stick.color = Color
     }
     
-    func setRandomSubstrateColor() {
+    func setSubstrateColor() {
         
-        let randomColor = UIColor.random()
-        moveAnalogStick.substrate.color = randomColor
+        let Color = UIColorFromRGB(2110536)
+        moveAnalogStick.substrate.color = Color
     }
     
     override func update(currentTime: CFTimeInterval) {
@@ -146,6 +147,14 @@ class DriveScene: SKScene {
     }
 }
 
+func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+    return UIColor(
+        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+        blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+        alpha: CGFloat(1.0)
+    )
+}
 extension UIColor {
     
     static func random() -> UIColor {
