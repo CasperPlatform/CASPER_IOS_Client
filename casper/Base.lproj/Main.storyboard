@@ -217,6 +217,9 @@
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" image="map-icon.png" id="Lae-Wx-Dss">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="createMapBtn:" destination="oDG-C3-lVT" id="5fS-xA-yu2"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
