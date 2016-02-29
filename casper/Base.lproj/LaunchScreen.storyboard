@@ -16,7 +16,23 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5V-OH-hxn">
+                                <rect key="frame" x="134" y="222" width="333" height="155"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="333" id="7Ev-n5-9Be"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="150"/>
+                                <color key="textColor" red="0.18823529411764706" green="0.94117647058823528" blue="0.51764705882352946" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="0.18823529410000001" green="0.94117647059999998" blue="0.51764705879999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="0.098039215686274508" green="0.14901960784313725" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="X5V-OH-hxn" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="DSP-EF-zU7"/>
+                            <constraint firstItem="X5V-OH-hxn" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="202" id="Ufj-gN-x0M"/>
+                            <constraint firstItem="X5V-OH-hxn" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="hSk-ky-cde"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
