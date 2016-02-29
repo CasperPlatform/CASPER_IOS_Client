@@ -25,6 +25,7 @@
 		A9077ECE1C7288BF008B7AFB /* Images in Resources */ = {isa = PBXBuildFile; fileRef = A9077ECD1C7288BF008B7AFB /* Images */; };
 		A9077ED11C728904008B7AFB /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = A9077ECF1C728904008B7AFB /* apple.png */; };
 		A9077ED21C728904008B7AFB /* apple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9077ED01C728904008B7AFB /* apple@2x.png */; };
+		A95F29DC1C845116004A25B5 /* pointer.png in Resources */ = {isa = PBXBuildFile; fileRef = A95F29DB1C845116004A25B5 /* pointer.png */; };
 		A9CB12411C7AFDF20028CBF7 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A9CB12401C7AFDF20028CBF7 /* settings.png */; };
 		A9E87C2C1C7F3878000F9F6D /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A9E87C2B1C7F3878000F9F6D /* background.jpg */; };
 		A9E87C2E1C7F7E1C000F9F6D /* map-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E87C2D1C7F7E1C000F9F6D /* map-icon.png */; };
@@ -80,6 +81,7 @@
 		A9077ECD1C7288BF008B7AFB /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		A9077ECF1C728904008B7AFB /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = apple.png; path = Images/apple.png; sourceTree = "<group>"; };
 		A9077ED01C728904008B7AFB /* apple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "apple@2x.png"; path = "Images/apple@2x.png"; sourceTree = "<group>"; };
+		A95F29DB1C845116004A25B5 /* pointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointer.png; sourceTree = "<group>"; };
 		A9CB12401C7AFDF20028CBF7 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		A9E87C2B1C7F3878000F9F6D /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		A9E87C2D1C7F7E1C000F9F6D /* map-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-icon.png"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				A9CB12401C7AFDF20028CBF7 /* settings.png */,
 				A9E87C2D1C7F7E1C000F9F6D /* map-icon.png */,
+				A95F29DB1C845116004A25B5 /* pointer.png */,
 				A9E87C2B1C7F3878000F9F6D /* background.jpg */,
 				A9077ECF1C728904008B7AFB /* apple.png */,
 				A9077ED01C728904008B7AFB /* apple@2x.png */,
@@ -331,6 +334,7 @@
 				A9E87C2C1C7F3878000F9F6D /* background.jpg in Resources */,
 				16E784CE1C721D79006BF669 /* Main.storyboard in Resources */,
 				A9077ED11C728904008B7AFB /* apple.png in Resources */,
+				A95F29DC1C845116004A25B5 /* pointer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
