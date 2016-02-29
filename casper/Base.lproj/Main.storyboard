@@ -221,25 +221,27 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="hNw-hB-CbD">
-                                <rect key="frame" x="365" y="204" width="215" height="376"/>
-                                <color key="backgroundColor" red="0.098039215690000001" green="0.14901960780000001" blue="0.2156862745" alpha="0.60342133620689653" colorSpace="calibratedRGB"/>
-                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Ix-wo-qnO">
+                                <rect key="frame" x="288" y="417" width="292" height="163"/>
+                                <color key="backgroundColor" red="0.098039215690000001" green="0.14901960780000001" blue="0.2156862745" alpha="0.60342133620000005" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="292" id="Nlr-pP-bdg"/>
+                                    <constraint firstAttribute="height" constant="163" id="hEv-05-qaa"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="hNw-hB-CbD" secondAttribute="bottom" constant="20" symbolic="YES" id="2RC-w5-xrq"/>
-                            <constraint firstItem="hNw-hB-CbD" firstAttribute="top" secondItem="ddi-2x-tw8" secondAttribute="top" constant="204" id="3Xf-os-JMw"/>
-                            <constraint firstItem="hNw-hB-CbD" firstAttribute="leading" secondItem="ddi-2x-tw8" secondAttribute="leading" constant="365" id="9J3-o0-Gq0"/>
-                            <constraint firstItem="hNw-hB-CbD" firstAttribute="trailing" secondItem="ddi-2x-tw8" secondAttribute="trailingMargin" id="QWG-HB-UzP"/>
-                            <constraint firstItem="xda-Ec-l9y" firstAttribute="top" secondItem="6nK-hR-Pd8" secondAttribute="bottom" id="YgF-qa-S2W"/>
-                            <constraint firstItem="xda-Ec-l9y" firstAttribute="leading" secondItem="ddi-2x-tw8" secondAttribute="leading" id="fWV-lp-eIS"/>
-                            <constraint firstAttribute="trailing" secondItem="xda-Ec-l9y" secondAttribute="trailing" id="mE1-b8-DDu"/>
+                            <constraint firstAttribute="bottom" secondItem="8Ix-wo-qnO" secondAttribute="bottom" constant="20" symbolic="YES" id="4MJ-Wl-B5g"/>
+                            <constraint firstAttribute="trailing" secondItem="xda-Ec-l9y" secondAttribute="trailing" id="C0b-4s-8lV"/>
+                            <constraint firstItem="xda-Ec-l9y" firstAttribute="top" secondItem="6nK-hR-Pd8" secondAttribute="bottom" id="FRC-ph-fJh"/>
+                            <constraint firstItem="8Ix-wo-qnO" firstAttribute="trailing" secondItem="ddi-2x-tw8" secondAttribute="trailingMargin" id="Za7-IZ-Yqe"/>
+                            <constraint firstItem="xda-Ec-l9y" firstAttribute="leading" secondItem="ddi-2x-tw8" secondAttribute="leading" id="uEt-gY-LIg"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mapBtn" destination="Lae-Wx-Dss" id="UzS-6f-gAc"/>
-                        <outlet property="mapView" destination="hNw-hB-CbD" id="us1-3r-mOS"/>
+                        <outlet property="mapView" destination="8Ix-wo-qnO" id="XdC-sG-cMl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SOk-24-LR1" userLabel="First Responder" sceneMemberID="firstResponder"/>

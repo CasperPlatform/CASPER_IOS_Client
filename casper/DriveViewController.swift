@@ -12,7 +12,7 @@ class DriveViewController: UIViewController {
     
     let joystick = AnalogJoystick(diameter: 100)
     @IBOutlet weak var mapBtn: UIBarButtonItem!
-    @IBOutlet weak var mapView: UIView!
+    @IBOutlet weak var mapView: UIImageView!
     
     var startPoint = CGPoint.zero
     var red: CGFloat = 0.0
@@ -33,12 +33,11 @@ class DriveViewController: UIViewController {
             /* Set the scale mode to scale to fit the window */
             //scene.scaleMode = .AspectFill
             skView.presentScene(scene)
-            view.bringSubviewToFront(mapView)
-            view.insertSubview(mapView, aboveSubview: view)
         }
         // Do any additional setup after loading the view, typically from a nib.
-        view.bringSubviewToFront(mapView)
-        drawLine(CGPoint.init(x: 20, y: 50), toPoint: CGPoint.init(x: 500, y: 50))
+        let mapSize = CGSize(width: mapView.bounds.width, height: mapView.bounds.height)
+        /*let map = drawMap(mapSize)
+        mapView.image = map*/
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,8 +56,19 @@ class DriveViewController: UIViewController {
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return .Landscape
     }
-    func drawLine(fromPoint: CGPoint, toPoint: CGPoint){
-
-    }
+    /*func drawMap(size: CGSize) -> UIImage{
+        let bounds = CGRect(origin: CGPoint.zero, size: size)
+        let opaque = false;
+        let scale : CGFloat = 0;
+        UIGraphicsBeginImageContextWithOptions(size, opaque, scale)
+        let context = UIGraphicsGetCurrentContext()
+        // MAP
+        CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
+        CGContextSetLineWidth(context, 2.0)
+        CGContextStrokeRect(context, bounds)
+        
+        return UIImage;
+        
+    }*/
     
 }

@@ -45,6 +45,8 @@ class DriveScene: SKScene {
             
             guard let aN = self.appleNode else { return }
             aN.position = CGPointMake(aN.position.x + (jData.velocity.x * 0.12), aN.position.y + (jData.velocity.y * 0.12))
+            print(aN.position.x)
+            print(aN.position.y)
         }
         
         let btnsOffset: CGFloat = 10
