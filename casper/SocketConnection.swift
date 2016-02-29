@@ -89,41 +89,54 @@ class SocketConnection:NSObject, NSStreamDelegate{
     
     func openSchedule(){
         
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "sendValue", userInfo: nil, repeats: true)
-        timer.fire()
-    }
-    
-    func sendValue(){
-        
-        
-        print("sending")
-        var arr : [UInt8] = [0x54,0x64,0x04];
-        
-        let data = NSData(bytes: arr, length: arr.count * sizeof(UInt8))
-        
         var readStream:  Unmanaged<CFReadStream>?
         var writeStream: Unmanaged<CFWriteStream>?
         
         
         CFStreamCreatePairWithSocketToHost(nil, host, port, &readStream, &writeStream)
         
-        let inputStr:NSInputStream = readStream!.takeRetainedValue()
-        let outputStr:NSOutputStream = writeStream!.takeRetainedValue()
+        self.inputStream = readStream!.takeRetainedValue()
+        self.outputStream = writeStream!.takeRetainedValue()
         
         //inputStream.open()
         //outputStream.open()
-        inputStr.open()
-        outputStr.open()
+        self.inputStream.open()
+        self.outputStream.open()
         
-        var readBytes = data.bytes
-        var dataLength = data.length
         
-        var buffer = Array<UInt8>(count: dataLength, repeatedValue: 0)
-        memcpy(UnsafeMutablePointer(buffer), readBytes, dataLength)
-        var len = outputStr.write(buffer, maxLength: dataLength)
         
-        inputStr.close()
-        outputStr.close()
+        
+        var timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "sendValue", userInfo: nil, repeats: true)
+        timer.fire()
+    }
+    
+    func sendValue(){
+        
+        if(self.outputStream.hasSpaceAvailable){
+            
+            print("sending")
+            var arr : [UInt8] = [0x54,0x64,0x04];
+            
+            let data = NSData(bytes: arr, length: arr.count * sizeof(UInt8))
+            
+            
+            
+            var readBytes = data.bytes
+            var dataLength = data.length
+            
+            var buffer = Array<UInt8>(count: dataLength, repeatedValue: 0)
+            memcpy(UnsafeMutablePointer(buffer), readBytes, dataLength)
+            var len = self.outputStream.write(buffer, maxLength: dataLength)
+
+            
+        }
+        if(self.outputStream.streamStatus == NSStreamStatus.Error){
+            print("error")
+            self.inputStream.close()
+            self.outputStream.close()
+        }
+        
+        
         
         
     }
