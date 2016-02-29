@@ -18,8 +18,8 @@ class MenuViewController: UIViewController {
     
     @IBAction func socketAction(sender: AnyObject) {
       
-        connection.Connect()
-        
+//        connection.Open()
+        connection.openSchedule()
       
         
         

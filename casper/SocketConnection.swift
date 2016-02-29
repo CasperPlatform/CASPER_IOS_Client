@@ -11,16 +11,17 @@ class SocketConnection:NSObject, NSStreamDelegate{
     
     private var inputStream: NSInputStream!
     private var outputStream: NSOutputStream!
+    let host:CFStringRef = "127.0.0.1"
+    let port:UInt32 = 9999
+
     
     
     var dataToStream: NSData!
     
     var byteIndex: Int!
     
-    func Connect(){
-        
-        let host:CFStringRef = "127.0.0.1"
-        let port:UInt32 = 9999
+    func Open(){
+      
         
         
         var readStream:  Unmanaged<CFReadStream>?
@@ -28,6 +29,9 @@ class SocketConnection:NSObject, NSStreamDelegate{
         
         
         CFStreamCreatePairWithSocketToHost(nil, host, port, &readStream, &writeStream)
+        
+        
+
         
         self.inputStream = readStream!.takeRetainedValue()
         self.outputStream = writeStream!.takeRetainedValue()
@@ -39,11 +43,16 @@ class SocketConnection:NSObject, NSStreamDelegate{
         self.inputStream.delegate = self
         self.outputStream.delegate = self
         
-        inputStream.open()
-        outputStream.open()
-        
+        //inputStream.open()
+        //outputStream.open()
         self.inputStream.open()
         self.outputStream.open()
+        
+        
+        
+        
+        
+       
         
         
     }
@@ -51,13 +60,15 @@ class SocketConnection:NSObject, NSStreamDelegate{
         if( stream == self.outputStream)
         {
             if( eventCode == NSStreamEvent.HasSpaceAvailable){
-                dataToStream = sendValue()
-                var readBytes = dataToStream.bytes
-                var dataLength = dataToStream.length
-               
-                var buffer = Array<UInt8>(count: dataLength, repeatedValue: 0)
-                memcpy(UnsafeMutablePointer(buffer), readBytes, dataLength)
-                var len = outputStream.write(buffer, maxLength: dataLength)
+                
+//                dataToStream = sendValue()
+//                var readBytes = dataToStream.bytes
+//                var dataLength = dataToStream.length
+//               
+//                var buffer = Array<UInt8>(count: dataLength, repeatedValue: 0)
+//                memcpy(UnsafeMutablePointer(buffer), readBytes, dataLength)
+//                var len = outputStream.write(buffer, maxLength: dataLength)
+                
                 //outputStream.close()
                 //outputStream.removeFromRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
                 //outputStream = nil
@@ -75,15 +86,45 @@ class SocketConnection:NSObject, NSStreamDelegate{
         print("stream event")
     }
     
-    func sendValue()->NSData{
+    
+    func openSchedule(){
         
+        var timer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "sendValue", userInfo: nil, repeats: true)
+        timer.fire()
+    }
+    
+    func sendValue(){
+        
+        
+        print("sending")
         var arr : [UInt8] = [0x54,0x64,0x04];
         
         let data = NSData(bytes: arr, length: arr.count * sizeof(UInt8))
         
-        return data
-
-     
+        var readStream:  Unmanaged<CFReadStream>?
+        var writeStream: Unmanaged<CFWriteStream>?
+        
+        
+        CFStreamCreatePairWithSocketToHost(nil, host, port, &readStream, &writeStream)
+        
+        let inputStr:NSInputStream = readStream!.takeRetainedValue()
+        let outputStr:NSOutputStream = writeStream!.takeRetainedValue()
+        
+        //inputStream.open()
+        //outputStream.open()
+        inputStr.open()
+        outputStr.open()
+        
+        var readBytes = data.bytes
+        var dataLength = data.length
+        
+        var buffer = Array<UInt8>(count: dataLength, repeatedValue: 0)
+        memcpy(UnsafeMutablePointer(buffer), readBytes, dataLength)
+        var len = outputStr.write(buffer, maxLength: dataLength)
+        
+        inputStr.close()
+        outputStr.close()
+        
         
     }
     
