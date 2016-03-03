@@ -122,6 +122,8 @@ public class AnalogJoystick: SKNode {
     var stick: AnalogJoystickStick!
     private var tracking = false
     private(set) var data = AnalogJoystickData()
+    var SocketConn = SocketConnection()
+    
     
     var disabled: Bool {
         
@@ -215,6 +217,11 @@ public class AnalogJoystick: SKNode {
             
             stick.position = needPosition
             data = AnalogJoystickData(velocity: needPosition, angular: -atan2(needPosition.x, needPosition.y))
+//            print(stick.position.x)
+            
+            
+           
+            
         }
     }
     

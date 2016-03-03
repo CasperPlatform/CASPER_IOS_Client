@@ -40,14 +40,19 @@ class DriveScene: SKScene {
         physicsBody = SKPhysicsBody(edgeLoopFromRect: frame)
         
         moveAnalogStick.position = CGPointMake(moveAnalogStick.radius + 15, moveAnalogStick.radius + 15)
+        
+        
         addChild(moveAnalogStick)
         moveAnalogStick.trackingHandler = { jData in
             
             guard let aN = self.appleNode else { return }
             aN.position = CGPointMake(aN.position.x + (jData.velocity.x * 0.12), aN.position.y + (jData.velocity.y * 0.12))
-            print(aN.position.x)
-            print(aN.position.y)
+            
+//            print(aN.position.x)
+//            print(aN.position.y)
         }
+        
+        
         
         let btnsOffset: CGFloat = 10
         let btnsOffsetHalf = btnsOffset / 2
