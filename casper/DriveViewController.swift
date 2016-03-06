@@ -40,9 +40,7 @@ class DriveViewController: UIViewController {
         self.SocketConn = SocketConnection()
         
         // Do any additional setup after loading the view, typically from a nib.
-        let mapSize = CGSize(width: mapView.bounds.width, height: mapView.bounds.height)
-        /*let map = drawMap(mapSize)
-        mapView.image = map*/
+        
         
         
 //        
@@ -125,7 +123,6 @@ class DriveViewController: UIViewController {
 //        SocketConn.openStreamAndSendValues(flagDirectionX, flagY: flagDirectionY, speed: speed, direction: angle)
     }
     
-    /*func drawMap(size: CGSize) -> UIImage{
         let bounds = CGRect(origin: CGPoint.zero, size: size)
         let opaque = false;
         let scale : CGFloat = 0;
@@ -136,8 +133,17 @@ class DriveViewController: UIViewController {
         CGContextSetLineWidth(context, 2.0)
         CGContextStrokeRect(context, bounds)
         
-        return UIImage;
+        CGContextBeginPath(context)
+        CGContextMoveToPoint(context, CGRectGetMinX(bounds)+15, CGRectGetMaxX(bounds)+15)
+        CGContextAddLineToPoint(context, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds))
+        CGContextMoveToPoint(context, CGRectGetMaxX(bounds), CGRectGetMinY(bounds))
+        CGContextAddLineToPoint(context, CGRectGetMinX(bounds), CGRectGetMaxY(bounds))
+        CGContextStrokePath(context)
         
-    }*/
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+        
+    }
     
 }
