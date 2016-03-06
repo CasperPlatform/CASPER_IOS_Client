@@ -45,8 +45,6 @@ class DriveScene: SKScene {
             
             guard let aN = self.appleNode else { return }
             aN.position = CGPointMake(aN.position.x + (jData.velocity.x * 0.12), aN.position.y + (jData.velocity.y * 0.12))
-            print(aN.position.x)
-            print(aN.position.y)
         }
         
         let btnsOffset: CGFloat = 10
@@ -101,9 +99,9 @@ class DriveScene: SKScene {
             // Fallback on earlier versions
         }
         
-        insertChild(apple, atIndex: 0)
-        apple.position = position
-        appleNode = apple
+        //insertChild(apple, atIndex: 0)
+        //apple.position = position
+        //appleNode = apple
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
