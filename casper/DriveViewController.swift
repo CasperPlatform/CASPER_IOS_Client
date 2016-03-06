@@ -19,6 +19,7 @@ class DriveViewController: UIViewController {
     var green: CGFloat = 0.0
     var blue: CGFloat = 0.0
     var timer = NSTimer()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,31 +40,21 @@ class DriveViewController: UIViewController {
         
         self.SocketConn = SocketConnection()
         
-        // Do any additional setup after loading the view, typically from a nib.
+       
         
         
-        
-//        
-//        var timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: Selector("updateJoystickCoordinates:"), userInfo: nil, repeats: true)
+        //
+        //        var timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: Selector("updateJoystickCoordinates:"), userInfo: nil, repeats: true)
         
         self.timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: SocketConn!, selector: Selector("sendValue:"), userInfo: joystick, repeats: true)
+        // Do any additional setup after loading the view, typically from a nib.
         
-    }
-    
-    deinit {
-        print("deIniting")
-        // perform the deinitialization
     }
     
     override func viewDidDisappear(animated: Bool) {
         print("view disappeared")
         self.SocketConn!.closeStream()
         self.timer.invalidate()
-      
-       
-        
-       
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,6 +73,7 @@ class DriveViewController: UIViewController {
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return .Landscape
     }
+    
     
     func updateJoystickCoordinates(timer:NSTimer){
         
@@ -119,10 +111,16 @@ class DriveViewController: UIViewController {
         
         
         
-//        
-//        SocketConn.openStreamAndSendValues(flagDirectionX, flagY: flagDirectionY, speed: speed, direction: angle)
+        //
+        //        SocketConn.openStreamAndSendValues(flagDirectionX, flagY: flagDirectionY, speed: speed, direction: angle)
     }
     
+    @IBAction func createMapBtn(sender: AnyObject) {
+        let mapSize = CGSize(width: mapView.bounds.width, height: mapView.bounds.height)
+        let map = drawMap(mapSize)
+        mapView.image = map
+    }
+    func drawMap(size: CGSize) -> UIImage{
         let bounds = CGRect(origin: CGPoint.zero, size: size)
         let opaque = false;
         let scale : CGFloat = 0;
