@@ -11,7 +11,7 @@ class SocketConnection:NSObject, NSStreamDelegate{
     
     private var inputStream: NSInputStream!
     private var outputStream: NSOutputStream!
-    let host:CFStringRef = "192.168.10.1"
+    let host:CFStringRef = "127.0.0.1"
     let port:UInt32 = 9999
     
     var timer = NSTimer()
@@ -165,8 +165,8 @@ class SocketConnection:NSObject, NSStreamDelegate{
             return
         }
         
-        var x = (Float(joystick!.stick.position.x) / 40) * 90
-        var y = (Float(joystick!.stick.position.y) / 40) * 255
+        var x = (Float(joystick!.stick.position.x) / 60) * 90
+        var y = (Float(joystick!.stick.position.y) / 60) * 255
         var fx = 0x52
         var fy = 0x46
         if( y < 0) {
@@ -193,7 +193,7 @@ class SocketConnection:NSObject, NSStreamDelegate{
         self.speed = speed
         self.angle = angle
         
-        var bytes : [UInt8]  = [0x44,self.flagy,self.flagx,self.speed, self.angle, 0x0d, 0x0a]
+        var bytes : [UInt8]  = [0x44,self.flagy,self.flagx,self.speed, self.angle, 0x0d, 0x0a, 0x04]
         
         print(bytes)
         var values = NSData(bytes: bytes, length: bytes.count * sizeof(UInt8))

@@ -30,8 +30,8 @@ class DriveScene: SKScene {
             moveAnalogStick.substrate.image = image
         }
     }
-    
-    let moveAnalogStick =  🕹(diameter: 80)
+    // diameter 80 = 40 max in each direction
+    let moveAnalogStick =  🕹(diameter: 120)
     
     override func didMoveToView(view: SKView) {
 
