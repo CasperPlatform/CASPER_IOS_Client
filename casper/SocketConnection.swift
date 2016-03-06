@@ -13,12 +13,25 @@ class SocketConnection:NSObject, NSStreamDelegate{
     private var outputStream: NSOutputStream!
     let host:CFStringRef = "127.0.0.1"
     let port:UInt32 = 9999
-
     
+    var timer = NSTimer()
+    var flagx = UInt8(0)
+    var flagy = UInt8(0)
+    var speed = UInt8(0)
+    var angle = UInt8(0)
     
     var dataToStream: NSData!
     
     var byteIndex: Int!
+    
+    
+    override init(){
+        super.init()
+    }
+    deinit {
+        print("deIniting")
+        // perform the deinitialization
+    }
     
     func Open(){
       
@@ -87,43 +100,144 @@ class SocketConnection:NSObject, NSStreamDelegate{
     }
     
     
-    func openSchedule(){
+    func openStreamAndSendValues(){
         
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "sendValue", userInfo: nil, repeats: true)
-        timer.fire()
+        
+        
+        
+        
+            var readStream:  Unmanaged<CFReadStream>?
+            var writeStream: Unmanaged<CFWriteStream>?
+            
+            CFStreamCreatePairWithSocketToHost(nil, host, port, &readStream, &writeStream)
+            
+            self.inputStream = readStream!.takeRetainedValue()
+            self.outputStream = writeStream!.takeRetainedValue()
+            
+            //inputStream.open()
+            //outputStream.open()
+            self.inputStream.open()
+            self.outputStream.open()
+        
+      
+        
+       
+        
+        
+//        var speedVal:[UInt8] = [speed]
+//        var directionVal:[UInt8] = [direction]
+//        var dict: Dictionary<String,Array<UInt8>> = [:]
+//        
+//        
+//        dict["direction"] = directionVal
+//        dict["speed"] = speedVal
+//        
+//        var values2 = NSMutableArray()
+       
+    }
+
+    func closeStream(){
+        print("closing stream")
+        self.inputStream.close()
+        self.outputStream.close()
+        
     }
     
-    func sendValue(){
+    func sendValue(timer: NSTimer){
+        
+        if(outputStream == nil){
+            print("stream is null, reAllocating")
+            openStreamAndSendValues()
+            return
+        }
+        if(outputStream.streamStatus == NSStreamStatus.Closed ||
+        outputStream.streamStatus == NSStreamStatus.Error){
+            openStreamAndSendValues()
+            print("is error or closed")
+            return
+        }
+        
+        let joystick = timer.userInfo as? AnalogJoystick
+        
+        //timer.invalidate()
+        if( joystick == nil){
+            print("joystick is nil")
+            return
+        }
+        
+        var x = (Float(joystick!.stick.position.x) / 60) * 90
+        var y = (Float(joystick!.stick.position.y) / 60) * 255
+        var fx = 0x52
+        var fy = 0x46
+        if( y < 0) {
+            fy = 0x42
+            y = y * -1
+        }
+        if( x < 0){
+            fx = 0x4c
+            x = x * -1
+        }
         
         
-        print("sending")
-        var arr : [UInt8] = [0x54,0x64,0x04];
+        print(y)
+        let angle = UInt8(x)
+        let speed = UInt8(y)
+        let flagDirectionY = UInt8(fy)
+        let flagDirectionX = UInt8(fx)
+        print(angle)
+        print(speed)
         
-        let data = NSData(bytes: arr, length: arr.count * sizeof(UInt8))
         
-        var readStream:  Unmanaged<CFReadStream>?
-        var writeStream: Unmanaged<CFWriteStream>?
+        self.flagx = flagDirectionX
+        self.flagy = flagDirectionY
+        self.speed = speed
+        self.angle = angle
+        
+        var bytes : [UInt8]  = [0x44,self.flagy,self.flagx,self.speed, self.angle, 0x0d, 0x0a, 0x04]
+        
+        print(bytes)
+        var values = NSData(bytes: bytes, length: bytes.count * sizeof(UInt8))
+        
+      
+        
+        if(self.outputStream.hasSpaceAvailable){
+           
+            print("sending")
+            
+            
+//
+//            
+//            var bytes = [UInt8](count: datarec!.length, repeatedValue: 0)
+//            datarec!.getBytes(&bytes, length: bytes.count)
+            
+            
+            
+            
+           
+//            var arr : [UInt8] = [0x54,0x64,0x04];
+            
+//            let data = NSData(bytes: arr, length: arr.count * sizeof(UInt8))
+            
+            var readBytes = values.bytes
+            var dataLength = values.length
+            
+            var buffer = Array<UInt8>(count: dataLength, repeatedValue: 0)
+            memcpy(UnsafeMutablePointer(buffer), readBytes, dataLength)
+            print(buffer)
+            var len = self.outputStream.write(buffer, maxLength: dataLength)
+            
+            
+            
+            
+        }
+        if(self.outputStream.streamStatus == NSStreamStatus.Error){
+            print("error")
+            self.inputStream.close()
+            self.outputStream.close()
+            self.timer.invalidate()
+        }
         
         
-        CFStreamCreatePairWithSocketToHost(nil, host, port, &readStream, &writeStream)
-        
-        let inputStr:NSInputStream = readStream!.takeRetainedValue()
-        let outputStr:NSOutputStream = writeStream!.takeRetainedValue()
-        
-        //inputStream.open()
-        //outputStream.open()
-        inputStr.open()
-        outputStr.open()
-        
-        var readBytes = data.bytes
-        var dataLength = data.length
-        
-        var buffer = Array<UInt8>(count: dataLength, repeatedValue: 0)
-        memcpy(UnsafeMutablePointer(buffer), readBytes, dataLength)
-        var len = outputStr.write(buffer, maxLength: dataLength)
-        
-        inputStr.close()
-        outputStr.close()
         
         
     }

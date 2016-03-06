@@ -19,7 +19,7 @@ class MenuViewController: UIViewController {
     @IBAction func socketAction(sender: AnyObject) {
       
 //        connection.Open()
-        connection.openSchedule()
+        //connection.openStreamAndSendValues(0x56,0x45,speed:0x55, direction: 0x76)
       
         
         
