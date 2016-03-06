@@ -54,5 +54,8 @@ class MenuViewController: UIViewController {
         //return UIStatusBarStyle.Default
         
     }
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return .Portrait
+    }
     
 }

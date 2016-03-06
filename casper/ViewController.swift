@@ -112,6 +112,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         
     }
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return .Portrait
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
