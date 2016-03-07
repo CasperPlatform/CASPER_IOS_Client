@@ -7,12 +7,18 @@
 //
 
 import Foundation
+import CocoaAsyncSocket
 class SocketConnection:NSObject, NSStreamDelegate{
     
-    private var inputStream: NSInputStream!
-    private var outputStream: NSOutputStream!
-    let host:CFStringRef = "127.0.0.1"
-    let port:UInt32 = 9999
+    private var driveInputStream: NSInputStream!
+    private var driveOutputStream: NSOutputStream!
+    private var videoInputStream: NSInputStream!
+    private var videoOutputStream: NSOutputStream!
+    private var udpSocketConnection:GCDAsyncUdpSocket!
+    let driveHost:CFStringRef = "127.0.0.1"
+    let drivePort:UInt32 = 9999
+    let videoHost:CFStringRef = "192.168.0.105"
+    let videoPort:UInt32 = 9998
     
     var timer = NSTimer()
     var flagx = UInt8(0)
@@ -33,33 +39,33 @@ class SocketConnection:NSObject, NSStreamDelegate{
         // perform the deinitialization
     }
     
-    func Open(){
+    func OpenVideoStream(){
       
         
-        
-        var readStream:  Unmanaged<CFReadStream>?
-        var writeStream: Unmanaged<CFWriteStream>?
-        
-        
-        CFStreamCreatePairWithSocketToHost(nil, host, port, &readStream, &writeStream)
-        
-        
-
-        
-        self.inputStream = readStream!.takeRetainedValue()
-        self.outputStream = writeStream!.takeRetainedValue()
-        
-        
-        self.inputStream.scheduleInRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
-        self.outputStream.scheduleInRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
-        
-        self.inputStream.delegate = self
-        self.outputStream.delegate = self
-        
-        //inputStream.open()
-        //outputStream.open()
-        self.inputStream.open()
-        self.outputStream.open()
+//        print("opening videoStream")
+//        var readStream:  Unmanaged<CFReadStream>?
+//        var writeStream: Unmanaged<CFWriteStream>?
+//        
+//        
+//        CFStreamCreatePairWithSocketToHost(nil, videoHost, videoPort, &readStream, &writeStream)
+//        
+//        
+//
+//        
+//        self.videoInputStream = readStream!.takeRetainedValue()
+//        self.videoOutputStream = writeStream!.takeRetainedValue()
+//        
+//        
+//        self.videoInputStream.scheduleInRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
+//        self.videoOutputStream.scheduleInRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
+//        
+//        self.videoInputStream.delegate = self
+//        self.videoOutputStream.delegate = self
+//        
+//        //inputStream.open()
+//        //outputStream.open()
+//        self.videoInputStream.open()
+//        self.videoOutputStream.open()
         
         
         
@@ -70,17 +76,23 @@ class SocketConnection:NSObject, NSStreamDelegate{
         
     }
     func stream(stream: NSStream, handleEvent eventCode: NSStreamEvent) {
-        if( stream == self.outputStream)
+        if( stream == self.videoOutputStream)
         {
             if( eventCode == NSStreamEvent.HasSpaceAvailable){
                 
-//                dataToStream = sendValue()
-//                var readBytes = dataToStream.bytes
-//                var dataLength = dataToStream.length
-//               
-//                var buffer = Array<UInt8>(count: dataLength, repeatedValue: 0)
-//                memcpy(UnsafeMutablePointer(buffer), readBytes, dataLength)
-//                var len = outputStream.write(buffer, maxLength: dataLength)
+                print("sending bogus")
+                
+                var bytes : [UInt8]  = [0x44,self.flagy,self.flagx,self.speed, self.angle, 0x0d, 0x0a, 0x04]
+                
+                print(bytes)
+                var values = NSData(bytes: bytes, length: bytes.count * sizeof(UInt8))
+                
+                var readBytes = values.bytes
+                var dataLength = values.length
+               
+                var buffer = Array<UInt8>(count: dataLength, repeatedValue: 0)
+                memcpy(UnsafeMutablePointer(buffer), readBytes, dataLength)
+                var len = self.videoOutputStream.write(buffer, maxLength: dataLength)
                 
                 //outputStream.close()
                 //outputStream.removeFromRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
@@ -89,11 +101,26 @@ class SocketConnection:NSObject, NSStreamDelegate{
             
             if eventCode == NSStreamEvent.EndEncountered{
                 print("end Encountered")
-                outputStream.close()
-                outputStream.removeFromRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
-                outputStream = nil
+                self.videoOutputStream.close()
+                self.videoOutputStream.removeFromRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+                self.videoOutputStream = nil
             }
             
+            
+            
+        }
+        if( stream == self.videoInputStream){
+            
+            if( eventCode == NSStreamEvent.HasBytesAvailable){
+                print("got data")
+            
+            }
+            if eventCode == NSStreamEvent.EndEncountered{
+                print("end Encountered")
+                self.videoOutputStream.close()
+                self.videoOutputStream.removeFromRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+                self.videoOutputStream = nil
+            }
             
         }
         print("stream event")
@@ -109,15 +136,15 @@ class SocketConnection:NSObject, NSStreamDelegate{
             var readStream:  Unmanaged<CFReadStream>?
             var writeStream: Unmanaged<CFWriteStream>?
             
-            CFStreamCreatePairWithSocketToHost(nil, host, port, &readStream, &writeStream)
+            CFStreamCreatePairWithSocketToHost(nil, driveHost, drivePort, &readStream, &writeStream)
             
-            self.inputStream = readStream!.takeRetainedValue()
-            self.outputStream = writeStream!.takeRetainedValue()
+            self.driveInputStream = readStream!.takeRetainedValue()
+            self.driveOutputStream = writeStream!.takeRetainedValue()
             
             //inputStream.open()
             //outputStream.open()
-            self.inputStream.open()
-            self.outputStream.open()
+            self.driveInputStream.open()
+            self.driveOutputStream.open()
         
       
         
@@ -136,22 +163,25 @@ class SocketConnection:NSObject, NSStreamDelegate{
        
     }
 
-    func closeStream(){
+    func closeDriveStream(){
         print("closing stream")
-        self.inputStream.close()
-        self.outputStream.close()
-        
+        self.driveInputStream.close()
+        self.driveOutputStream.close()
+    }
+    func closeVideoStream(){
+        self.videoInputStream.close()
+        self.videoOutputStream.close()
     }
     
     func sendValue(timer: NSTimer){
         
-        if(outputStream == nil){
+        if(self.driveOutputStream == nil){
             print("stream is null, reAllocating")
             openStreamAndSendValues()
             return
         }
-        if(outputStream.streamStatus == NSStreamStatus.Closed ||
-        outputStream.streamStatus == NSStreamStatus.Error){
+        if(self.driveOutputStream.streamStatus == NSStreamStatus.Closed ||
+        self.driveOutputStream.streamStatus == NSStreamStatus.Error){
             openStreamAndSendValues()
             print("is error or closed")
             return
@@ -200,7 +230,7 @@ class SocketConnection:NSObject, NSStreamDelegate{
         
       
         
-        if(self.outputStream.hasSpaceAvailable){
+        if(self.driveOutputStream.hasSpaceAvailable){
            
             print("sending")
             
@@ -224,16 +254,16 @@ class SocketConnection:NSObject, NSStreamDelegate{
             var buffer = Array<UInt8>(count: dataLength, repeatedValue: 0)
             memcpy(UnsafeMutablePointer(buffer), readBytes, dataLength)
             print(buffer)
-            var len = self.outputStream.write(buffer, maxLength: dataLength)
+            var len = self.driveOutputStream.write(buffer, maxLength: dataLength)
             
             
             
             
         }
-        if(self.outputStream.streamStatus == NSStreamStatus.Error){
+        if(self.driveOutputStream.streamStatus == NSStreamStatus.Error){
             print("error")
-            self.inputStream.close()
-            self.outputStream.close()
+            closeDriveStream()
+            
             self.timer.invalidate()
         }
         

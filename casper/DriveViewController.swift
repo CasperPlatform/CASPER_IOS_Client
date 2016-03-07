@@ -39,21 +39,21 @@ class DriveViewController: UIViewController {
         }
         
         self.SocketConn = SocketConnection()
-        
+        self.SocketConn?.OpenVideoStream()
        
         
         
         //
         //        var timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: Selector("updateJoystickCoordinates:"), userInfo: nil, repeats: true)
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: SocketConn!, selector: Selector("sendValue:"), userInfo: joystick, repeats: true)
+//        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: SocketConn!, selector: Selector("sendValue:"), userInfo: joystick, repeats: true)
         // Do any additional setup after loading the view, typically from a nib.
         
     }
     
     override func viewDidDisappear(animated: Bool) {
         print("view disappeared")
-        self.SocketConn!.closeStream()
+        self.SocketConn!.closeDriveStream()
         self.timer.invalidate()
     }
     
