@@ -107,7 +107,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
             }
         if(data.length > 11)
         {
-            
+            print("appending data")
             image.appendData(data)
         }
         if(count == packageCount){
