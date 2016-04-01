@@ -8,8 +8,10 @@
 
 import UIKit
 import SpriteKit
-class DriveViewController: UIViewController {
+class DriveViewController: UIViewController, VideoStreamDelegate {
     
+
+    @IBOutlet weak var videoView: UIImageView!
     var joystick = AnalogJoystick(diameter: 100)
     @IBOutlet weak var mapBtn: UIBarButtonItem!
     @IBOutlet weak var mapView: UIImageView!
@@ -20,6 +22,9 @@ class DriveViewController: UIViewController {
     var blue: CGFloat = 0.0
     var timer = NSTimer()
 
+    @IBOutlet weak var drive: SKView!
+    
+    var video : VideoStream!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +32,9 @@ class DriveViewController: UIViewController {
         let size = CGSizeMake(self.view.bounds.height, self.view.bounds.width)
         let scene = DriveScene(size: size)
         joystick = scene.moveAnalogStick
-        if let skView = view as? SKView {
+        video = VideoStream(delegate: self)
+        video.send("test")
+        if let skView = drive as? SKView {
             
             skView.showsFPS = false
             skView.showsNodeCount = false
@@ -35,7 +42,10 @@ class DriveViewController: UIViewController {
             skView.ignoresSiblingOrder = true
             /* Set the scale mode to scale to fit the window */
             //scene.scaleMode = .AspectFill
+            skView.allowsTransparency = true;
+            skView.backgroundColor = UIColor(white: 0.0, alpha: 0.0);
             skView.presentScene(scene)
+            
         }
         
         self.SocketConn = SocketConnection()
@@ -143,5 +153,9 @@ class DriveViewController: UIViewController {
         return image
         
     }
-    
+    func DidReceiveImage(sender: VideoStream, image: NSData) {
+        print("image received")
+        videoView.image = UIImage(data: image)!
+        
+    }
 }

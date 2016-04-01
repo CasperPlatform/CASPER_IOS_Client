@@ -12,8 +12,8 @@ import CocoaAsyncSocket
 
 class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
     
-    let HOST:String = "192.168.10.1"
-    let PORT:UInt16    = 6001
+    let HOST:String = "127.0.0.1"
+    let PORT:UInt16    = 6000
     let HEADER_LENGTH = 11
     let PACKET_HEADER_LENGTH = 8
     
