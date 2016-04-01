@@ -36,7 +36,7 @@ class DriveScene: SKScene {
     override func didMoveToView(view: SKView) {
 
         /* Setup your scene here */
-        backgroundColor = UIColor(white: 1.0, alpha: 0.0)
+        backgroundColor = UIColor(white: 0.5, alpha: 0.0)
         physicsBody = SKPhysicsBody(edgeLoopFromRect: frame)
         
         moveAnalogStick.position = CGPointMake(moveAnalogStick.radius + 15, moveAnalogStick.radius + 15)
@@ -60,7 +60,7 @@ class DriveScene: SKScene {
         joystickSizeLabel.horizontalAlignmentMode = .Left
         joystickSizeLabel.verticalAlignmentMode = .Top
         joystickSizeLabel.position = CGPoint(x: btnsOffset, y: self.frame.size.height - btnsOffset)
-        addChild(joystickSizeLabel)
+        //addChild(joystickSizeLabel)
 
         /*
         jSizeMinusSpriteNode.anchorPoint = CGPoint(x: 0, y: 0.5)
