@@ -13,9 +13,9 @@ import CocoaAsyncSocket
 class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
     
     let HOST:String = "192.168.10.1"
-    let PORT:UInt16    = 6001
-    let HEADER_LENGTH = 11
-    let PACKET_HEADER_LENGTH = 8
+    let PORT:UInt16    = 6000
+    let HEADER_FLAG:UInt8 = 0x01
+    let PACKET_HEADER_FLAG:UInt8 = 0x02
     
     weak var delegate:VideoStreamDelegate?
     var inSocket:GCDAsyncUdpSocket!
@@ -69,34 +69,37 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
     func udpSocket(sock: GCDAsyncUdpSocket!, didReceiveData data: NSData!, fromAddress address: NSData!, withFilterContext filterContext: AnyObject!) {
        
 
-        count += 1
-        print("data received")
+      
         
+        print("data received")
+        let count = data.length / sizeof(UInt8)
+        // create array of appropriate length:
+        var byteArray = [UInt8](count: count, repeatedValue: 0)
+        // copy bytes into array
+        data.getBytes(&byteArray, length:count * sizeof(UInt8))
+        print(byteArray[0])
         // IF WE GOT HEADER
-        if(data.length == 11){
+        if(byteArray[0] == HEADER_FLAG){
             
+            image.setData(NSData())
             var imageNr, byteCount : UInt32
             // the number of elements:
-            let count = data.length / sizeof(UInt8)
+       
             var imageNrArr = [UInt8](count: 4, repeatedValue: 0)
             var byteCountArr = [UInt8](count: 4, repeatedValue: 0)
          
             
             
-            // create array of appropriate length:
-            var byteArray = [UInt8](count: count, repeatedValue: 0)
-            
-            // copy bytes into array
-            data.getBytes(&byteArray, length:count * sizeof(UInt8))
            
-            imageNrArr = Array(byteArray[2..<6])
+           
+            imageNrArr   = Array(byteArray[2..<6])
             byteCountArr = Array(byteArray[7..<11])
-            imageNr = getNumberFromBytes(imageNrArr)
-            byteCount = getNumberFromBytes(byteCountArr)
+            imageNr      = getNumberFromBytes(imageNrArr)
+            byteCount    = getNumberFromBytes(byteCountArr)
             packageCount = Int(byteArray[6])
             
             
-            print("Flag 1 : ",byteArray[0])
+            print("Flag 1 : ", byteArray[0])
             print("Flag 2 : ", byteArray[1])
             print("Image Number: ",imageNr)
             print("nr of packets: ", packageCount)
@@ -105,14 +108,26 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
             
             print(byteArray)
             }
-        if(data.length > 11)
+        if(byteArray[0] == PACKET_HEADER_FLAG )
         {
-            print("appending data")
-            image.appendData(data)
+            self.count += 1
+            var imageNumber: UInt32
+            var imageNrArr = [UInt8](count: 4, repeatedValue: 0)
+            imageNrArr   = Array(byteArray[1..<5])
+            imageNumber  = getNumberFromBytes(imageNrArr)
+            print("appending data of packet with info:")
+            
+            print("ImageNumber: ",imageNumber)
+            print("packageNumber", byteArray[5])
+            var dataToAppendArr:[UInt8] = Array(byteArray[6..<byteArray.count])
+            var dataToAppend = NSData(bytes: dataToAppendArr, length: dataToAppendArr.count)
+            image.appendData(dataToAppend)
+            
         }
-        if(count == packageCount){
+        if(self.count == packageCount){
             print("creating image")
             createImg()
+            self.count = 0
         }
 //        print(data.description)
 //        print(address.description)
