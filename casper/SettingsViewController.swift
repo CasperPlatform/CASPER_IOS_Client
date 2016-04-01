@@ -7,10 +7,21 @@
 //
 
 import UIKit
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, VideoStreamDelegate {
+    
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var video : VideoStream!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        video = VideoStream(delegate: self)
+        video.send("test")
+        
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -25,7 +36,10 @@ class SettingsViewController: UIViewController {
         
         //Default
         //return UIStatusBarStyle.Default
-        
+    }
+    func DidReceiveImage(sender: VideoStream, image: NSData) {
+        print("image received")
+        self.imageView.image = UIImage(data: image)!
     }
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return .Portrait

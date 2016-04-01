@@ -7,17 +7,20 @@ target 'casper' do
 pod 'Alamofire', '~> 3.0'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 pod 'Socket.IO-Client-Swift', '~> 5.4.1'
+pod 'CocoaAsyncSocket'
 end
 
 target 'casperTests' do
 pod 'Alamofire', '~> 3.0'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 pod 'Socket.IO-Client-Swift', '~> 5.4.1'
+pod 'CocoaAsyncSocket'
 end
 
 target 'casperUITests' do
 pod 'Alamofire', '~> 3.0'
 pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 pod 'Socket.IO-Client-Swift', '~> 5.4.1'
+pod 'CocoaAsyncSocket'
 end
 

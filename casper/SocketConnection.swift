@@ -11,8 +11,10 @@ class SocketConnection:NSObject, NSStreamDelegate{
     
     private var inputStream: NSInputStream!
     private var outputStream: NSOutputStream!
-    let host:CFStringRef = "127.0.0.1"
+    let host:CFStringRef = "192.168.10.1"
     let port:UInt32 = 9999
+   
+    
     
     var timer = NSTimer()
     var flagx = UInt8(0)
