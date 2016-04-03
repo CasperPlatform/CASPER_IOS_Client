@@ -12,7 +12,7 @@ import CocoaAsyncSocket
 
 class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
     
-    let HOST:String = "192.168.10.1"
+    let HOST:String = "127.0.0.1"
     let PORT:UInt16    = 6000
     let HEADER_FLAG:UInt8 = 0x01
     let PACKET_HEADER_FLAG:UInt8 = 0x02
@@ -39,10 +39,8 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         self.image      = NSMutableData()
         self.uiImage    = UIImage()
         self.delegate = delegate
-//        self.parent = parent
         super.init()
         setupConnection()
-        
     }
     
     func setupConnection(){
@@ -156,6 +154,17 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         
         imageNr = first<<24 | second<<16 | third<<8 | fourth;
         return imageNr
+    }
+    func udpSocketDidClose(sock: GCDAsyncUdpSocket!, withError error: NSError!) {
+        
+    }
+    func closeStream(){
+        let stopMsg = "stop"
+        let data = stopMsg.dataUsingEncoding(NSUTF8StringEncoding)
+        self.outSocket.sendData(data, withTimeout: 2, tag: 0)
+        self.outSocket.closeAfterSending()
+        self.delegate = nil
+        print("videoStream Closed")
     }
     func udpSocket(sock: GCDAsyncUdpSocket!, didConnectToAddress address: NSData!) {
         print("didConnectToAddress");

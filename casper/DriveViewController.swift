@@ -16,6 +16,8 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
     @IBOutlet weak var mapBtn: UIBarButtonItem!
     @IBOutlet weak var mapView: UIImageView!
     var SocketConn:SocketConnection?
+    var videoSocket : VideoStream!
+    var driveSocket : DriveStream!
     var startPoint = CGPoint.zero
     var red: CGFloat = 0.0
     var green: CGFloat = 0.0
@@ -24,7 +26,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
 
     @IBOutlet weak var drive: SKView!
     
-    var video : VideoStream!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +34,12 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
         let size = CGSizeMake(self.view.bounds.height, self.view.bounds.width)
         let scene = DriveScene(size: size)
         joystick = scene.moveAnalogStick
-        video = VideoStream(delegate: self)
-        video.send("test")
+        
+        // start streaming video
+        startVideoStream()
+        startDriveStream()
+        
+        
         if let skView = drive as? SKView {
             
             skView.showsFPS = false
@@ -48,7 +54,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
             
         }
         
-        self.SocketConn = SocketConnection()
+        
         
        
         
@@ -56,17 +62,28 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
         //
         //        var timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: Selector("updateJoystickCoordinates:"), userInfo: nil, repeats: true)
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: SocketConn!, selector: Selector("sendValue:"), userInfo: joystick, repeats: true)
+//        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: SocketConn!, selector: Selector("sendValue:"), userInfo: joystick, repeats: true)
         // Do any additional setup after loading the view, typically from a nib.
         
     }
     
     override func viewDidDisappear(animated: Bool) {
         print("view disappeared")
-        self.SocketConn!.closeStream()
+//        self.SocketConn!.closeStream()
+        self.videoSocket.closeStream()
+        self.videoSocket = nil
+        self.driveSocket.closeStream()
+        self.driveSocket = nil
         self.timer.invalidate()
     }
-    
+    func startVideoStream(){
+        // Instantiate and send Start command to videostream.
+        self.videoSocket = VideoStream(delegate: self)
+        self.videoSocket.send("start")
+    }
+    func startDriveStream(){
+        self.driveSocket = DriveStream(joystick: joystick)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
