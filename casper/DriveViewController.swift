@@ -27,6 +27,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
 
     @IBOutlet weak var drive: SKView!
     
+    @IBOutlet var background: UIView!
    
     
     override func viewDidLoad() {
@@ -35,6 +36,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
         let size = CGSizeMake(self.view.bounds.height, self.view.bounds.width)
         let scene = DriveScene(size: size)
         joystick = scene.moveAnalogStick
+        background.backgroundColor = UIColor(white: 0.5, alpha: 1.0)
         
         // start streaming video
 //        startVideoStream()
