@@ -105,6 +105,7 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
     func socket(sock: GCDAsyncSocket!, didWriteDataWithTag tag: Int) {
         print("GOT DRIVE CONF")
         if(tag == TAG_DRIVE_WRITE){
+            
             let driveMsg = getDriveMessage()
             self.outSocket.writeData(driveMsg, withTimeout: 0, tag: TAG_DRIVE_WRITE)
         }
