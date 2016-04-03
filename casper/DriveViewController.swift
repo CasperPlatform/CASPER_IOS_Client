@@ -12,6 +12,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
     
 
     @IBOutlet weak var videoView: UIImageView!
+    
     var joystick = AnalogJoystick(diameter: 100)
     @IBOutlet weak var mapBtn: UIBarButtonItem!
     @IBOutlet weak var mapView: UIImageView!

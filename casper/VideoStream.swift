@@ -12,7 +12,7 @@ import CocoaAsyncSocket
 
 class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
     
-    let HOST:String = "127.0.0.1"
+    let HOST:String = "192.168.10.1"
     let PORT:UInt16    = 6000
     let HEADER_FLAG:UInt8 = 0x01
     let PACKET_HEADER_FLAG:UInt8 = 0x02
@@ -45,7 +45,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
     
     func setupConnection(){
         
-        inSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
+        
         outSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
         do {
 //            try inSocket.bindToPort(PORT)
@@ -97,14 +97,14 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
             packageCount = Int(byteArray[6])
             
             
-            print("Flag 1 : ", byteArray[0])
-            print("Flag 2 : ", byteArray[1])
-            print("Image Number: ",imageNr)
-            print("nr of packets: ", packageCount)
-            print("nr of bytes in image: ",byteCount)
+//            print("Flag 1 : ", byteArray[0])
+//            print("Flag 2 : ", byteArray[1])
+//            print("Image Number: ",imageNr)
+//            print("nr of packets: ", packageCount)
+//            print("nr of bytes in image: ",byteCount)
             
             
-            print(byteArray)
+//            print(byteArray)
             }
         if(byteArray[0] == PACKET_HEADER_FLAG )
         {
@@ -113,12 +113,13 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
             var imageNrArr = [UInt8](count: 4, repeatedValue: 0)
             imageNrArr   = Array(byteArray[1..<5])
             imageNumber  = getNumberFromBytes(imageNrArr)
-            print("appending data of packet with info:")
+//            print("appending data of packet with info:")
             
-            print("ImageNumber: ",imageNumber)
-            print("packageNumber", byteArray[5])
+//            print("ImageNumber: ",imageNumber)
+//            print("packageNumber", byteArray[5])
             var dataToAppendArr:[UInt8] = Array(byteArray[6..<byteArray.count])
             var dataToAppend = NSData(bytes: dataToAppendArr, length: dataToAppendArr.count)
+            
             image.appendData(dataToAppend)
             
         }
@@ -136,6 +137,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
     }
     func createImg(){
         self.delegate?.DidReceiveImage(self, image: image)
+        
 //        self.uiImage = UIImage(data: image)!
 //        parent.imageView.image = self.uiImage
     }
