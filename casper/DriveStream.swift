@@ -15,21 +15,22 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
     let HOST:String = "192.168.10.1"
     let PORT:UInt16    = 9999
     let TAG_DRIVE_WRITE:Int = 0xffff
- 
+    var timer:NSTimer = NSTimer()
+    let socketQueue : dispatch_queue_t
     var outSocket:GCDAsyncSocket!
     var joystick :AnalogJoystick!
     //    var parent:SettingsViewController
     
     
     override init(){
-    
+        socketQueue = dispatch_queue_create("socketQueue", nil)
         //        self.parent = SettingsViewController()
         super.init()
         
         setupConnection()
     }
     init(joystick : AnalogJoystick){
-       
+       socketQueue = dispatch_queue_create("socketQueue", nil)
 //        self.delegate = delegate
         super.init()
         self.joystick = joystick
@@ -46,7 +47,7 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
             //            try inSocket.beginReceiving()
             
             try outSocket.connectToHost(HOST, onPort: PORT)
-            startWriting()
+            
         } catch let error as NSError{
             print(error.localizedDescription)
             print("Something went wrong!")
@@ -55,10 +56,16 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
         
     }
     
+    func socket(sock: GCDAsyncSocket!, didConnectToHost host: String!, port: UInt16) {
+        print("connected")
+        startWriting()
+    }
+    
     func startWriting(){
         print("Starting DriveWrite")
-        let writeMsg = getDriveMessage()
-        outSocket.writeData(writeMsg, withTimeout: 0, tag: TAG_DRIVE_WRITE)
+         self.timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: Selector("send"), userInfo: nil, repeats: true)
+      
+      
     }
   
     func getDriveMessage() -> NSData{
@@ -97,24 +104,28 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
         return values
     }
     
-    func send(message:String){
-//        let data = message.dataUsingEncoding(NSUTF8StringEncoding)
-//        outSocket.sendData(data, withTimeout: 2, tag: 0)
+    func send(){
+        
+            let writeMsg = self.getDriveMessage()
+            self.outSocket.writeData(writeMsg, withTimeout: 0, tag: self.TAG_DRIVE_WRITE)
+        
+        
     }
  
     func socket(sock: GCDAsyncSocket!, didWriteDataWithTag tag: Int) {
         print("GOT DRIVE CONF")
-        if(tag == TAG_DRIVE_WRITE){
-            
-            let driveMsg = getDriveMessage()
-            self.outSocket.writeData(driveMsg, withTimeout: 0, tag: TAG_DRIVE_WRITE)
-        }
+//        if(tag == TAG_DRIVE_WRITE){
+//            
+//            let driveMsg = getDriveMessage()
+//            self.outSocket.writeData(driveMsg, withTimeout: 0, tag: TAG_DRIVE_WRITE)
+//        }
     }
     func closeStream(){
 //        let stopMsg = "stop"
 //        let data = stopMsg.dataUsingEncoding(NSUTF8StringEncoding)
 //        self.outSocket.sendData(data, withTimeout: 2, tag: 0)
         self.outSocket.disconnectAfterWriting()
+        self.timer.invalidate()
 //        self.delegate = nil
         print("DriveStream Closed")
     }

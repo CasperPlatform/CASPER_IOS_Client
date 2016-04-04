@@ -39,7 +39,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
         background.backgroundColor = UIColor(white: 0.5, alpha: 1.0)
         
         // start streaming video
-//        startVideoStream()
+        startVideoStream()
         startDriveStream()
         
         
@@ -82,7 +82,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
     func startVideoStream(){
         // Instantiate and send Start command to videostream.
         self.videoSocket = VideoStream(delegate: self)
-        self.videoSocket.send("start")
+        
     }
     func startDriveStream(){
         self.driveSocket = DriveStream(joystick: joystick)
@@ -175,7 +175,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
     }
     func DidReceiveImage(sender: VideoStream, image: NSData) {
         print("image received")
-        videoView.image = UIImage(data: image)!
+        self.videoView.image = UIImage(data: image)!
         
     }
 }

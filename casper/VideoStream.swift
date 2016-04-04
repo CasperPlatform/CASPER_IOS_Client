@@ -16,9 +16,10 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
     let PORT:UInt16    = 6000
     let HEADER_FLAG:UInt8 = 0x01
     let PACKET_HEADER_FLAG:UInt8 = 0x02
+    let socketQueue : dispatch_queue_t
     
     weak var delegate:VideoStreamDelegate?
-    var inSocket:GCDAsyncUdpSocket!
+   
     var outSocket:GCDAsyncUdpSocket!
     var image:NSMutableData
     var uiImage:UIImage
@@ -31,6 +32,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         self.image      = NSMutableData()
         self.uiImage    = UIImage()
 //        self.parent = SettingsViewController()
+        socketQueue = dispatch_queue_create("socketQueue", nil)
         super.init()
         
         setupConnection()
@@ -39,6 +41,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         self.image      = NSMutableData()
         self.uiImage    = UIImage()
         self.delegate = delegate
+        socketQueue = dispatch_queue_create("socketQueue", nil)
         super.init()
         setupConnection()
     }
@@ -46,7 +49,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
     func setupConnection(){
         
         
-        outSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
+        outSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue:dispatch_get_main_queue())
         do {
 //            try inSocket.bindToPort(PORT)
 //            try inSocket.enableBroadcast(true)
@@ -55,6 +58,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
             try outSocket.enableBroadcast(true)
             try outSocket.connectToHost(HOST, onPort: PORT)
             try outSocket.beginReceiving()
+            self.send("start")
         } catch let error as NSError{
             print(error.localizedDescription)
             print("Something went wrong!")
@@ -136,7 +140,12 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         
     }
     func createImg(){
-        self.delegate?.DidReceiveImage(self, image: image)
+        
+     
+        self.delegate?.DidReceiveImage(self, image: self.image)
+        
+        
+        
         
 //        self.uiImage = UIImage(data: image)!
 //        parent.imageView.image = self.uiImage
