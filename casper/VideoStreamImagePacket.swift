@@ -22,8 +22,8 @@ class VideoStreamImagePacket : NSObject{
         super.init()
         
     }
-    init(data : NSData){
-        self.data = data
+    init(data : Array<UInt8>){
+        self.data = NSData(bytes: data, length: data.count)
         self.packetHeader = NSData()
         self.packetData   = NSData()
         self.packetNumber = 0
@@ -39,27 +39,23 @@ class VideoStreamImagePacket : NSObject{
     func getImageNumber() -> UInt32{
         return self.imageNumber
     }
-    func getImageData() -> NSData{
+    func getPacketData() -> NSData{
         return self.packetData
     }
-    func processData(data:NSData){
+    func processData(data:Array<UInt8>){
         
-        let count = data.length / sizeof(UInt8)
         
-        // create array of appropriate length:
-        var byteArray = [UInt8](count: count, repeatedValue: 0)
-        data.getBytes(&byteArray, length:count * sizeof(UInt8))
-        
-        self.packetHeader = NSData(bytes: Array(byteArray[0..<6]), length: 6)
-        self.packetNumber = byteArray[5]
+        self.packetHeader = NSData(bytes: Array(data[0..<6]), length: 6)
+        self.packetNumber = data[5]
+//        print("Adding PacketNumber: ",self.packetNumber)
         // copy bytes into array
         
         
         var imageNrArr = [UInt8](count: 4, repeatedValue: 0)
-        imageNrArr   = Array(byteArray[1..<5])
+        imageNrArr   = Array(data[1..<5])
         self.imageNumber = getNumberFromBytes(imageNrArr)
         
-        let dataToAppendArr:[UInt8] = Array(byteArray[6..<byteArray.count])
+        let dataToAppendArr:[UInt8] = Array(data[6..<data.count])
         self.packetData = NSData(bytes: dataToAppendArr, length: dataToAppendArr.count)
     }
     
@@ -73,6 +69,9 @@ class VideoStreamImagePacket : NSObject{
         
         imageNr = first<<24 | second<<16 | third<<8 | fourth;
         return imageNr
+    }
+    func getPacketNumber() -> UInt8{
+        return self.packetNumber
     }
 
 }

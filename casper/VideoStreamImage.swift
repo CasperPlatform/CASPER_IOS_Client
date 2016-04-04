@@ -9,25 +9,32 @@
 import Foundation
 class VideoStreamImage : NSObject {
     
-    var packageCount : UInt32 = 0
+ 
+    var header       : NSData
+    var packageCount : UInt8 = 0
     var packages = Array<VideoStreamImagePacket>()
     var packageNumber :UInt32
     var byteCount         :UInt32
     var imageNumber   :UInt32
     var imageData     :NSMutableData = NSMutableData()
-    
+    var isComplete    : Bool
     
     override init(){
-        self.packageNumber = 0
-        self.byteCount     = 0
-        self.imageNumber   = 0
+        self.packageNumber   = 0
+        self.byteCount       = 0
+        self.imageNumber     = 0
+        self.header          = NSData()
+        self.isComplete = false
+        
         super.init()
     }
-    init(header: NSData){
+    init(header: Array<UInt8>){
        
         self.packageNumber = 0
         self.byteCount     = 0
         self.imageNumber   = 0
+        self.isComplete    = false
+        self.header        = NSData(bytes: header, length: header.count)
         super.init()
         processHeader(header)
     }
@@ -35,25 +42,66 @@ class VideoStreamImage : NSObject {
         self.packageNumber = 0
         self.byteCount     = 0
         self.imageNumber   = imageNr
+        self.isComplete    = false
+        self.header        = NSData()
         super.init()
     }
     func addPackage(package: VideoStreamImagePacket){
         
-    }
-    func addHeader(header: NSData){
-        processHeader(header)
-    }
-    func isComplete() -> Bool{
+        if(self.header.length == 0 && self.imageNumber == package.getImageNumber() ){
+            packages.append(package)
+            
+            return
+        }
         
-        return false
+        
+        if(package.getImageNumber() == self.imageNumber){
+//            print("adding package at index")
+            packages[Int(package.packetNumber)] = package
+//            print(packages.count)
+//            print(package.packetNumber)
+        }
+        if(self.packages.count == Int(self.packageCount) && self.header.length != 0){
+            var hasAll = true
+            for packet in packages{
+                if( packet.getPacketData().length == 0){
+                    hasAll = false
+                }
+            }
+            if(hasAll){
+                print("marking as complete")
+                self.isComplete = true
+            }
+        }
     }
-    func processHeader(header : NSData){
-        let count = header.length / sizeof(UInt8)
-        // create array of appropriate length:
-        var byteArray = [UInt8](count: count, repeatedValue: 0)
-        // copy bytes into array
-        header.getBytes(&byteArray, length:count * sizeof(UInt8))
-        print(byteArray[0])
+    func addHeader(header: Array<UInt8>){
+       
+        self.header = NSData(bytes: header, length: header.count)
+        processHeader(header)
+        print("number of packages it should be:", self.packageCount," Number in array:", self.packages.count)
+        if(self.packages.count == Int(self.packageCount) && self.header.length != 0){
+            var hasAll = true
+            for packet in packages{
+                if( packet.getPacketData().length == 0){
+                    hasAll = false
+                }
+            }
+            if(hasAll){
+                self.isComplete = true
+            }
+            
+        }
+    }
+    func isCompleteImage() -> Bool{
+        return isComplete
+    }
+    func processHeader(header : Array<UInt8>){
+//        let count = header.length / sizeof(UInt8)
+//        // create array of appropriate length:
+//        var byteArray = [UInt8](count: count, repeatedValue: 0)
+//        // copy bytes into array
+//        header.getBytes(&byteArray, length:count * sizeof(UInt8))
+//        print(byteArray[0])
         
         var imageNr, byteCount : UInt32
         // the number of elements:
@@ -61,11 +109,25 @@ class VideoStreamImage : NSObject {
         var imageNrArr =   [UInt8](count: 4, repeatedValue: 0)
         var byteCountArr = [UInt8](count: 4, repeatedValue: 0)
         
-        imageNrArr        = Array(byteArray[2..<6])
-        byteCountArr      = Array(byteArray[7..<11])
+        imageNrArr        = Array(header[2..<6])
+        byteCountArr      = Array(header[7..<11])
         self.imageNumber  = getNumberFromBytes(imageNrArr)
         self.byteCount    = getNumberFromBytes(byteCountArr)
-        self.packageCount = UInt32(byteArray[6])
+        self.packageCount = header[6]
+        // check if image was created from packages from before
+        if(self.packages.count != 0)
+        {
+            var tmp = Array<VideoStreamImagePacket>(count: Int(self.packageCount), repeatedValue: VideoStreamImagePacket())
+            for packet in self.packages {
+                tmp[Int(packet.getPacketNumber())] = packet
+            }
+            self.packages = Array(tmp)
+        }
+        else{
+           self.packages = Array<VideoStreamImagePacket>(count: Int(self.packageCount), repeatedValue: VideoStreamImagePacket())
+        }
+        
+        
     }
     func getNumberFromBytes(array:[UInt8]) ->UInt32{
         let first,second,third,fourth, imageNr:UInt32
@@ -80,6 +142,30 @@ class VideoStreamImage : NSObject {
     }
     func getImageNumber() -> UInt32{
         return self.imageNumber
+    }
+    func getImageData() -> NSData{
+     
+//        print("crunching image data")
+//        print("packages count is: ",packages.count)
+        
+        for package in packages{
+            self.imageData.appendData(package.packetData)
+        }
+        
+//        for var index:Int = 0 ; index < packages.count ;index += 1 {
+//            print(packages[index].getPacketData().length)
+//            if(Int(packages[index].packetNumber) == count){
+//                self.imageData.appendData(packages[index].getPacketData())
+//                count+=1
+//                index=1
+//            }
+//        }
+  
+       
+        
+        return self.imageData
+       
+        
     }
 
 }

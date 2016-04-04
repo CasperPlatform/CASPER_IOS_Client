@@ -12,27 +12,28 @@ import CocoaAsyncSocket
 
 class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
     
-    let HOST:String = "192.168.10.1"
+    let HOST:String = "192.168.0.106"
     let PORT:UInt16    = 6000
     let HEADER_FLAG:UInt8 = 0x01
     let PACKET_HEADER_FLAG:UInt8 = 0x02
     let socketQueue : dispatch_queue_t
     
+    var timer = NSTimer()
+    
     weak var delegate:VideoStreamDelegate?
     
     var outSocket:GCDAsyncUdpSocket!
-    var image:NSMutableData
+
     var uiImage:UIImage
     var count = 0
     var packageCount = 0
     
     var images = Array<VideoStreamImage>()
-    
 //    var parent:SettingsViewController
     
     
     override init(){
-        self.image      = NSMutableData()
+   
         self.uiImage    = UIImage()
 //        self.parent = SettingsViewController()
         socketQueue = dispatch_queue_create("socketQueue", nil)
@@ -41,7 +42,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         setupConnection()
     }
     init(delegate: VideoStreamDelegate){
-        self.image      = NSMutableData()
+      
         self.uiImage    = UIImage()
         self.delegate = delegate
         socketQueue = dispatch_queue_create("socketQueue", nil)
@@ -67,6 +68,11 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
             print("Something went wrong!")
         }
         
+        print("Starting image show timer")
+//        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.008, target: self, selector: Selector("showImage"), userInfo: nil, repeats: true)
+        self.timer = NSTimer.init(timeInterval: 0.008, target: self, selector: Selector("showImage"), userInfo: nil, repeats: true)
+        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+        
         
     }
     
@@ -74,50 +80,61 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
     func udpSocket(sock: GCDAsyncUdpSocket!, didReceiveData data: NSData!, fromAddress address: NSData!, withFilterContext filterContext: AnyObject!) {
        
 
-      
+        print("current images.count =",images.count)
         
-        print("data received")
+//        print("data received")
         let count = data.length / sizeof(UInt8)
         // create array of appropriate length:
         var byteArray = [UInt8](count: count, repeatedValue: 0)
         // copy bytes into array
         data.getBytes(&byteArray, length:count * sizeof(UInt8))
-        print(byteArray[0])
+//        print(byteArray[0])
         // IF WE GOT HEADER
         if(byteArray[0] == HEADER_FLAG){
             
             
-            image.setData(NSData())
+//            image.setData(NSData())
             
         
 //            var imageImg = VideoStreamImage(header: data)
 //            var imageNumber = Int(imageImg.getImageNumber())
             
-            let imageNumber = Int(extractImageNumber(data,from:"imageHeader"))
-            if(images.indices.contains(imageNumber)) {
-                images[imageNumber].addHeader(data)
+            let imageNumber = extractImageNumber(byteArray,from:"imageHeader")
+            var foundImage = false
+            for image in images.reverse(){
+                if( image.imageNumber == imageNumber){
+                    image.addHeader(byteArray)
+                    foundImage = true
+                    break
+                }
             }
-            else{
-                images.insert(VideoStreamImage(header: data), atIndex: imageNumber)
+            if(!foundImage) {
+                print("adding image in block1")
+                let image = VideoStreamImage(header: byteArray)
+                print("With ",image.packageCount," Packages")
+                images.append(image)
+                
             }
             
             
             
-            var imageNr, byteCount : UInt32
-            // the number of elements:
-       
-            var imageNrArr = [UInt8](count: 4, repeatedValue: 0)
-            var byteCountArr = [UInt8](count: 4, repeatedValue: 0)
-         
             
             
-           
-           
-            imageNrArr   = Array(byteArray[2..<6])
-            byteCountArr = Array(byteArray[7..<11])
-            imageNr      = getNumberFromBytes(imageNrArr)
-            byteCount    = getNumberFromBytes(byteCountArr)
-            packageCount = Int(byteArray[6])
+//            var imageNr, byteCount : UInt32
+//            // the number of elements:
+//       
+//            var imageNrArr = [UInt8](count: 4, repeatedValue: 0)
+//            var byteCountArr = [UInt8](count: 4, repeatedValue: 0)
+//         
+//            
+//            
+//           
+//           
+//            imageNrArr   = Array(byteArray[2..<6])
+//            byteCountArr = Array(byteArray[7..<11])
+//            imageNr      = getNumberFromBytes(imageNrArr)
+//            byteCount    = getNumberFromBytes(byteCountArr)
+//            packageCount = Int(byteArray[6])
             
             
 //            print("Flag 1 : ", byteArray[0])
@@ -131,37 +148,41 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
             }
         if(byteArray[0] == PACKET_HEADER_FLAG )
         {
-            self.count += 1
+//            self.count += 1
             
 //            let imageNumber = Int(extractImageNumber(data, from: "packetHeader"))
-            let imagePacket = VideoStreamImagePacket(data: data)
-            var imageNumber  = Int(imagePacket.getImageNumber())
-            if(images.indices.contains(imageNumber)) {
-                images[imageNumber].addPackage(imagePacket)
+            let imagePacket = VideoStreamImagePacket(data: byteArray)
+            var imageNumber  = imagePacket.getImageNumber()
+            var foundImage = false
+            for image in images.reverse(){
+                if( image.imageNumber == imageNumber){
+                    print("adding package with number: ", imagePacket.getPacketNumber())
+                    image.addPackage(imagePacket)
+                    foundImage = true
+                    break
+                }
             }
-            else{
-                images.insert(VideoStreamImage(imageNr:UInt32(imageNumber)), atIndex: imageNumber)
+            if(!foundImage) {
+                print("adding image in block2")
+                let image = VideoStreamImage(imageNr:UInt32(imageNumber))
+                image.addPackage(imagePacket)
+                images.append(image)
             }
-
+        
+//            var imageNrArr = [UInt8](count: 4, repeatedValue: 0)
+//            imageNrArr   = Array(byteArray[1..<5])
+//            imageNumber  = getNumberFromBytes(imageNrArr)
+////            print("appending data of packet with info:")
+//            
+////            print("ImageNumber: ",imageNumber)
+////            print("packageNumber", byteArray[5])
+//            var dataToAppendArr:[UInt8] = Array(byteArray[6..<byteArray.count])
+//            var dataToAppend = NSData(bytes: dataToAppendArr, length: dataToAppendArr.count)
             
-            var imageNrArr = [UInt8](count: 4, repeatedValue: 0)
-            imageNrArr   = Array(byteArray[1..<5])
-            imageNumber  = getNumberFromBytes(imageNrArr)
-//            print("appending data of packet with info:")
-            
-//            print("ImageNumber: ",imageNumber)
-//            print("packageNumber", byteArray[5])
-            var dataToAppendArr:[UInt8] = Array(byteArray[6..<byteArray.count])
-            var dataToAppend = NSData(bytes: dataToAppendArr, length: dataToAppendArr.count)
-            
-            image.appendData(dataToAppend)
+//            image.appendData(dataToAppend)
             
         }
-        if(self.count == packageCount){
-            print("creating image")
-            createImg()
-            self.count = 0
-        }
+       
 //        print(data.description)
 //        print(address.description)
 //        var datastring = NSString(data: data, encoding: NSASCIIStringEncoding)
@@ -169,16 +190,81 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         
         
     }
-    func createImg(){
+    // maybe call this from a delegate instead of via a timer.
+    func showImage(){
+       
+        if(self.images.count <= 0){
+            return
+        }
+        print(images[0].isCompleteImage())
+        for (index, image) in images.enumerate().reverse(){
+            if(image.isCompleteImage()){
+                print("found complete image")
+                self.delegate?.DidReceiveImage(self, image: image.getImageData())
+                self.images = Array(images[index..<images.count])
+                print("Images length is now", self.images.count)
+                break
+                var foundLast = false
+                var count     = 1
+                while(!foundLast){
+                    if(index - count >= 0)
+                    {
+                        if(!images[index-count].isCompleteImage())
+                        {
+                            foundLast = true
+                            print("foundlast")
+                        }
+                        else
+                        {
+                            count+=1
+                        }
+                    }
+                }
+                self.delegate?.DidReceiveImage(self, image: images[(index-count)+1].getImageData())
+                images = Array(images[((index-count)+1)..<images.count])
+                break
+            }
+        }
+        
+//        for var i:Int = keys.count - 1 ; i >= 0 ;i -= 1 {
+//            
+//            if( images[keys[i]] != nil && images[keys[i]]!.isCompleteImage())
+//            {
+//                print("sending image to view")
+//                self.delegate?.DidReceiveImage(self, image: images[keys[i]]!.getImageData())
+//                
+//                images.dropFirst(images.indexForKey(keys[i])?.successor())
+//                
+//                for (key, value) in images{
+//                    print(key)
+//                    if(key <= keys[i]){
+//                        images.removeValueForKey(i)
+//                    }
+//                }
+//               break
+//            }
+//        }
         
         
-       self.delegate?.DidReceiveImage(self, image: self.image)
         
-     
+//        for i in 0...keys.count-1{
+//           
+////            print(images[i]!.isCompleteImage())
+//            
+//            if( images[keys[i]] != nil && images[keys[i]]!.isCompleteImage())
+//            {
+//                print("sending image to view")
+//                self.delegate?.DidReceiveImage(self, image: images[keys[i]]!.getImageData())
+//                for (key, value) in images{
+//                    if(key <= keys[i]){
+//                        images.removeValueForKey(i)
+//                    }
+//                }
+//            }
+//        }
+//       self.delegate?.DidReceiveImage(self, image: self.image)
         
-        
-        
-        
+
 //        self.uiImage = UIImage(data: image)!
 //        parent.imageView.image = self.uiImage
     }
@@ -198,14 +284,14 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         imageNr = first<<24 | second<<16 | third<<8 | fourth;
         return imageNr
     }
-    func extractImageNumber(data:NSData, from: NSString) -> UInt32{
+    func extractImageNumber(byteArray:Array<UInt8>, from: NSString) -> UInt32{
         
         
-        let count = data.length / sizeof(UInt8)
-        // create array of appropriate length:
-        var byteArray = [UInt8](count: count, repeatedValue: 0)
-        // copy bytes into array
-        data.getBytes(&byteArray, length:count * sizeof(UInt8))
+//        let count = data.length / sizeof(UInt8)
+//        // create array of appropriate length:
+//        var byteArray = [UInt8](count: count, repeatedValue: 0)
+//        // copy bytes into array
+//        data.getBytes(&byteArray, length:count * sizeof(UInt8))
         
         var imageNr: UInt32
         var imageNrArr =   [UInt8](count: 4, repeatedValue: 0)
@@ -219,7 +305,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
             return getNumberFromBytes(imageNrArr)
         }
         else {
-            return -1
+            return 0
         }
     }
     func udpSocketDidClose(sock: GCDAsyncUdpSocket!, withError error: NSError!) {
@@ -231,6 +317,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         self.outSocket.sendData(data, withTimeout: 2, tag: 0)
         self.outSocket.closeAfterSending()
         self.delegate = nil
+        self.timer.invalidate()
         print("videoStream Closed")
     }
     func udpSocket(sock: GCDAsyncUdpSocket!, didConnectToAddress address: NSData!) {
