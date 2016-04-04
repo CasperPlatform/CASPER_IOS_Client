@@ -141,8 +141,10 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
     }
     func createImg(){
         
+        
+       self.delegate?.DidReceiveImage(self, image: self.image)
+        
      
-        self.delegate?.DidReceiveImage(self, image: self.image)
         
         
         

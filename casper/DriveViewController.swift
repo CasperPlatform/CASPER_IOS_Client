@@ -175,7 +175,10 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
     }
     func DidReceiveImage(sender: VideoStream, image: NSData) {
         print("image received")
-        self.videoView.image = UIImage(data: image)!
+     
+            self.videoView.image = UIImage(data: image)!
+        
+        
         
     }
 }
