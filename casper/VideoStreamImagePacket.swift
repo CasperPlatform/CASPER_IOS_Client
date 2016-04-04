@@ -25,4 +25,16 @@ class VideoStreamImagePacket : NSObject{
     func processHeader(header : NSData){
         
     }
+    func getNumberFromBytes(array:[UInt8]) ->UInt32{
+        let first,second,third,fourth, imageNr:UInt32
+        
+        first  = UInt32(array[0])
+        second = UInt32(array[1])
+        third  = UInt32(array[2])
+        fourth = UInt32(array[3])
+        
+        imageNr = first<<24 | second<<16 | third<<8 | fourth;
+        return imageNr
+    }
+
 }

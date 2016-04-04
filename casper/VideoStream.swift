@@ -19,12 +19,15 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
     let socketQueue : dispatch_queue_t
     
     weak var delegate:VideoStreamDelegate?
-   
+    
     var outSocket:GCDAsyncUdpSocket!
     var image:NSMutableData
     var uiImage:UIImage
     var count = 0
     var packageCount = 0
+    
+    var images = Array<VideoStreamImage>()
+    
 //    var parent:SettingsViewController
     
     
@@ -83,7 +86,14 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         // IF WE GOT HEADER
         if(byteArray[0] == HEADER_FLAG){
             
+            
             image.setData(NSData())
+            
+            var imageImg = VideoStreamImage(header: data)
+            var imageNumber = Int(imageImg.imageNumber)
+            images.insert(imageImg, atIndex: imageNumber)
+            
+            
             var imageNr, byteCount : UInt32
             // the number of elements:
        
