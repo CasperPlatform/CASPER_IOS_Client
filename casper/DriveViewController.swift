@@ -148,18 +148,20 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
         //
         //        SocketConn.openStreamAndSendValues(flagDirectionX, flagY: flagDirectionY, speed: speed, direction: angle)
     }
-    
+    //.animateWithDuration(0.7, delay: 1.0, options: .CurveEaseOut, animations: {
     
     @IBAction func mapZoomBtn(sender: AnyObject) {
-        if mapView.frame.width != self.view.bounds.width && mapView.frame.height != self.view.bounds.height {
-            mapView.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
-            mapZoomBtn.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        if self.mapView.frame.width != self.view.bounds.width && self.mapView.frame.height != self.view.bounds.height {
+            self.mapView.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
+            self.mapZoomBtn.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
             
         }
         else{
-            mapView.frame = CGRectMake((self.view.bounds.width/2)-132, self.view.bounds.height-(146+50), 264, 146)
-            mapZoomBtn.frame = CGRectMake((self.view.bounds.width/2)-132, self.view.bounds.height-(146+50), 264, 146)
+            self.mapView.frame = CGRectMake((self.view.bounds.width/2)-132, self.view.bounds.height-(146+50), 264, 146)
+            self.mapZoomBtn.frame = CGRectMake((self.view.bounds.width/2)-132, self.view.bounds.height-(146+50), 264, 146)
         }
+        }, completion: nil)
     }
     
     @IBAction func createMapBtn(sender: AnyObject) {
