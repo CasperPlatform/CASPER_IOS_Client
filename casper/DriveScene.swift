@@ -19,6 +19,7 @@ class DriveScene: SKScene {
             
             let image = joystickStickImageEnabled ? UIImage(named: "jStick") : nil
             moveAnalogStick.stick.image = image
+            moveAnalogStick2.stick.image = image
         }
     }
     
@@ -28,10 +29,12 @@ class DriveScene: SKScene {
             
             let image = joystickSubstrateImageEnabled ? UIImage(named: "jSubstrate") : nil
             moveAnalogStick.substrate.image = image
+            moveAnalogStick2.substrate.image = image
         }
     }
     // diameter 80 = 40 max in each direction
     let moveAnalogStick =  🕹(diameter: 120)
+    let moveAnalogStick2 =  🕹(diameter: 120)
     
     override func didMoveToView(view: SKView) {
 
@@ -40,14 +43,22 @@ class DriveScene: SKScene {
         physicsBody = SKPhysicsBody(edgeLoopFromRect: frame)
         
         moveAnalogStick.position = CGPointMake(moveAnalogStick.radius + 15, moveAnalogStick.radius + 15)
+        moveAnalogStick2.position = CGPointMake((self.view?.bounds.width)! + 55, moveAnalogStick.radius + 15)
         
         
         addChild(moveAnalogStick)
+        addChild(moveAnalogStick2)
         moveAnalogStick.trackingHandler = { jData in
             
             guard let aN = self.appleNode else { return }
             aN.position = CGPointMake(aN.position.x + (jData.velocity.x * 0.12), aN.position.y + (jData.velocity.y * 0.12))
 //            print(aN.position.y)
+        }
+        moveAnalogStick2.trackingHandler = { jData in
+            
+            guard let aN = self.appleNode else { return }
+            aN.position = CGPointMake(aN.position.x + (jData.velocity.x * 0.12), aN.position.y + (jData.velocity.y * 0.12))
+            //            print(aN.position.y)
         }
         
         
@@ -139,12 +150,14 @@ class DriveScene: SKScene {
         
         let Color = UIColorFromRGB(3010454)
         moveAnalogStick.stick.color = Color
+        moveAnalogStick2.stick.color = Color
     }
     
     func setSubstrateColor() {
         
         let Color = UIColorFromRGB(2110536)
         moveAnalogStick.substrate.color = Color
+        moveAnalogStick2.substrate.color = Color
     }
     
     override func update(currentTime: CFTimeInterval) {

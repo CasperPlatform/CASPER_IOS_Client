@@ -12,10 +12,13 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
     
 
     @IBOutlet weak var videoView: UIImageView!
+    @IBOutlet weak var mapZoomBtn: UIButton!
     
     var joystick = AnalogJoystick(diameter: 100)
+    var cameraJoystick = AnalogJoystick(diameter: 100)
     @IBOutlet weak var mapBtn: UIBarButtonItem!
     @IBOutlet weak var mapView: UIImageView!
+    
     var SocketConn:SocketConnection?
     var videoSocket : VideoStream!
     var driveSocket : DriveStream!
@@ -36,6 +39,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
         let size = CGSizeMake(self.view.bounds.height, self.view.bounds.width)
         let scene = DriveScene(size: size)
         joystick = scene.moveAnalogStick
+        cameraJoystick = scene.moveAnalogStick2
         background.backgroundColor = UIColor(white: 0.5, alpha: 1.0)
         
         // start streaming video
@@ -143,6 +147,21 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
         
         //
         //        SocketConn.openStreamAndSendValues(flagDirectionX, flagY: flagDirectionY, speed: speed, direction: angle)
+    }
+    //.animateWithDuration(0.7, delay: 1.0, options: .CurveEaseOut, animations: {
+    
+    @IBAction func mapZoomBtn(sender: AnyObject) {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        if self.mapView.frame.width != self.view.bounds.width && self.mapView.frame.height != self.view.bounds.height {
+            self.mapView.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
+            self.mapZoomBtn.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
+            
+        }
+        else{
+            self.mapView.frame = CGRectMake((self.view.bounds.width/2)-132, self.view.bounds.height-(146+50), 264, 146)
+            self.mapZoomBtn.frame = CGRectMake((self.view.bounds.width/2)-132, self.view.bounds.height-(146+50), 264, 146)
+        }
+        }, completion: nil)
     }
     
     @IBAction func createMapBtn(sender: AnyObject) {
