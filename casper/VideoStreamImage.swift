@@ -30,11 +30,18 @@ class VideoStreamImage : NSObject {
         self.imageNumber   = 0
         super.init()
         processHeader(header)
-      
-        
+    }
+    init(imageNr:UInt32){
+        self.packageNumber = 0
+        self.byteCount     = 0
+        self.imageNumber   = imageNr
+        super.init()
     }
     func addPackage(package: VideoStreamImagePacket){
         
+    }
+    func addHeader(header: NSData){
+        processHeader(header)
     }
     func isComplete() -> Bool{
         
@@ -70,6 +77,9 @@ class VideoStreamImage : NSObject {
         
         imageNr = first<<24 | second<<16 | third<<8 | fourth;
         return imageNr
+    }
+    func getImageNumber() -> UInt32{
+        return self.imageNumber
     }
 
 }

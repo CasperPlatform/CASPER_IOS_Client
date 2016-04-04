@@ -89,9 +89,18 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
             
             image.setData(NSData())
             
-            var imageImg = VideoStreamImage(header: data)
-            var imageNumber = Int(imageImg.imageNumber)
-            images.insert(imageImg, atIndex: imageNumber)
+        
+//            var imageImg = VideoStreamImage(header: data)
+//            var imageNumber = Int(imageImg.getImageNumber())
+            
+            let imageNumber = Int(extractImageNumber(data,from:"imageHeader"))
+            if(images.indices.contains(imageNumber)) {
+                images[imageNumber].addHeader(data)
+            }
+            else{
+                images.insert(VideoStreamImage(header: data), atIndex: imageNumber)
+            }
+            
             
             
             var imageNr, byteCount : UInt32
@@ -123,7 +132,18 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         if(byteArray[0] == PACKET_HEADER_FLAG )
         {
             self.count += 1
-            var imageNumber: UInt32
+            
+//            let imageNumber = Int(extractImageNumber(data, from: "packetHeader"))
+            let imagePacket = VideoStreamImagePacket(data: data)
+            var imageNumber  = Int(imagePacket.getImageNumber())
+            if(images.indices.contains(imageNumber)) {
+                images[imageNumber].addPackage(imagePacket)
+            }
+            else{
+                images.insert(VideoStreamImage(imageNr:UInt32(imageNumber)), atIndex: imageNumber)
+            }
+
+            
             var imageNrArr = [UInt8](count: 4, repeatedValue: 0)
             imageNrArr   = Array(byteArray[1..<5])
             imageNumber  = getNumberFromBytes(imageNrArr)
@@ -177,6 +197,30 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         
         imageNr = first<<24 | second<<16 | third<<8 | fourth;
         return imageNr
+    }
+    func extractImageNumber(data:NSData, from: NSString) -> UInt32{
+        
+        
+        let count = data.length / sizeof(UInt8)
+        // create array of appropriate length:
+        var byteArray = [UInt8](count: count, repeatedValue: 0)
+        // copy bytes into array
+        data.getBytes(&byteArray, length:count * sizeof(UInt8))
+        
+        var imageNr: UInt32
+        var imageNrArr =   [UInt8](count: 4, repeatedValue: 0)
+        if(from.isEqualToString("imageHeader")){
+            imageNrArr        = Array(byteArray[2..<6])
+            return getNumberFromBytes(imageNrArr)
+
+        }
+        else if(from.isEqualToString("packetHeader")){
+            imageNrArr        = Array(byteArray[1..<5])
+            return getNumberFromBytes(imageNrArr)
+        }
+        else {
+            return -1
+        }
     }
     func udpSocketDidClose(sock: GCDAsyncUdpSocket!, withError error: NSError!) {
         
