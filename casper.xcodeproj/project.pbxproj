@@ -16,6 +16,7 @@
 		16CB435B1CB254AE00B6A4C8 /* VideoStreamImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CB435A1CB254AE00B6A4C8 /* VideoStreamImage.swift */; };
 		16CB435D1CB2586600B6A4C8 /* VideoStreamImagePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CB435C1CB2586600B6A4C8 /* VideoStreamImagePacket.swift */; };
 		16CB435F1CB29BB300B6A4C8 /* ImageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CB435E1CB29BB300B6A4C8 /* ImageList.swift */; };
+		16CB43611CB306FA00B6A4C8 /* VideoStreamImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CB43601CB306FA00B6A4C8 /* VideoStreamImageDelegate.swift */; };
 		16E784C91C721D79006BF669 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E784C81C721D79006BF669 /* AppDelegate.swift */; };
 		16E784CB1C721D79006BF669 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E784CA1C721D79006BF669 /* ViewController.swift */; };
 		16E784CE1C721D79006BF669 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16E784CC1C721D79006BF669 /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 		16CB435A1CB254AE00B6A4C8 /* VideoStreamImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStreamImage.swift; sourceTree = "<group>"; };
 		16CB435C1CB2586600B6A4C8 /* VideoStreamImagePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStreamImagePacket.swift; sourceTree = "<group>"; };
 		16CB435E1CB29BB300B6A4C8 /* ImageList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageList.swift; sourceTree = "<group>"; };
+		16CB43601CB306FA00B6A4C8 /* VideoStreamImageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStreamImageDelegate.swift; sourceTree = "<group>"; };
 		16E784C51C721D79006BF669 /* casper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = casper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16E784C81C721D79006BF669 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16E784CA1C721D79006BF669 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				16CB435E1CB29BB300B6A4C8 /* ImageList.swift */,
 				1646E15E1CAD6E6800C79A63 /* VideoStream.swift */,
 				16CB435A1CB254AE00B6A4C8 /* VideoStreamImage.swift */,
+				16CB43601CB306FA00B6A4C8 /* VideoStreamImageDelegate.swift */,
 				16CB435C1CB2586600B6A4C8 /* VideoStreamImagePacket.swift */,
 				A9077EC31C7266C6008B7AFB /* SettingsViewController.swift */,
 				163EC67D1CB117D90035AD29 /* JoystickValueDelegate.swift */,
@@ -312,7 +315,7 @@
 				TargetAttributes = {
 					16E784C41C721D79006BF669 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = TC3JJMVCQE;
+						DevelopmentTeam = CRGTXVJUGE;
 					};
 					16E784D81C721D79006BF669 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -521,6 +524,7 @@
 				A9077ECC1C7279B9008B7AFB /* DriveScene.swift in Sources */,
 				163EC67C1CB1145B0035AD29 /* DriveStream.swift in Sources */,
 				16BA7F601C837CA10022D135 /* SocketConn.swift in Sources */,
+				16CB43611CB306FA00B6A4C8 /* VideoStreamImageDelegate.swift in Sources */,
 				163EC6781CAE94530035AD29 /* ImageHandler.swift in Sources */,
 				16E784C91C721D79006BF669 /* AppDelegate.swift in Sources */,
 				16CB435D1CB2586600B6A4C8 /* VideoStreamImagePacket.swift in Sources */,

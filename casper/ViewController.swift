@@ -36,7 +36,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         else
         {
-        credentialError.text = "Wrong credentials"
+        
         print(usernameField.text! + " is logging in")
         
         let auth = RestUtil(username: usernameField.text!,
@@ -44,24 +44,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
             { (responseObject, error) in
                 if(error == nil && responseObject == nil)
                 {
-                    print("Connection failed, probably...")
                     
+                    self.credentialError.text = "Connection failed, probably..."
                 }
                 else if(error != nil && responseObject == nil)
                 {
                     print(error)
-                    
-                    
+                    self.credentialError.text = "Wrong credentials"
                 }
                 else
                 {
                     print(responseObject)
-                    if(responseObject!["Token"] != "")
+                    if(responseObject!["token"] != "" && responseObject!["token"] != nil )
                     {
                             print("got token")
                             self.token = responseObject!["token"].string!
-                        
-                            
+                    }
+                    else{
+                        self.credentialError.text = "Wrong credentials"
                     }
                 }
                 
