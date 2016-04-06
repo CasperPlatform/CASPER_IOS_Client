@@ -18,7 +18,7 @@ class SettingsViewController: UIViewController, VideoStreamDelegate {
         super.viewDidLoad()
         
         video = VideoStream(delegate: self)
-        video.send("test")
+     
         
         
         

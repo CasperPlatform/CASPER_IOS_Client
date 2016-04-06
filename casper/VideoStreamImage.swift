@@ -19,6 +19,8 @@ class VideoStreamImage : NSObject {
     var imageData     :NSMutableData = NSMutableData()
     var isComplete    : Bool
     
+    weak var delegate:VideoStreamImageDelegate?
+    
     override init(){
         self.packageNumber   = 0
         self.byteCount       = 0
@@ -28,17 +30,18 @@ class VideoStreamImage : NSObject {
         
         super.init()
     }
-    init(header: Array<UInt8>){
+    init(header: Array<UInt8>, delegate: VideoStreamImageDelegate){
        
         self.packageNumber = 0
         self.byteCount     = 0
         self.imageNumber   = 0
         self.isComplete    = false
+        self.delegate = delegate
         self.header        = NSData(bytes: header, length: header.count)
         super.init()
         processHeader(header)
     }
-    init(imageNr:UInt32){
+    init(imageNr:UInt32, delegate: VideoStreamImageDelegate){
         self.packageNumber = 0
         self.byteCount     = 0
         self.imageNumber   = imageNr
@@ -71,6 +74,7 @@ class VideoStreamImage : NSObject {
             if(hasAll){
                 print("marking as complete")
                 self.isComplete = true
+                delegate?.DidCompleteImage(self, image: imageData)
             }
         }
     }
@@ -88,6 +92,7 @@ class VideoStreamImage : NSObject {
             }
             if(hasAll){
                 self.isComplete = true
+                self.delegate?.DidCompleteImage(self, image: imageData)
             }
             
         }

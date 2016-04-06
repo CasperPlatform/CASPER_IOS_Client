@@ -10,9 +10,9 @@ import Foundation
 import CocoaAsyncSocket
 
 
-class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
+class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegate {
     
-    let HOST:String = "192.168.0.106"
+    let HOST:String = "192.168.10.1"
     let PORT:UInt16    = 6000
     let HEADER_FLAG:UInt8 = 0x01
     let PACKET_HEADER_FLAG:UInt8 = 0x02
@@ -62,16 +62,22 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
             try outSocket.enableBroadcast(true)
             try outSocket.connectToHost(HOST, onPort: PORT)
             try outSocket.beginReceiving()
-            self.send("start")
+            
+            
+            
+            
+            self.sendStart()
         } catch let error as NSError{
             print(error.localizedDescription)
             print("Something went wrong!")
         }
         
         print("Starting image show timer")
-//        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.008, target: self, selector: Selector("showImage"), userInfo: nil, repeats: true)
-        self.timer = NSTimer.init(timeInterval: 0.008, target: self, selector: Selector("showImage"), userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+        
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: Selector("sendIdle"), userInfo: nil, repeats: true)
+        
+//        self.timer = NSTimer.init(timeInterval: 0.008, target: self, selector: Selector("showImage"), userInfo: nil, repeats: true)
+//        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         
         
     }
@@ -110,7 +116,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
             }
             if(!foundImage) {
                 print("adding image in block1")
-                let image = VideoStreamImage(header: byteArray)
+                let image = VideoStreamImage(header: byteArray,delegate: self)
                 print("With ",image.packageCount," Packages")
                 images.append(image)
                 
@@ -164,7 +170,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
             }
             if(!foundImage) {
                 print("adding image in block2")
-                let image = VideoStreamImage(imageNr:UInt32(imageNumber))
+                let image = VideoStreamImage(imageNr:UInt32(imageNumber),delegate: self)
                 image.addPackage(imagePacket)
                 images.append(image)
             }
@@ -190,7 +196,28 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         
         
     }
-    // maybe call this from a delegate instead of via a timer.
+    
+    func DidCompleteImage(sender: VideoStreamImage, image: NSData) {
+        print("Image Completed, in delagate method");
+        
+        if(self.images.count <= 0){
+            return
+        }
+        print(images[0].isCompleteImage())
+        for (index, image) in images.enumerate().reverse(){
+            if(image.isCompleteImage()){
+                print("found complete image")
+                self.delegate?.DidReceiveImage(self, image: image.getImageData())
+                self.images = Array(images[index..<images.count])
+                print("Images length is now", self.images.count)
+                break
+                
+            }
+        }
+    }
+    
+    
+    // Depreceated, now using delegate instead
     func showImage(){
        
         if(self.images.count <= 0){
@@ -269,9 +296,66 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
 //        parent.imageView.image = self.uiImage
     }
     
-    func send(message:String){
-        let data = message.dataUsingEncoding(NSUTF8StringEncoding)
-        outSocket.sendData(data, withTimeout: 2, tag: 0)
+    func sendStart(){
+        
+        var message = [UInt8](count: 0, repeatedValue: 0)
+        var token = "a0733740b899d91f"
+        var tokenData = token.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let count = tokenData!.length / sizeof(UInt8)
+        // create array of appropriate length:
+        var byteArray = [UInt8](count: count, repeatedValue: 0)
+        // copy bytes into array
+        tokenData!.getBytes(&byteArray, length:count * sizeof(UInt8))
+        
+        message.append(0x01)
+        
+        message.appendContentsOf(byteArray)
+        message.append(0x53)
+        
+//        let data = message.dataUsingEncoding(NSUTF8StringEncoding)
+        outSocket.sendData(NSData(bytes: message,length:message.count), withTimeout: 2, tag: 0)
+        
+        
+        
+    }
+    func sendStop(){
+        var message = [UInt8](count: 0, repeatedValue: 0)
+        var token = "a0733740b899d91f"
+        var tokenData = token.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let count = tokenData!.length / sizeof(UInt8)
+        // create array of appropriate length:
+        var byteArray = [UInt8](count: count, repeatedValue: 0)
+        // copy bytes into array
+        tokenData!.getBytes(&byteArray, length:count * sizeof(UInt8))
+        
+        message.append(0x01)
+        
+        message.appendContentsOf(byteArray)
+        message.append(0x73)
+        
+        //        let data = message.dataUsingEncoding(NSUTF8StringEncoding)
+        outSocket.sendData(NSData(bytes: message,length:message.count), withTimeout: 2, tag: 0)
+    }
+    func sendIdle(){
+        var message = [UInt8](count: 0, repeatedValue: 0)
+        var token = "a0733740b899d91f"
+        var tokenData = token.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let count = tokenData!.length / sizeof(UInt8)
+        // create array of appropriate length:
+        var byteArray = [UInt8](count: count, repeatedValue: 0)
+        // copy bytes into array
+        tokenData!.getBytes(&byteArray, length:count * sizeof(UInt8))
+        
+        message.append(0x01)
+        
+        message.appendContentsOf(byteArray)
+        message.append(0x49)
+        
+        //        let data = message.dataUsingEncoding(NSUTF8StringEncoding)
+        outSocket.sendData(NSData(bytes: message,length:message.count), withTimeout: 2, tag: 0)
     }
     func getNumberFromBytes(array:[UInt8]) ->UInt32{
         let first,second,third,fourth, imageNr:UInt32
@@ -312,9 +396,10 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate {
         
     }
     func closeStream(){
-        let stopMsg = "stop"
-        let data = stopMsg.dataUsingEncoding(NSUTF8StringEncoding)
-        self.outSocket.sendData(data, withTimeout: 2, tag: 0)
+//        let stopMsg = "stop"
+//        let data = stopMsg.dataUsingEncoding(NSUTF8StringEncoding)
+//        self.outSocket.sendData(data, withTimeout: 2, tag: 0)
+        self.sendStop()
         self.outSocket.closeAfterSending()
         self.delegate = nil
         self.timer.invalidate()
