@@ -44,7 +44,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
         
         // start streaming video
         startVideoStream()
-        startDriveStream()
+        //startDriveStream()
         
         
         if let skView = drive as? SKView {
@@ -79,7 +79,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
 //        self.SocketConn!.closeStream()
         self.videoSocket.closeStream()
         self.videoSocket = nil
-        self.driveSocket.closeStream()
+        //self.driveSocket.closeStream()
         self.driveSocket = nil
         self.timer.invalidate()
     }
@@ -141,7 +141,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
         
         
         
-        
+
         
         
         

@@ -28,6 +28,8 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
     var count = 0
     var packageCount = 0
     
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    var token:NSString = ""
     var images = Array<VideoStreamImage>()
 //    var parent:SettingsViewController
     
@@ -65,16 +67,28 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
             
             
             
+            if(self.userDefaults.objectForKey("token") as? String != ""){
+                self.token = self.userDefaults.objectForKey("token") as! String
+                print("token is"+(self.token as String))
+                self.sendStart()
+                print("Starting idle message timer")
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: Selector("sendIdle"), userInfo: nil, repeats: true)
+            }
+            else{
+                if(self.token as String != "test"){
+                        print("token is empty")
+                }
+                
+                
+            }
             
-            self.sendStart()
         } catch let error as NSError{
             print(error.localizedDescription)
             print("Something went wrong!")
         }
         
-        print("Starting image show timer")
-        
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: Selector("sendIdle"), userInfo: nil, repeats: true)
+//        print("Starting idle message timer")
+//        self.timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: Selector("sendIdle"), userInfo: nil, repeats: true)
         
 //        self.timer = NSTimer.init(timeInterval: 0.008, target: self, selector: Selector("showImage"), userInfo: nil, repeats: true)
 //        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
@@ -211,7 +225,6 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
                 self.images = Array(images[index..<images.count])
                 print("Images length is now", self.images.count)
                 break
-                
             }
         }
     }
@@ -252,55 +265,16 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
                 break
             }
         }
-        
-//        for var i:Int = keys.count - 1 ; i >= 0 ;i -= 1 {
-//            
-//            if( images[keys[i]] != nil && images[keys[i]]!.isCompleteImage())
-//            {
-//                print("sending image to view")
-//                self.delegate?.DidReceiveImage(self, image: images[keys[i]]!.getImageData())
-//                
-//                images.dropFirst(images.indexForKey(keys[i])?.successor())
-//                
-//                for (key, value) in images{
-//                    print(key)
-//                    if(key <= keys[i]){
-//                        images.removeValueForKey(i)
-//                    }
-//                }
-//               break
-//            }
-//        }
-        
-        
-        
-//        for i in 0...keys.count-1{
-//           
-////            print(images[i]!.isCompleteImage())
-//            
-//            if( images[keys[i]] != nil && images[keys[i]]!.isCompleteImage())
-//            {
-//                print("sending image to view")
-//                self.delegate?.DidReceiveImage(self, image: images[keys[i]]!.getImageData())
-//                for (key, value) in images{
-//                    if(key <= keys[i]){
-//                        images.removeValueForKey(i)
-//                    }
-//                }
-//            }
-//        }
-//       self.delegate?.DidReceiveImage(self, image: self.image)
-        
 
-//        self.uiImage = UIImage(data: image)!
-//        parent.imageView.image = self.uiImage
     }
     
     func sendStart(){
         
+        print("sending start")
         var message = [UInt8](count: 0, repeatedValue: 0)
-        var token = "a0733740b899d91f"
-        var tokenData = token.dataUsingEncoding(NSUTF8StringEncoding)
+       
+//        var token = "a71d1842e87c0aa2"
+        var tokenData = self.token.dataUsingEncoding(NSUTF8StringEncoding)
         
         let count = tokenData!.length / sizeof(UInt8)
         // create array of appropriate length:
@@ -321,8 +295,8 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
     }
     func sendStop(){
         var message = [UInt8](count: 0, repeatedValue: 0)
-        var token = "a0733740b899d91f"
-        var tokenData = token.dataUsingEncoding(NSUTF8StringEncoding)
+//        var token = "a71d1842e87c0aa2"
+        var tokenData = self.token.dataUsingEncoding(NSUTF8StringEncoding)
         
         let count = tokenData!.length / sizeof(UInt8)
         // create array of appropriate length:
@@ -340,8 +314,8 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
     }
     func sendIdle(){
         var message = [UInt8](count: 0, repeatedValue: 0)
-        var token = "a0733740b899d91f"
-        var tokenData = token.dataUsingEncoding(NSUTF8StringEncoding)
+//        var token = "a71d1842e87c0aa2"
+        var tokenData = self.token.dataUsingEncoding(NSUTF8StringEncoding)
         
         let count = tokenData!.length / sizeof(UInt8)
         // create array of appropriate length:
@@ -414,7 +388,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
     }
     
     func udpSocket(sock: GCDAsyncUdpSocket!, didSendDataWithTag tag: Int) {
-        print("didSendDataWithTag")
+        print("didSendDataWithTag udp")
     }
     
     func udpSocket(sock: GCDAsyncUdpSocket!, didNotSendDataWithTag tag: Int, dueToError error: NSError!) {

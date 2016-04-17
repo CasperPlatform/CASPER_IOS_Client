@@ -27,11 +27,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var token:String = ""
     
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
     @IBAction func loginBtn(sender: AnyObject)
     {
         progressIndicator.startAnimating()
         
         if(usernameField.text == "admin" && passwdField.text == "Password"){
+            self.userDefaults.setObject("test", forKey: "token")
             performSegueWithIdentifier("login", sender: self)
         }
         else
@@ -59,6 +62,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     {
                             print("got token")
                             self.token = responseObject!["token"].string!
+                            self.userDefaults.setObject(self.token, forKey: "token")
                     }
                     else{
                         self.credentialError.text = "Wrong credentials"
