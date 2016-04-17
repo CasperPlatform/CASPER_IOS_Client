@@ -49,10 +49,10 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
         self.delegate = delegate
         socketQueue = dispatch_queue_create("socketQueue", nil)
         super.init()
-        setupConnection()
+        //setupConnection()
     }
     
-    func setupConnection(){
+    func setupConnection() -> Bool{
         
         
         outSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue:dispatch_get_main_queue())
@@ -73,10 +73,12 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
                 self.sendStart()
                 print("Starting idle message timer")
                 self.timer = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: Selector("sendIdle"), userInfo: nil, repeats: true)
+                return true
             }
             else{
                 if(self.token as String != "test"){
-                        print("token is empty")
+                    print("token is empty")
+                    return false
                 }
                 
                 
@@ -85,6 +87,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
         } catch let error as NSError{
             print(error.localizedDescription)
             print("Something went wrong!")
+            return false
         }
         
 //        print("Starting idle message timer")
@@ -93,6 +96,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
 //        self.timer = NSTimer.init(timeInterval: 0.008, target: self, selector: Selector("showImage"), userInfo: nil, repeats: true)
 //        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         
+        return false
         
     }
     

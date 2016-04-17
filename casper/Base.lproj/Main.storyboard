@@ -269,11 +269,12 @@
                         <outlet property="mapView" destination="8Ix-wo-qnO" id="XdC-sG-cMl"/>
                         <outlet property="mapZoomBtn" destination="db1-Wd-ouo" id="tWa-OR-xvp"/>
                         <outlet property="videoView" destination="Mkc-Pv-634" id="JFd-QH-pa7"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toLoginScreen" id="ifk-lZ-eni"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SOk-24-LR1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011" y="1067"/>
+            <point key="canvasLocation" x="1059" y="1199"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="bS9-AS-Buq">
@@ -363,5 +364,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="BN3-5G-yAe"/>
+        <segue reference="ifk-lZ-eni"/>
     </inferredMetricsTieBreakers>
 </document>

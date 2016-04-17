@@ -89,7 +89,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func workDone(){
         progressIndicator.stopAnimating()
-        if(self.token != ""){
+        if(self.token as String != ""){
             
             performSegueWithIdentifier("login", sender: self)
         }

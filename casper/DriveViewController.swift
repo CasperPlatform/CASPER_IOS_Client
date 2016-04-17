@@ -86,7 +86,28 @@ class DriveViewController: UIViewController, VideoStreamDelegate {
     func startVideoStream(){
         // Instantiate and send Start command to videostream.
         self.videoSocket = VideoStream(delegate: self)
+        if(self.videoSocket.setupConnection() != true){
+            let alertController = UIAlertController(title: "Stream error", message: "Your login credentials seem to be invalid, logging you out.", preferredStyle: .Alert)
+           
+                
+            
+            let okAction = UIAlertAction(title: "ok", style: .Default) { (action) -> Void in
+                print("The user is logged out")
+                self.logout()
+            }
+            
+            
+            alertController.addAction(okAction)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.presentViewController(alertController, animated: true, completion: nil)
+            })
+            
+        }
         
+        
+    }
+    func logout(){
+        performSegueWithIdentifier("toLoginScreen", sender: self)
     }
     func startDriveStream(){
         self.driveSocket = DriveStream(joystick: joystick)
