@@ -43,7 +43,7 @@ class DriveScene: SKScene {
         physicsBody = SKPhysicsBody(edgeLoopFromRect: frame)
         
         moveAnalogStick.position = CGPointMake(moveAnalogStick.radius + 15, moveAnalogStick.radius + 15)
-        moveAnalogStick2.position = CGPointMake((self.view?.bounds.width)! - 15, moveAnalogStick.radius + 15)
+        moveAnalogStick2.position = CGPointMake((self.view?.bounds.width)! + 55, moveAnalogStick.radius + 15)
         
         
         addChild(moveAnalogStick)
