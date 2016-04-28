@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -226,12 +226,14 @@
                                         <rect key="frame" x="168" y="382" width="264" height="146"/>
                                         <color key="backgroundColor" red="0.098039215690000001" green="0.14901960780000001" blue="0.2156862745" alpha="0.60342133620000005" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="264" id="WaI-qQ-4Mq"/>
-                                            <constraint firstAttribute="height" constant="146" id="oQC-6z-py2"/>
+                                            <constraint firstAttribute="width" constant="264" id="Zc8-q6-KJV"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="db1-Wd-ouo">
                                         <rect key="frame" x="168" y="382" width="264" height="146"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="146" id="npz-0f-NuP"/>
+                                        </constraints>
                                         <connections>
                                             <action selector="mapZoomBtn:" destination="oDG-C3-lVT" eventType="touchUpInside" id="2Wo-LC-k8F"/>
                                         </connections>
@@ -239,27 +241,27 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.4566611071051625" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="8Ix-wo-qnO" firstAttribute="centerX" secondItem="tze-Ea-mI6" secondAttribute="centerX" id="6X9-kQ-Jbq"/>
-                                    <constraint firstItem="db1-Wd-ouo" firstAttribute="leading" secondItem="8Ix-wo-qnO" secondAttribute="leading" id="BhV-ub-DHN"/>
-                                    <constraint firstItem="8Ix-wo-qnO" firstAttribute="bottom" secondItem="tze-Ea-mI6" secondAttribute="bottomMargin" id="P8d-UE-lkf"/>
-                                    <constraint firstItem="db1-Wd-ouo" firstAttribute="top" secondItem="8Ix-wo-qnO" secondAttribute="top" id="SP8-hH-3NL"/>
-                                    <constraint firstItem="db1-Wd-ouo" firstAttribute="trailing" secondItem="8Ix-wo-qnO" secondAttribute="trailing" id="cGq-CL-Qdb"/>
-                                    <constraint firstItem="db1-Wd-ouo" firstAttribute="bottom" secondItem="8Ix-wo-qnO" secondAttribute="bottom" id="i3W-nE-hmu"/>
+                                    <constraint firstItem="8Ix-wo-qnO" firstAttribute="bottom" secondItem="db1-Wd-ouo" secondAttribute="bottom" id="AdH-iO-QqE"/>
+                                    <constraint firstItem="8Ix-wo-qnO" firstAttribute="top" secondItem="db1-Wd-ouo" secondAttribute="top" id="Kh8-Yp-WMu"/>
+                                    <constraint firstItem="db1-Wd-ouo" firstAttribute="centerX" secondItem="tze-Ea-mI6" secondAttribute="centerX" id="Nb1-Xv-k4O"/>
+                                    <constraint firstItem="8Ix-wo-qnO" firstAttribute="trailing" secondItem="db1-Wd-ouo" secondAttribute="trailing" id="TMC-kA-PTj"/>
+                                    <constraint firstItem="8Ix-wo-qnO" firstAttribute="leading" secondItem="db1-Wd-ouo" secondAttribute="leading" id="vWx-ZR-Txk"/>
+                                    <constraint firstItem="8Ix-wo-qnO" firstAttribute="bottom" secondItem="tze-Ea-mI6" secondAttribute="bottomMargin" id="x9C-Av-oq8"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Mkc-Pv-634" firstAttribute="leading" secondItem="tze-Ea-mI6" secondAttribute="leading" id="3VL-sx-I2n"/>
-                            <constraint firstItem="Mkc-Pv-634" firstAttribute="trailing" secondItem="tze-Ea-mI6" secondAttribute="trailing" id="6cK-A6-4ho"/>
-                            <constraint firstItem="tze-Ea-mI6" firstAttribute="top" secondItem="xda-Ec-l9y" secondAttribute="bottom" id="8fa-9J-oxi"/>
-                            <constraint firstItem="Mkc-Pv-634" firstAttribute="top" secondItem="6nK-hR-Pd8" secondAttribute="bottom" constant="12" id="Cva-bE-tb6"/>
-                            <constraint firstItem="xda-Ec-l9y" firstAttribute="trailing" secondItem="tze-Ea-mI6" secondAttribute="trailing" id="Fq9-S2-2MW"/>
-                            <constraint firstItem="xda-Ec-l9y" firstAttribute="leading" secondItem="tze-Ea-mI6" secondAttribute="leading" id="IQj-he-gay"/>
-                            <constraint firstAttribute="trailing" secondItem="xda-Ec-l9y" secondAttribute="trailing" id="LDy-7q-cDT"/>
-                            <constraint firstItem="xda-Ec-l9y" firstAttribute="top" secondItem="6nK-hR-Pd8" secondAttribute="bottom" id="Ls0-ho-L24"/>
-                            <constraint firstItem="xda-Ec-l9y" firstAttribute="leading" secondItem="ddi-2x-tw8" secondAttribute="leading" id="dbw-Pe-Rzb"/>
-                            <constraint firstItem="Mkc-Pv-634" firstAttribute="bottom" secondItem="bU5-yG-v4g" secondAttribute="top" id="fiN-Sg-pAR"/>
-                            <constraint firstItem="tze-Ea-mI6" firstAttribute="bottom" secondItem="bU5-yG-v4g" secondAttribute="top" id="zqZ-bs-idk"/>
+                            <constraint firstItem="Mkc-Pv-634" firstAttribute="trailing" secondItem="tze-Ea-mI6" secondAttribute="trailing" id="0b1-pE-auI"/>
+                            <constraint firstItem="tze-Ea-mI6" firstAttribute="top" secondItem="xda-Ec-l9y" secondAttribute="bottom" id="3QC-BV-baf"/>
+                            <constraint firstItem="xda-Ec-l9y" firstAttribute="leading" secondItem="ddi-2x-tw8" secondAttribute="leading" id="CTa-vX-JvF"/>
+                            <constraint firstItem="Mkc-Pv-634" firstAttribute="leading" secondItem="tze-Ea-mI6" secondAttribute="leading" id="GMp-NO-wFk"/>
+                            <constraint firstItem="xda-Ec-l9y" firstAttribute="trailing" secondItem="Mkc-Pv-634" secondAttribute="trailing" id="RPV-q9-WIP"/>
+                            <constraint firstItem="Mkc-Pv-634" firstAttribute="top" secondItem="6nK-hR-Pd8" secondAttribute="bottom" constant="12" id="TDP-66-NfU"/>
+                            <constraint firstItem="tze-Ea-mI6" firstAttribute="bottom" secondItem="Mkc-Pv-634" secondAttribute="bottom" id="gZi-j8-e30"/>
+                            <constraint firstAttribute="bottom" secondItem="Mkc-Pv-634" secondAttribute="bottom" id="huS-Jn-cLV"/>
+                            <constraint firstItem="xda-Ec-l9y" firstAttribute="top" secondItem="6nK-hR-Pd8" secondAttribute="bottom" id="iBu-4L-czt"/>
+                            <constraint firstItem="xda-Ec-l9y" firstAttribute="leading" secondItem="tze-Ea-mI6" secondAttribute="leading" id="mQ2-05-xVF"/>
+                            <constraint firstAttribute="trailing" secondItem="xda-Ec-l9y" secondAttribute="trailing" id="xh7-fx-KCD"/>
                         </constraints>
                     </view>
                     <connections>
