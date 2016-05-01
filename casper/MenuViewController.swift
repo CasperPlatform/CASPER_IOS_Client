@@ -13,7 +13,7 @@ class MenuViewController: UIViewController {
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
     var token:String = ""
-    let connection:SocketConnection = SocketConnection()
+    
    
     @IBOutlet weak var settings: UIBarButtonItem!
     
