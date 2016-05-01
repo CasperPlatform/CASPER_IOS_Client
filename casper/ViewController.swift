@@ -34,7 +34,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         progressIndicator.startAnimating()
         
         if(usernameField.text == "admin" && passwdField.text == "Password"){
-            self.userDefaults.setObject("test", forKey: "token")
+            self.userDefaults.setObject("", forKey: "token")
             performSegueWithIdentifier("login", sender: self)
         }
         else
