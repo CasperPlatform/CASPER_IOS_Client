@@ -14,11 +14,22 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
     
     let HOST:String = "192.168.10.1"
     let PORT:UInt16    = 9999
+    
+    // Constants
     let TAG_DRIVE_WRITE:Int = 0xffff
+    let FORWARD_FLAG        = 0x46
+    let BACKWARD_FLAG       = 0x42
+    let RIGHT_ANGLE_FLAG    = 0x52
+    let LEFT_ANGLE_FLAG     = 0x4c
+    let IDLE_DRIVE_FLAG     = 0x49
+    
     var timer:NSTimer = NSTimer()
     let socketQueue : dispatch_queue_t
     var outSocket:GCDAsyncSocket!
     var joystick :AnalogJoystick!
+    
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    var token:NSString = ""
     //    var parent:SettingsViewController
     
     
@@ -34,10 +45,10 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
 //        self.delegate = delegate
         super.init()
         self.joystick = joystick
-        setupConnection()
+        //setupConnection()
     }
     
-    func setupConnection(){
+    func setupConnection() -> Bool{
        
         outSocket = GCDAsyncSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
         do {
@@ -48,12 +59,24 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
             
             try outSocket.connectToHost(HOST, onPort: PORT)
             
+            if(self.userDefaults.objectForKey("token") as? String != ""){
+                self.token = self.userDefaults.objectForKey("token") as! String
+                print("token is"+(self.token as String))
+                return true
+            }
+            else{
+                if(self.token as String != "test"){
+                    print("token is empty")
+                    return false
+                }
+            }
         } catch let error as NSError{
             print(error.localizedDescription)
             print("Something went wrong!")
+            return false
         }
         
-        
+        return false
     }
     
     func socket(sock: GCDAsyncSocket!, didConnectToHost host: String!, port: UInt16) {
@@ -70,10 +93,19 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
   
     func getDriveMessage() -> NSData{
         
-        
+        // message carrier
+        var message = [UInt8](count: 0, repeatedValue: 0)
+        // token
+        let tokenData = self.token.dataUsingEncoding(NSUTF8StringEncoding)
+        // tokencount
+        let count = tokenData!.length / sizeof(UInt8)
+        // create array of appropriate length:
+        var tokenArray = [UInt8](count: count, repeatedValue: 0)
+        // copy bytes into array
+        tokenData!.getBytes(&tokenArray, length:count * sizeof(UInt8))
         
         var x = (Float(joystick!.stick.position.x) / 60) * 90
-        var y = (Float(joystick!.stick.position.y) / 60) * 255
+        var y = (Float(joystick!.stick.position.y) / 60) * 90
         var fx = 0x52
         var fy = 0x46
         if( y < 0) {
@@ -86,6 +118,7 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
         }
         
         
+        
         print(y)
         let angle = UInt8(x)
         let speed = UInt8(y)
@@ -94,14 +127,18 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
         print(angle)
         print(speed)
         
+        // append Drive-flag
+        message.append(0x44)
+        // append tokendata
+        message.appendContentsOf(tokenArray)
+      
         
-       
         
-        let bytes : [UInt8]  = [0x44,flagDirectionY,flagDirectionX,speed, angle, 0x0d, 0x0a, 0x04]
-        
-        print(bytes)
-        let values = NSData(bytes: bytes, length: bytes.count * sizeof(UInt8))
-        return values
+        let driveBytes : [UInt8]  = [flagDirectionY,flagDirectionX,speed, angle, 0x0d, 0x0a, 0x04]
+        message.appendContentsOf(driveBytes)
+        print(message)
+        let messageData = NSData(bytes: message, length: message.count * sizeof(UInt8))
+        return messageData
     }
     
     func send(){
@@ -124,9 +161,10 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
 //        let stopMsg = "stop"
 //        let data = stopMsg.dataUsingEncoding(NSUTF8StringEncoding)
 //        self.outSocket.sendData(data, withTimeout: 2, tag: 0)
-        self.outSocket.disconnectAfterWriting()
+        self.outSocket.disconnect()
         self.timer.invalidate()
-//        self.delegate = nil
+        
+//    self.delegate = nil
         print("DriveStream Closed")
     }
   
