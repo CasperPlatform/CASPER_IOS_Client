@@ -7,3 +7,6 @@
 //
 
 import Foundation
+protocol LidarMapperDelegate: class {
+    func DidReceiveMap(sender: VideoStream, image: NSData)
+}

@@ -7,3 +7,68 @@
 //
 
 import Foundation
+import CocoaAsyncSocket
+
+class LidarMapper : NSObject, GCDAsyncUdpSocketDelegate{
+    let HOST:String = "192.168.10.1"
+    let PORT:UInt16    = 6000
+    var outSocket:GCDAsyncUdpSocket!
+    
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    var token:NSString = ""
+    
+    weak var delegate:LidarMapperDelegate?
+    
+    init(delegate: LidarMapperDelegate){
+        
+        self.delegate = delegate
+        super.init()
+        
+    }
+    func setupConnection() -> Bool{
+        
+        
+        outSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue:dispatch_get_main_queue())
+        do {
+            //            try inSocket.bindToPort(PORT)
+            //            try inSocket.enableBroadcast(true)
+            //            try inSocket.joinMulticastGroup(HOST)
+            //            try inSocket.beginReceiving()
+            try outSocket.enableBroadcast(true)
+            try outSocket.connectToHost(HOST, onPort: PORT)
+            try outSocket.beginReceiving()
+            
+            
+            
+            if(self.userDefaults.objectForKey("token") as? String != ""){
+                self.token = self.userDefaults.objectForKey("token") as! String
+                print("token is"+(self.token as String))
+                self.sendStart()
+                print("Starting idle message timer")
+            
+                return true
+            }
+            else{
+                if(self.token as String != "test"){
+                    print("token is empty")
+                    return false
+                }
+                
+                
+            }
+            
+        } catch let error as NSError{
+            print(error.localizedDescription)
+            print("Something went wrong!")
+            return false
+        }
+        
+        return false
+        
+    }
+    func sendStart(){
+        
+    }
+    
+    
+}
