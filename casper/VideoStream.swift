@@ -80,8 +80,6 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
                     print("token is empty")
                     return false
                 }
-                
-                
             }
             
         } catch let error as NSError{
