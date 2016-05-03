@@ -27,16 +27,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     var token:String = ""
     
+    let userDefaults = NSUserDefaults.standardUserDefaults()
+    
     @IBAction func loginBtn(sender: AnyObject)
     {
         progressIndicator.startAnimating()
         
         if(usernameField.text == "admin" && passwdField.text == "Password"){
+            self.userDefaults.setObject("", forKey: "token")
             performSegueWithIdentifier("login", sender: self)
         }
         else
         {
-        credentialError.text = "Wrong credentials"
+        
         print(usernameField.text! + " is logging in")
         
         let auth = RestUtil(username: usernameField.text!,
@@ -44,24 +47,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
             { (responseObject, error) in
                 if(error == nil && responseObject == nil)
                 {
-                    print("Connection failed, probably...")
                     
+                    self.credentialError.text = "Connection failed, probably..."
                 }
                 else if(error != nil && responseObject == nil)
                 {
                     print(error)
-                    
-                    
+                    self.credentialError.text = "Wrong credentials"
                 }
                 else
                 {
                     print(responseObject)
-                    if(responseObject!["Token"] != "")
+                    if(responseObject!["token"] != "" && responseObject!["token"] != nil )
                     {
                             print("got token")
                             self.token = responseObject!["token"].string!
-                        
-                            
+                            self.userDefaults.setObject(self.token, forKey: "token")
+                    }
+                    else{
+                        self.credentialError.text = "Wrong credentials"
                     }
                 }
                 
@@ -85,7 +89,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func workDone(){
         progressIndicator.stopAnimating()
-        if(self.token != ""){
+        if(self.token as String != ""){
             
             performSegueWithIdentifier("login", sender: self)
         }

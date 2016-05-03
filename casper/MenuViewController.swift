@@ -10,8 +10,10 @@ import UIKit
 
 class MenuViewController: UIViewController {
     
+    
+    let userDefaults = NSUserDefaults.standardUserDefaults()
     var token:String = ""
-    let connection:SocketConnection = SocketConnection()
+    
    
     @IBOutlet weak var settings: UIBarButtonItem!
     
@@ -37,6 +39,7 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         settings.imageInsets = UIEdgeInsetsMake(10, 10, 10, 10)
+        print(userDefaults.objectForKey("token") as? NSString )
         
         // Do any additional setup after loading the view, typically from a nib.
     }

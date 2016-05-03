@@ -8,18 +8,32 @@
 
 import UIKit
 import SpriteKit
-class DriveViewController: UIViewController {
+class DriveViewController: UIViewController, VideoStreamDelegate, LidarMapperDelegate {
+    
+
+    @IBOutlet weak var videoView: UIImageView!
+    @IBOutlet weak var mapZoomBtn: UIButton!
     
     var joystick = AnalogJoystick(diameter: 100)
+    var cameraJoystick = AnalogJoystick(diameter: 100)
     @IBOutlet weak var mapBtn: UIBarButtonItem!
     @IBOutlet weak var mapView: UIImageView!
-    var SocketConn:SocketConnection?
+    
+
+    var videoSocket : VideoStream!
+    var driveSocket : DriveStream!
+    var lidarMapper : LidarMapper!
     var startPoint = CGPoint.zero
     var red: CGFloat = 0.0
     var green: CGFloat = 0.0
     var blue: CGFloat = 0.0
-    var timer = NSTimer()
+   
+    
 
+    @IBOutlet weak var drive: SKView!
+    
+    @IBOutlet var background: UIView!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,18 +41,34 @@ class DriveViewController: UIViewController {
         let size = CGSizeMake(self.view.bounds.height, self.view.bounds.width)
         let scene = DriveScene(size: size)
         joystick = scene.moveAnalogStick
-        if let skView = view as? SKView {
+        cameraJoystick = scene.moveAnalogStick2
+        background.backgroundColor = UIColor(white: 0.5, alpha: 1.0)
+        
+        // start streaming video
+        if(startDriveStream() && startVideoStream()){
+            // do post-init stuff
+            print("All Streams ok")
+        }
+        else{
             
+            displayFailedMsg()
+        }
+        
+        
+        if let skView = drive as? SKView {
             skView.showsFPS = false
             skView.showsNodeCount = false
             /* Sprite Kit applies additional optimizations to improve rendering performance */
             skView.ignoresSiblingOrder = true
             /* Set the scale mode to scale to fit the window */
             //scene.scaleMode = .AspectFill
+            skView.allowsTransparency = true;
+            skView.backgroundColor = UIColor(white: 0.0, alpha: 0.0);
             skView.presentScene(scene)
+            
         }
         
-        self.SocketConn = SocketConnection()
+        
         
        
         
@@ -46,17 +76,67 @@ class DriveViewController: UIViewController {
         //
         //        var timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: Selector("updateJoystickCoordinates:"), userInfo: nil, repeats: true)
         
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: SocketConn!, selector: Selector("sendValue:"), userInfo: joystick, repeats: true)
+//        self.timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: SocketConn!, selector: Selector("sendValue:"), userInfo: joystick, repeats: true)
         // Do any additional setup after loading the view, typically from a nib.
         
     }
     
     override func viewDidDisappear(animated: Bool) {
         print("view disappeared")
-        self.SocketConn!.closeStream()
-        self.timer.invalidate()
+        stopServices()
     }
-    
+    func stopServices(){
+        //        self.SocketConn!.closeStream()
+        if( self.videoSocket != nil ) {
+            self.videoSocket.closeStream()
+            self.videoSocket = nil
+        }
+        if( self.driveSocket != nil ) {
+            self.driveSocket.closeStream()
+            self.driveSocket = nil
+        }
+        if( self.drive != nil ){
+            self.joystick.removeAllActions()
+            self.cameraJoystick.removeAllActions()
+            self.drive = nil
+        }
+        
+        
+       
+    }
+    func displayFailedMsg(){
+        let alertController = UIAlertController(title: "Stream error", message: "Your login credentials seem to be invalid, logging you out.", preferredStyle: .Alert)
+        
+        
+        
+        let okAction = UIAlertAction(title: "ok", style: .Default) { (action) -> Void in
+            print("The user is logged out")
+            self.logout()
+        }
+        
+        
+        alertController.addAction(okAction)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.presentViewController(alertController, animated: true, completion: nil)
+        })
+
+    }
+    func startVideoStream() -> Bool{
+        // Instantiate and send Start command to videostream.
+        self.videoSocket = VideoStream(delegate: self)
+        return self.videoSocket.setupConnection()
+            
+        
+    }
+    func startDriveStream() -> Bool{
+        
+        self.driveSocket = DriveStream(joystick: joystick)
+        return self.driveSocket.setupConnection()
+        
+    }
+    func logout(){
+        performSegueWithIdentifier("toLoginScreen", sender: self)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -75,44 +155,20 @@ class DriveViewController: UIViewController {
     }
     
     
-    func updateJoystickCoordinates(timer:NSTimer){
-        
-        
-        var x = (joystick.stick.position.x / 40) * 90
-        var y = (joystick.stick.position.y / 40) * 255
-        var fx = 0x52
-        var fy = 0x46
-        if( y < 0) {
-            fy = 0x42
-            y = y * -1
+    //.animateWithDuration(0.7, delay: 1.0, options: .CurveEaseOut, animations: {
+    
+    @IBAction func mapZoomBtn(sender: AnyObject) {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        if self.mapView.frame.width != self.view.bounds.width && self.mapView.frame.height != self.view.bounds.height {
+            self.mapView.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
+            self.mapZoomBtn.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height)
+            
         }
-        if( x < 0){
-            fx = 0x4c
-            x = x * -1
+        else{
+            self.mapView.frame = CGRectMake((self.view.bounds.width/2)-132, self.view.bounds.height-(146+50), 264, 146)
+            self.mapZoomBtn.frame = CGRectMake((self.view.bounds.width/2)-132, self.view.bounds.height-(146+50), 264, 146)
         }
-        
-        
-        
-        let angle = UInt8(x)
-        let speed = UInt8(y)
-        let flagDirectionY = UInt8(fy)
-        let flagDirectionX = UInt8(fx)
-        print(angle)
-        print(speed)
-        
-        SocketConn!.angle = angle
-        SocketConn!.speed = speed
-        SocketConn!.flagx = flagDirectionX
-        SocketConn!.flagy = flagDirectionY
-        
-        
-        
-        
-        
-        
-        
-        //
-        //        SocketConn.openStreamAndSendValues(flagDirectionX, flagY: flagDirectionY, speed: speed, direction: angle)
+        }, completion: nil)
     }
     
     @IBAction func createMapBtn(sender: AnyObject) {
@@ -143,5 +199,12 @@ class DriveViewController: UIViewController {
         return image
         
     }
-    
+    func DidReceiveImage(sender: VideoStream, image: NSData) {
+        print("image received")
+        
+            self.videoView.image = UIImage(data: image)!
+    }
+    func DidReceiveMap(sender: VideoStream, image: NSData) {
+        print("received new map")
+    }
 }

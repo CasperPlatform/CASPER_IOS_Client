@@ -18,7 +18,7 @@ class SettingsViewController: UIViewController, VideoStreamDelegate {
         super.viewDidLoad()
         
         video = VideoStream(delegate: self)
-        video.send("test")
+     
         
         
         
@@ -39,6 +39,7 @@ class SettingsViewController: UIViewController, VideoStreamDelegate {
     }
     func DidReceiveImage(sender: VideoStream, image: NSData) {
         print("image received")
+        self.imageView.image = nil
         self.imageView.image = UIImage(data: image)!
     }
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {

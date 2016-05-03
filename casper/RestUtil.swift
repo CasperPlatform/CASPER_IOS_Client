@@ -15,6 +15,8 @@ class RestUtil: NSOperation {
     var token:String = ""
     var username:String = ""
     var password:String = ""
+    let HOST            = "192.168.10.1"
+    let PORT            = "10000"
     let completionHandler : (responseObject:JSON? ,error: NSError?) -> ()
     
     init(username: String, password:String, completionHandler:(responseObject:JSON?,error:NSError?) -> ()){
@@ -35,13 +37,12 @@ class RestUtil: NSOperation {
         manager.session.configuration.HTTPAdditionalHeaders = [
             "content-type": "application/json",
         ]
-        
         let params = [
             "username": username,
             "password": password
         ]
         
-        Alamofire.request(.POST, "http://localhost:3000/login", parameters: params, encoding: .JSON )
+        Alamofire.request(.POST, "http://"+HOST+":"+PORT+"/login", parameters: params, encoding: .JSON )
             .responseJSON { response in guard response.result.error == nil
                 else
                 {
