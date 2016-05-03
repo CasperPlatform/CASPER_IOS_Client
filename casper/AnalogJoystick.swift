@@ -122,7 +122,7 @@ public class AnalogJoystick: SKNode {
     var stick: AnalogJoystickStick!
     private var tracking = false
     private(set) var data = AnalogJoystickData()
-    var SocketConn = SocketConnection()
+    
     
     
     var disabled: Bool {
