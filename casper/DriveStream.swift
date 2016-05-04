@@ -116,7 +116,12 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
             fx = 0x4c
             x = x * -1
         }
-        
+        if(y == 0){
+            fy = IDLE_DRIVE_FLAG;
+        }
+        if( x == 0){
+            fx = IDLE_DRIVE_FLAG;
+        }
         
         
         print(y)
