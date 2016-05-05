@@ -12,8 +12,8 @@ import CocoaAsyncSocket
 
 class DriveStream : NSObject, GCDAsyncUdpSocketDelegate {
     
-    let HOST:String = "127.0.0.1"
-    let PORT:UInt16    = 6000
+    let HOST:String = "192.168.10.1"
+    let PORT:UInt16    = 9999
     
     // Constants
     let TAG_DRIVE_WRITE:Int = 0xffff
@@ -121,6 +121,13 @@ class DriveStream : NSObject, GCDAsyncUdpSocketDelegate {
             fx = 0x4c
             x = x * -1
         }
+        if(y == 0){
+            fy = IDLE_DRIVE_FLAG;
+        }
+        if( x == 0){
+            fx = IDLE_DRIVE_FLAG;
+        }
+
         
         
         
