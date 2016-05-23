@@ -10,7 +10,7 @@ import Foundation
 import CocoaAsyncSocket
 
 
-class DriveStream : NSObject, GCDAsyncSocketDelegate {
+class DriveStream : NSObject, GCDAsyncUdpSocketDelegate {
     
     let HOST:String = "192.168.10.1"
     let PORT:UInt16    = 9999
@@ -25,7 +25,7 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
     
     var timer:NSTimer = NSTimer()
     let socketQueue : dispatch_queue_t
-    var outSocket:GCDAsyncSocket!
+    var outSocket:GCDAsyncUdpSocket!
     var joystick :AnalogJoystick!
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -50,18 +50,23 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
     
     func setupConnection() -> Bool{
        
-        outSocket = GCDAsyncSocket(delegate: self, delegateQueue: dispatch_get_main_queue())
+        outSocket = GCDAsyncUdpSocket(delegate: self, delegateQueue:dispatch_get_main_queue())
         do {
             //            try inSocket.bindToPort(PORT)
             //            try inSocket.enableBroadcast(true)
             //            try inSocket.joinMulticastGroup(HOST)
             //            try inSocket.beginReceiving()
             
+            try outSocket.enableBroadcast(true)
             try outSocket.connectToHost(HOST, onPort: PORT)
+            try outSocket.beginReceiving()
+            //try outSocket.connectToHost(HOST, onPort: PORT)
             
             if(self.userDefaults.objectForKey("token") as? String != ""){
                 self.token = self.userDefaults.objectForKey("token") as! String
                 print("token is"+(self.token as String))
+                startWriting()
+                
                 return true
             }
             else{
@@ -122,6 +127,8 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
         if( x == 0){
             fx = IDLE_DRIVE_FLAG;
         }
+
+        
         
         
         print(y)
@@ -149,8 +156,9 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
     func send(){
         
             let writeMsg = self.getDriveMessage()
-            self.outSocket.writeData(writeMsg, withTimeout: 0, tag: self.TAG_DRIVE_WRITE)
+            self.outSocket.sendData(writeMsg, withTimeout: 0, tag: self.TAG_DRIVE_WRITE)
         
+
         
     }
  
@@ -166,7 +174,7 @@ class DriveStream : NSObject, GCDAsyncSocketDelegate {
 //        let stopMsg = "stop"
 //        let data = stopMsg.dataUsingEncoding(NSUTF8StringEncoding)
 //        self.outSocket.sendData(data, withTimeout: 2, tag: 0)
-        self.outSocket.disconnect()
+        self.outSocket.close();
         self.timer.invalidate()
         
 //    self.delegate = nil

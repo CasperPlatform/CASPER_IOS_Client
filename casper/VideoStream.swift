@@ -12,7 +12,7 @@ import CocoaAsyncSocket
 
 class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegate {
     
-    let HOST:String = "192.168.10.1"
+    let HOST:String = "devpi.smallwhitebird.org"
     let PORT:UInt16    = 6000
     let HEADER_FLAG:UInt8 = 0x01
     let PACKET_HEADER_FLAG:UInt8 = 0x02

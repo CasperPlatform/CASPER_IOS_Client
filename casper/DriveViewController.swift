@@ -22,7 +22,8 @@ class DriveViewController: UIViewController, VideoStreamDelegate, LidarMapperDel
 
     var videoSocket : VideoStream!
     var driveSocket : DriveStream!
-    var lidarMapper : LidarMapper!
+    var lidarSocket : LidarMapper!
+    var lidarStream : LidarMapper!
     var startPoint = CGPoint.zero
     var red: CGFloat = 0.0
     var green: CGFloat = 0.0
@@ -45,7 +46,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate, LidarMapperDel
         background.backgroundColor = UIColor(white: 0.5, alpha: 1.0)
         
         // start streaming video
-        if(startDriveStream() && startVideoStream()){
+        if( startLidarStream() ){
             // do post-init stuff
             print("All Streams ok")
         }
@@ -133,6 +134,10 @@ class DriveViewController: UIViewController, VideoStreamDelegate, LidarMapperDel
         self.driveSocket = DriveStream(joystick: joystick)
         return self.driveSocket.setupConnection()
         
+    }
+    func startLidarStream() -> Bool {
+        self.lidarStream = LidarMapper(delegate: self)
+        return self.lidarStream.setupConnection()
     }
     func logout(){
         performSegueWithIdentifier("toLoginScreen", sender: self)
