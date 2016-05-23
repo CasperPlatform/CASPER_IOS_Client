@@ -10,8 +10,8 @@ import Foundation
 import CocoaAsyncSocket
 
 class LidarMapper : NSObject, GCDAsyncUdpSocketDelegate{
-    let HOST:String = "192.168.10.1"
-    let PORT:UInt16    = 6000
+    let HOST:String = "devpi.smallwhitebird.org"
+    let PORT:UInt16    = 9998
     var outSocket:GCDAsyncUdpSocket!
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
@@ -67,7 +67,26 @@ class LidarMapper : NSObject, GCDAsyncUdpSocketDelegate{
         
     }
     func sendStart(){
+        print("sending start")
+        var message = [UInt8](count: 0, repeatedValue: 0)
         
+        //        var token = "a71d1842e87c0aa2"
+        let tokenData = self.token.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let count = tokenData!.length / sizeof(UInt8)
+        // create array of appropriate length:
+        var byteArray = [UInt8](count: count, repeatedValue: 0)
+        // copy bytes into array
+        tokenData!.getBytes(&byteArray, length:count * sizeof(UInt8))
+        
+        message.append(0x4c)
+        message.append(0x53)
+        message.appendContentsOf(byteArray)
+       
+        let msgEnd : [UInt8]  = [0x0d, 0x0a, 0x04]
+        message.appendContentsOf(msgEnd)
+        //        let data = message.dataUsingEncoding(NSUTF8StringEncoding)
+        outSocket.sendData(NSData(bytes: message,length:message.count), withTimeout: 2, tag: 0)
     }
     
     

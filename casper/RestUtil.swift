@@ -15,7 +15,7 @@ class RestUtil: NSOperation {
     var token:String = ""
     var username:String = ""
     var password:String = ""
-    let HOST            = "192.168.10.1"
+    let HOST            = "devpi.smallwhitebird.org"
     let PORT            = "10000"
     let completionHandler : (responseObject:JSON? ,error: NSError?) -> ()
     
