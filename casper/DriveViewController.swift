@@ -101,6 +101,10 @@ class DriveViewController: UIViewController, VideoStreamDelegate, LidarMapperDel
             self.cameraJoystick.removeAllActions()
             self.drive = nil
         }
+        if( self.lidarSocket != nil){
+            self.lidarSocket.closeStream()
+            self.lidarSocket = nil
+        }
         
         
        
@@ -211,5 +215,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate, LidarMapperDel
     }
     func DidReceiveMap(sender: VideoStream, image: NSData) {
         print("received new map")
+        
+            self.mapView.image = UIImage(data: image)!
     }
 }

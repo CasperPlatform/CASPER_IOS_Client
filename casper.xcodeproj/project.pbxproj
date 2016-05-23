@@ -40,6 +40,7 @@
 		A9077ED11C728904008B7AFB /* apple.png in Resources */ = {isa = PBXBuildFile; fileRef = A9077ECF1C728904008B7AFB /* apple.png */; };
 		A9077ED21C728904008B7AFB /* apple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9077ED01C728904008B7AFB /* apple@2x.png */; };
 		A95F29DC1C845116004A25B5 /* pointer.png in Resources */ = {isa = PBXBuildFile; fileRef = A95F29DB1C845116004A25B5 /* pointer.png */; };
+		A97877381CF3124F00F026CC /* LidarMapperPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97877371CF3124F00F026CC /* LidarMapperPacket.swift */; };
 		A9CB12411C7AFDF20028CBF7 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A9CB12401C7AFDF20028CBF7 /* settings.png */; };
 		A9E87C2C1C7F3878000F9F6D /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A9E87C2B1C7F3878000F9F6D /* background.jpg */; };
 		A9E87C2E1C7F7E1C000F9F6D /* map-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E87C2D1C7F7E1C000F9F6D /* map-icon.png */; };
@@ -106,6 +107,7 @@
 		A9077ECF1C728904008B7AFB /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = apple.png; path = Images/apple.png; sourceTree = "<group>"; };
 		A9077ED01C728904008B7AFB /* apple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "apple@2x.png"; path = "Images/apple@2x.png"; sourceTree = "<group>"; };
 		A95F29DB1C845116004A25B5 /* pointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointer.png; sourceTree = "<group>"; };
+		A97877371CF3124F00F026CC /* LidarMapperPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LidarMapperPacket.swift; sourceTree = "<group>"; };
 		A9CB12401C7AFDF20028CBF7 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		A9E87C2B1C7F3878000F9F6D /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		A9E87C2D1C7F7E1C000F9F6D /* map-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-icon.png"; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				16CB435E1CB29BB300B6A4C8 /* ImageList.swift */,
 				16BFF5161CCD669600AC0EEB /* LidarMapper.swift */,
 				16BFF5181CCD66A800AC0EEB /* LidarMapperDelegate.swift */,
+				A97877371CF3124F00F026CC /* LidarMapperPacket.swift */,
 				16BFF5141CCD589800AC0EEB /* Draw2D.swift */,
 				1646E15E1CAD6E6800C79A63 /* VideoStream.swift */,
 				16CB435A1CB254AE00B6A4C8 /* VideoStreamImage.swift */,
@@ -535,6 +538,7 @@
 				163EC67E1CB117D90035AD29 /* JoystickValueDelegate.swift in Sources */,
 				A9077ECC1C7279B9008B7AFB /* DriveScene.swift in Sources */,
 				163EC67C1CB1145B0035AD29 /* DriveStream.swift in Sources */,
+				A97877381CF3124F00F026CC /* LidarMapperPacket.swift in Sources */,
 				16BA7F601C837CA10022D135 /* SocketConn.swift in Sources */,
 				16CB43611CB306FA00B6A4C8 /* VideoStreamImageDelegate.swift in Sources */,
 				163EC6781CAE94530035AD29 /* ImageHandler.swift in Sources */,

@@ -66,6 +66,25 @@ class LidarMapper : NSObject, GCDAsyncUdpSocketDelegate{
         return false
         
     }
+    func sendStop(){
+        var message = [UInt8](count: 0, repeatedValue: 0)
+        //        var token = "a71d1842e87c0aa2"
+        var tokenData = self.token.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let count = tokenData!.length / sizeof(UInt8)
+        // create array of appropriate length:
+        var byteArray = [UInt8](count: count, repeatedValue: 0)
+        // copy bytes into array
+        tokenData!.getBytes(&byteArray, length:count * sizeof(UInt8))
+        
+        message.append(0x01)
+        
+        message.appendContentsOf(byteArray)
+        message.append(0x73)
+        
+        //        let data = message.dataUsingEncoding(NSUTF8StringEncoding)
+        outSocket.sendData(NSData(bytes: message,length:message.count), withTimeout: 2, tag: 0)
+    }
     func sendStart(){
         print("sending start")
         var message = [UInt8](count: 0, repeatedValue: 0)
@@ -88,6 +107,14 @@ class LidarMapper : NSObject, GCDAsyncUdpSocketDelegate{
         //        let data = message.dataUsingEncoding(NSUTF8StringEncoding)
         outSocket.sendData(NSData(bytes: message,length:message.count), withTimeout: 2, tag: 0)
     }
-    
+    func closeStream(){
+        //        let stopMsg = "stop"
+        //        let data = stopMsg.dataUsingEncoding(NSUTF8StringEncoding)
+        //        self.outSocket.sendData(data, withTimeout: 2, tag: 0)
+        self.sendStop()
+        self.outSocket.closeAfterSending()
+        self.delegate = nil
+        print("lidarMapper Closed")
+    }
     
 }
