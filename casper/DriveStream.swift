@@ -29,7 +29,7 @@ class DriveStream : NSObject, GCDAsyncUdpSocketDelegate {
     var joystick :AnalogJoystick!
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
-    var token:NSString = ""
+    var token:NSString = "testtesttesttest"
     //    var parent:SettingsViewController
     
     

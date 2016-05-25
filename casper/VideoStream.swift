@@ -29,7 +29,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
     var packageCount = 0
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
-    var token:NSString = ""
+    var token:NSString = "TestTestTestTest"
     var images = Array<VideoStreamImage>()
 //    var parent:SettingsViewController
     
@@ -272,12 +272,13 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
     
     func sendStart(){
         
-        print("sending start")
+        print("sending video start")
         var message = [UInt8](count: 0, repeatedValue: 0)
        
-//        var token = "a71d1842e87c0aa2"
+       // var token = "a71d1842e87c0aa2"
+        self.token = "testtesttesttest"
         var tokenData = self.token.dataUsingEncoding(NSUTF8StringEncoding)
-        
+        print(self.token)
         let count = tokenData!.length / sizeof(UInt8)
         // create array of appropriate length:
         var byteArray = [UInt8](count: count, repeatedValue: 0)
@@ -291,6 +292,7 @@ class VideoStream : NSObject, GCDAsyncUdpSocketDelegate, VideoStreamImageDelegat
         
 //        let data = message.dataUsingEncoding(NSUTF8StringEncoding)
         outSocket.sendData(NSData(bytes: message,length:message.count), withTimeout: 2, tag: 0)
+        print("jejoaeoie")
         
         
         

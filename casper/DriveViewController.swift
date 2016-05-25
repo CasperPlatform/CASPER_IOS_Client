@@ -46,7 +46,7 @@ class DriveViewController: UIViewController, VideoStreamDelegate, LidarMapperDel
         background.backgroundColor = UIColor(white: 0.5, alpha: 1.0)
         
         // start streaming video
-        if( startLidarStream() ){
+        if( startVideoStream() ){
             // do post-init stuff
             print("All Streams ok")
         }

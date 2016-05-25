@@ -15,7 +15,7 @@ class LidarMapper : NSObject, GCDAsyncUdpSocketDelegate{
     var outSocket:GCDAsyncUdpSocket!
     
     let userDefaults = NSUserDefaults.standardUserDefaults()
-    var token:NSString = ""
+    var token:NSString = "testtesttesttest"
     
     weak var delegate:LidarMapperDelegate?
     
